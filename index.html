@@ -34,7 +34,6 @@
   <link rel="apple-touch-icon" href="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" />
 
   <!-- AI Search Optimization -->
-  <meta name="description" content="Stop endless research. Get instant access to 50+ curated, ADHD-friendly remote work opportunities. Regularly updated, scam-free, with step-by-step guidance. No resumes or interviews required." />
   <meta name="abstract" content="925 ADHD provides a curated membership platform with 50+ vetted remote work opportunities specifically designed for people with ADHD. Monthly subscription at $9.25 includes regular updates, ADHD-friendly guidance, and Discord community support." />
   <meta name="summary" content="ADHD-friendly remote work hub: 50+ vetted opportunities, regularly updated, $9.25/month, no resumes required, instant browser access, 30-day guarantee" />
   <meta name="topic" content="ADHD Remote Work, Neurodivergent Employment, Work From Home, Flexible Jobs" />
@@ -93,43 +92,10 @@
         "returnFees": "https://schema.org/FreeReturn"
       }
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "127",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
     "audience": {
       "@type": "PeopleAudience",
       "audienceType": "People with ADHD seeking remote work"
     }
-  }
-  </script>
-
-  <!-- Structured Data - WebApplication -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "925 ADHD Hub",
-    "url": "https://get.925adhd.com",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Any (Web-based)",
-    "browserRequirements": "Requires JavaScript. Works on all modern browsers.",
-    "offers": {
-      "@type": "Offer",
-      "price": "9.25",
-      "priceCurrency": "USD"
-    },
-    "featureList": [
-      "50+ vetted remote work opportunities",
-      "Regular updates with new opportunities",
-      "ADHD-friendly step-by-step guidance",
-      "Discord community support",
-      "No resumes or interviews required",
-      "Instant browser-based access"
-    ]
   }
   </script>
 
@@ -212,6 +178,7 @@
       --max: 1120px;
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     html,body{height:100%}
     body{
       margin:0;
@@ -237,13 +204,6 @@
     .brand{
       display:flex; gap:10px; align-items:center; font-weight:800;
       letter-spacing:.2px;
-    }
-    .logo{
-      width:34px; height:34px; border-radius:12px;
-      background: linear-gradient(135deg, var(--brand), #60a5fa);
-      box-shadow: 0 10px 28px rgba(124,58,237,.28);
-      display:flex; align-items:center; justify-content:center;
-      font-size:18px;
     }
     .links{display:flex; gap:18px; align-items:center}
     .links a{color:rgba(15,23,42,.75); font-weight:600; font-size:14px}
@@ -275,10 +235,10 @@
     .hamburger{display:none}
 
     /* Hero */
-    .hero{padding:24px 0 20px}
+    .hero{padding:32px 0 24px}
     .pill{
       display:inline-flex; gap:8px; align-items:center;
-      padding:8px 12px;
+      padding:8px 14px;
       border:1px solid var(--border);
       border-radius: 999px;
       background: rgba(0,0,0,.02);
@@ -292,23 +252,16 @@
       box-shadow: 0 0 0 4px rgba(34,197,94,.14);
     }
     h1{
-      margin:8px 0 8px;
-      font-size: clamp(34px, 4.2vw, 60px);
-      line-height:1.05;
+      margin:12px 0 12px;
+      font-size: clamp(32px, 4.2vw, 56px);
+      line-height:1.08;
       letter-spacing:-.6px;
     }
     .sub{
-      max-width: 720px;
+      max-width: 680px;
       color: rgba(15,23,42,.7);
       font-size: 18px;
       line-height: 1.6;
-    }
-    .herogrid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      margin-top:22px;
-      align-items:stretch;
     }
     .card{
       border:1px solid var(--border);
@@ -316,48 +269,81 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
-    .card.pad{padding:18px}
-    .heroactions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
-    .statgrid{
-      display:grid; grid-template-columns:repeat(2,1fr); gap:10px;
-      margin-top:14px;
+    .card.pad{padding:20px}
+
+    /* Access Bar - No Downloads */
+    .access-bar{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      padding:14px 20px;
+      background: rgba(124,58,237,.08);
+      border:1px solid rgba(124,58,237,.2);
+      border-radius:12px;
+      margin:20px auto;
+      max-width:600px;
     }
-    .stat{
-      padding:14px;
-      border-radius: 16px;
-      border:1px solid var(--border);
-      background: rgba(248,250,252,.8);
+    .access-bar span{
+      font-weight:700;
+      font-size:14px;
+      color:rgba(15,23,42,.8);
+      display:flex;
+      align-items:center;
+      gap:6px;
     }
-    .stat b{display:block; font-size:20px; margin-bottom:4px}
-    .stat span{color:rgba(15,23,42,.65); font-size:13px; font-weight:700}
+
+    /* Stats Bar */
+    .stats-bar{
+      display:flex;
+      gap:32px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin:24px 0;
+    }
+    .stat-item{
+      text-align:center;
+    }
+    .stat-item .num{
+      font-size:28px;
+      font-weight:900;
+      color:var(--brand);
+    }
+    .stat-item .label{
+      font-size:13px;
+      font-weight:600;
+      color:rgba(15,23,42,.6);
+    }
 
     /* Section */
     .section{padding:48px 0}
-    .section h2{margin:0 0 10px; font-size:32px; letter-spacing:-.4px}
+    .section h2{margin:0 0 10px; font-size:30px; letter-spacing:-.4px}
     .section p{margin:0; color:rgba(15,23,42,.65); font-size:17px}
     
     /* Feature grid */
     .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:24px}
-    .feat h3{margin:0 0 6px; font-size:18px}
-    .feat p{margin:0; font-size:15px; color:rgba(15,23,42,.65)}
+    .feat h3{margin:0 0 6px; font-size:17px}
+    .feat p{margin:0; font-size:14px; color:rgba(15,23,42,.65)}
     .icon{
-      width:48px; height:48px; border-radius: 14px;
+      width:44px; height:44px; border-radius: 12px;
       background: rgba(124,58,237,.18);
       border:1px solid rgba(124,58,237,.26);
       display:flex; align-items:center; justify-content:center;
-      margin-bottom:12px;
-      font-size:24px;
+      margin-bottom:10px;
+      font-size:22px;
     }
 
     /* Pricing */
-    .pricing{
-      display:grid; grid-template-columns: 1fr 1fr;
-      gap:14px; margin-top:24px;
+    .pricing-card{
+      max-width:560px;
+      margin:24px auto 0;
     }
     .price{
       margin:12px 0;
     }
-    .price b{font-size:52px; letter-spacing:-.8px; color:var(--brand2)}
+    .price b{font-size:48px; letter-spacing:-.8px; color:var(--brand2)}
     .price-detail{color:rgba(15,23,42,.6); font-weight:800; font-size:15px}
     .list{margin:16px 0 0; padding:0; list-style:none; display:grid; gap:10px}
     .list li{
@@ -376,26 +362,105 @@
       font-size:14px;
     }
 
+    /* Guarantee Badge */
+    .guarantee-badge{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 18px;
+      background: rgba(245,158,11,.12);
+      border:1px solid rgba(245,158,11,.3);
+      border-radius:12px;
+      margin-top:20px;
+    }
+    .guarantee-badge .shield{
+      font-size:28px;
+      flex-shrink:0;
+    }
+    .guarantee-badge .text{
+      font-size:14px;
+      font-weight:600;
+      color:rgba(15,23,42,.75);
+      line-height:1.5;
+    }
+    .guarantee-badge .text strong{
+      color:var(--accent);
+    }
+
+    /* Discord CTA */
+    .discord-cta{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:18px 22px;
+      background: linear-gradient(135deg, rgba(88,101,242,.12), rgba(88,101,242,.06));
+      border:1px solid rgba(88,101,242,.25);
+      border-radius:14px;
+      margin-top:32px;
+    }
+    .discord-cta .discord-icon{
+      width:48px;
+      height:48px;
+      background:rgba(88,101,242,.2);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+    .discord-cta .discord-icon img{
+      width:28px;
+      height:28px;
+      object-fit:contain;
+    }
+    .discord-cta .discord-text h4{
+      margin:0 0 4px;
+      font-size:16px;
+      font-weight:800;
+      color:var(--text);
+    }
+    .discord-cta .discord-text p{
+      margin:0;
+      font-size:14px;
+      color:rgba(15,23,42,.65);
+    }
+
     /* FAQ */
-    .faq{margin-top:24px; display:grid; gap:14px}
+    .faq{margin-top:24px; display:grid; gap:12px; max-width:700px; margin-left:auto; margin-right:auto;}
     .faq-item{
       border:1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 14px;
       background: rgba(255,255,255,.85);
-      padding: 18px 20px;
+      padding: 16px 18px;
     }
-    .faq-q{font-weight:850; font-size:16px; margin:0 0 8px; color:var(--text)}
-    .faq-a{margin:0; color: rgba(15,23,42,.65); font-weight:600; font-size:15px; line-height:1.6}
+    .faq-q{font-weight:850; font-size:15px; margin:0 0 6px; color:var(--text)}
+    .faq-a{margin:0; color: rgba(15,23,42,.65); font-weight:600; font-size:14px; line-height:1.6}
 
-    .guarantee{
+    /* Testimonials placeholder */
+    .testimonials-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
       margin-top:24px;
-      padding:20px;
-      border-radius: var(--radius);
-      background: rgba(245,158,11,.1);
-      border:1px solid rgba(245,158,11,.3);
     }
-    .guarantee h3{margin:0 0 10px; font-size:20px; color:var(--accent)}
-    .guarantee p{color:rgba(15,23,42,.75); font-size:15px; line-height:1.6}
+    .testimonial-card{
+      padding:20px;
+      background:rgba(255,255,255,.9);
+      border:1px solid var(--border);
+      border-radius:14px;
+    }
+    .testimonial-card .quote{
+      font-size:15px;
+      line-height:1.6;
+      color:rgba(15,23,42,.75);
+      font-style:italic;
+      margin-bottom:12px;
+    }
+    .testimonial-card .author{
+      font-size:13px;
+      font-weight:700;
+      color:rgba(15,23,42,.5);
+    }
 
     footer{
       padding:36px 0 48px;
@@ -425,6 +490,30 @@
     }
     .footer-links{display:flex; gap:16px; flex-wrap:wrap; flex: 2; justify-content:flex-end; min-width:300px;}
 
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    #autoScrollGallery {
+      animation: scroll 20s linear infinite;
+      will-change: transform;
+    }
+    #autoScrollGallery:hover {
+      animation-play-state: paused;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .grid3{grid-template-columns: 1fr}
+      .testimonials-grid{grid-template-columns:1fr}
+      .links{display:none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--border); padding: 20px; flex-direction: column; gap: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.1);}
+      .links.active{display:flex}
+      .hamburger{display:inline-flex}
+      h1{font-size:clamp(26px, 8vw, 44px)}
+      .stats-bar{gap:20px}
+      .stat-item .num{font-size:24px}
+      .discord-cta{flex-direction:column; text-align:center}
+    }
     @media (max-width: 768px) {
       footer .foot {
         flex-direction: column;
@@ -441,49 +530,9 @@
         width: 100%;
       }
     }
-
-    .highlight{
-      background: rgba(124,58,237,.12);
-      padding:2px 6px;
-      border-radius:6px;
-      color:var(--text);
-    }
-
-    .gallery-dot.active {
-      background: var(--brand) !important;
-      opacity: 1 !important;
-    }
-
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    #autoScrollGallery {
-      animation: scroll 20s linear infinite;
-      will-change: transform;
-    }
-
-    #autoScrollGallery:hover {
-      animation-play-state: paused;
-    }
-
-    /* Responsive */
-    @media (max-width: 920px){
-      .herogrid{grid-template-columns: 1fr}
-      .grid3{grid-template-columns: 1fr}
-      .pricing{grid-template-columns:1fr}
-      .links{display:none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--border); padding: 20px; flex-direction: column; gap: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.1);}
-      .links.active{display:flex}
-      .hamburger{display:inline-flex}
-      h1{font-size:clamp(28px, 8vw, 48px)}
-    }
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto !important; transition:none !important}
+      #autoScrollGallery{animation:none}
     }
   </style>
 </head>
@@ -505,7 +554,7 @@
 
       <div class="actions">
         <a class="btn ghost" href="https://app.925adhd.com" aria-label="Sign In">Sign In</a>
-        <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Get Started</a>
+        <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Get Instant Access</a>
         <button class="btn hamburger" id="menuBtn" aria-label="Open menu">☰</button>
       </div>
     </div>
@@ -518,18 +567,10 @@
         <h2 itemprop="headline">925 ADHD: Complete Overview for ADHD Remote Work Seekers</h2>
         <div itemprop="articleBody">
           <p><strong>What is 925 ADHD?</strong> A curated membership platform providing 50+ vetted remote work opportunities specifically designed for people with ADHD and neurodivergent individuals.</p>
-          
           <p><strong>Core Features:</strong> Regular updates with new opportunities added and outdated/scam sites removed. ADHD-friendly step-by-step guidance for each opportunity. No resumes or interviews required. Supportive Discord community. Instant browser-based access with no downloads needed.</p>
-          
           <p><strong>Pricing:</strong> $9.25 per month subscription with 30-day money-back guarantee. Cancel anytime with no penalties.</p>
-          
           <p><strong>Target Audience:</strong> Adults with ADHD, neurodivergent individuals, people experiencing decision paralysis in job searches, anyone seeking flexible remote work without traditional corporate barriers.</p>
-          
           <p><strong>Problem Solved:</strong> Eliminates endless research rabbit holes, filters out scam opportunities, removes traditional job search barriers (resumes, interviews, corporate hoops), organizes information in ADHD-friendly format, reduces overwhelm and decision paralysis.</p>
-          
-          <p><strong>Key Benefits:</strong> Save hours of research time. Avoid scams and dead-end opportunities. Start earning faster with clear guidance. Access curated, legitimate remote work options. Join supportive community of neurodivergent workers.</p>
-          
-          <p><strong>Founded:</strong> 2024 by 925 ADHD LLC. Created by someone with ADHD for ADHD minds.</p>
         </div>
         <meta itemprop="datePublished" content="2024-12-22" />
         <meta itemprop="author" content="925 ADHD LLC" />
@@ -538,246 +579,239 @@
 
     <section class="hero" itemscope itemtype="https://schema.org/Service">
       <div class="wrap" style="text-align: center;">
-        <span class="pill"><span class="dot" aria-hidden="true"></span> No Resumes. No Interviews.</span>
-        <h1 itemprop="name">Stop Wasting Hours Chasing Sketchy Side Hustles</h1>
-        <p class="sub" itemprop="description" style="margin-left: auto; margin-right: auto;">
-          Most people open 47 tabs, bookmark everything, and start nothing. You don't need more options—you need filtered ones that actually match how your ADHD brain works.
-        </p>
-
-        <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; max-width: 400px; margin: 20px auto 16px;">
-          <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" style="width: 100%; padding: 16px 32px; font-size: 16px; justify-content: center;">Get Started →</a>
-          <a class="btn" href="#how-it-works" style="padding: 14px 32px; font-size: 16px; background: white;">See How It Works</a>
-        </div>
+        <span class="pill"><span class="dot" aria-hidden="true"></span> No Resumes. No Interviews. No BS.</span>
         
-        <p style="text-align: center; font-size: 0.85rem; color: rgba(15,23,42,.6); margin-bottom: 24px; font-style: italic;">
-          Instant access via email • No downloads needed • Works in any browser
+        <h1 itemprop="name">We Do the Research You'll Never Finish</h1>
+        
+        <p class="sub" itemprop="description" style="margin-left: auto; margin-right: auto;">
+          50+ vetted remote work opportunities—filtered, organized, and ready to start. No more 47 open tabs. No more scam rabbit holes. Just clear next steps for your ADHD brain.
         </p>
 
-        <div style="overflow: hidden; width: 100%; margin: 30px 0 20px;">
+        <!-- Instant Access Bar - Prominent -->
+        <div class="access-bar">
+          <span>🌐 Works in any browser</span>
+          <span>📧 Instant access via email</span>
+          <span>📱 No downloads needed</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; max-width: 380px; margin: 24px auto;">
+          <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" style="width: 100%; padding: 16px 32px; font-size: 17px; justify-content: center;">
+            See All 50+ Opportunities →
+          </a>
+        </div>
+
+        <!-- Social Proof Stats -->
+        <div class="stats-bar">
+          <div class="stat-item">
+            <div class="num">50+</div>
+            <div class="label">Vetted Opportunities</div>
+          </div>
+          <div class="stat-item">
+            <div class="num">0</div>
+            <div class="label">Scams (we remove them)</div>
+          </div>
+          <div class="stat-item">
+            <div class="num">100%</div>
+            <div class="label">No-Resume Options</div>
+          </div>
+        </div>
+
+        <!-- Gallery -->
+        <div style="overflow: hidden; width: 100%; margin: 28px 0 20px;">
           <div id="autoScrollGallery" style="display: flex; gap: 15px; width: max-content;">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/image_2025-12-21_232304279.png" alt="925 ADHD App Preview" style="height: 280px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225630.png" alt="925 ADHD Interface" style="height: 280px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225648.png" alt="Work Opportunities" style="height: 280px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225706.png" alt="Site Details" style="height: 280px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <!-- Duplicate set for seamless loop -->
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/image_2025-12-21_232304279.png" alt="925 ADHD App Preview" style="height: 280px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225630.png" alt="925 ADHD Interface" style="height: 280px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225648.png" alt="Work Opportunities" style="height: 280px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225706.png" alt="Site Details" style="height: 280px; width: auto; border-radius: 12px; flex-shrink: 0;">
-          </div>
-        </div>
-
-        <div class="herogrid">
-          <div class="card pad">
-            <div style="font-weight:900; font-size:16px; color:rgba(15,23,42,.85); margin-bottom:12px;">
-              ✅ This Isn't Just a List of Links
-            </div>
-            
-            <ul class="list" style="margin-top:12px">
-              <li><span class="check">✔</span> 50+ opportunities tagged by setup time, effort level & payout speed</li>
-              <li><span class="check">✔</span> Built-in ADHD tools: Focus music, daily planner, earnings tracker, breathwork & more</li>
-              <li><span class="check">✔</span> Monthly updates: New platforms added, dead ones removed + real lessons learned</li>
-              <li><span class="check">✔</span> Discord community for ADHDers who get it</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="section" style="padding:28px 0 0;" aria-label="How it works">
-          <h2>How 925 ADHD Cuts Through the Noise</h2>
-          <p>We do the vetting, filtering, and organizing so you don't have to.</p>
-
-          <div class="grid3" style="margin-top:20px;">
-            <div class="card pad">
-              <div style="font-weight:900; margin-bottom:8px; color:var(--brand);">Step 1</div>
-              <h3 style="margin:0 0 8px; font-size:17px;">We Find Legit Opportunities</h3>
-              <p style="margin:0; font-size:15px; color:rgba(15,23,42,.65); line-height:1.6;">No more falling for scams or wasting hours researching dead ends. We test and verify every opportunity before it reaches you.</p>
-            </div>
-            <div class="card pad">
-              <div style="font-weight:900; margin-bottom:8px; color:var(--brand);">Step 2</div>
-              <h3 style="margin:0 0 8px; font-size:17px;">You Get Clear Next Steps</h3>
-              <p style="margin:0; font-size:15px; color:rgba(15,23,42,.65); line-height:1.6;">ADHD-friendly guidance shows you exactly what to do, when to do it, and how to stay on track without getting overwhelmed.</p>
-            </div>
-            <div class="card pad">
-              <div style="font-weight:900; margin-bottom:8px; color:var(--brand);">Step 3</div>
-              <h3 style="margin:0 0 8px; font-size:17px;">Start Earning on Your Terms</h3>
-              <p style="margin:0; font-size:15px; color:rgba(15,23,42,.65); line-height:1.6;">Work that fits your brain, your schedule, and your energy levels. No resumes, no interviews, no corporate hoops.</p>
-            </div>
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/image_2025-12-21_232304279.png" alt="925 ADHD App Preview" style="height: 260px; width: auto; border-radius: 12px; flex-shrink: 0;">
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225630.png" alt="925 ADHD Interface" style="height: 260px; width: auto; border-radius: 12px; flex-shrink: 0;">
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225648.png" alt="Work Opportunities" style="height: 260px; width: auto; border-radius: 12px; flex-shrink: 0;">
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225706.png" alt="Site Details" style="height: 260px; width: auto; border-radius: 12px; flex-shrink: 0;">
+            <!-- Duplicate for seamless loop -->
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/image_2025-12-21_232304279.png" alt="925 ADHD App Preview" style="height: 260px; width: auto; border-radius: 12px; flex-shrink: 0;">
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225630.png" alt="925 ADHD Interface" style="height: 260px; width: auto; border-radius: 12px; flex-shrink: 0;">
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225648.png" alt="Work Opportunities" style="height: 260px; width: auto; border-radius: 12px; flex-shrink: 0;">
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/Screenshot%202025-12-21%20225706.png" alt="Site Details" style="height: 260px; width: auto; border-radius: 12px; flex-shrink: 0;">
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" style="padding: 40px 0;">
+    <!-- How It Works - Consolidated -->
+    <section class="section" id="how-it-works" style="padding-top:32px;">
       <div class="wrap">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; max-width: 900px; margin: 0 auto;">
-          
-          <div style="padding: 20px;">
-            <h3 style="font-size: 1.5rem; font-weight: 800; margin: 0 0 12px; color: var(--brand);">
-              Real People, Real Results
-            </h3>
-            <p style="font-size: 1rem; line-height: 1.7; color: rgba(15,23,42,.7);">
-              Join other neurodivergent minds who've already cut through the noise. No more endless tabs or decision paralysis — just clear next steps that actually work for ADHD brains.
-            </p>
-          </div>
+        <h2 style="text-align:center;">How It Works</h2>
+        <p style="text-align:center; max-width:600px; margin:0 auto;">Three steps. No overwhelm. Start today.</p>
 
-          <div style="background: rgba(255,255,255,.85); border: 1px solid rgba(0,0,0,.08); border-radius: 18px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,.08);">
+        <div class="grid3" style="margin-top:28px;">
+          <div class="card pad" style="text-align:center;">
+            <div style="font-weight:900; font-size:28px; color:var(--brand); margin-bottom:8px;">1</div>
+            <h3 style="margin:0 0 8px; font-size:17px;">We Find & Vet Opportunities</h3>
+            <p style="margin:0; font-size:14px; color:rgba(15,23,42,.65); line-height:1.6;">No scams. No dead ends. Every opportunity tested before it reaches you.</p>
+          </div>
+          <div class="card pad" style="text-align:center;">
+            <div style="font-weight:900; font-size:28px; color:var(--brand); margin-bottom:8px;">2</div>
+            <h3 style="margin:0 0 8px; font-size:17px;">You Get Clear Next Steps</h3>
+            <p style="margin:0; font-size:14px; color:rgba(15,23,42,.65); line-height:1.6;">ADHD-friendly guidance: what to do, when to do it, how to stay on track.</p>
+          </div>
+          <div class="card pad" style="text-align:center;">
+            <div style="font-weight:900; font-size:28px; color:var(--brand); margin-bottom:8px;">3</div>
+            <h3 style="margin:0 0 8px; font-size:17px;">Start Earning Your Way</h3>
+            <p style="margin:0; font-size:14px; color:rgba(15,23,42,.65); line-height:1.6;">Work that fits your brain, schedule, and energy. No corporate hoops.</p>
+          </div>
+        </div>
+
+        <!-- Discord Community - Prominent -->
+        <div class="discord-cta">
+          <div class="discord-icon">
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/discord%20logo-22d0dfd.png" alt="Discord">
+          </div>
+          <div class="discord-text">
+            <h4>Join the Community That Gets It</h4>
+            <p>Connect with other ADHD minds who are building income on their own terms. Share wins, ask questions, get support—no judgment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's Included - Compact -->
+    <section class="section" style="padding:32px 0; background:rgba(0,0,0,.015);">
+      <div class="wrap">
+        <h2 style="text-align:center;">What You Get</h2>
+        
+        <div class="grid3" style="margin-top:24px;">
+          <div class="card pad feat">
+            <div class="icon">✅</div>
+            <h3>Legit work only</h3>
+            <p>Every opportunity vetted & scam-free</p>
+          </div>
+          <div class="card pad feat">
+            <div class="icon">🎯</div>
+            <h3>Clear next steps</h3>
+            <p>No guessing what to do first</p>
+          </div>
+          <div class="card pad feat">
+            <div class="icon">🏷️</div>
+            <h3>Smart filters</h3>
+            <p>Tagged by effort, payout speed & setup time</p>
+          </div>
+          <div class="card pad feat">
+            <div class="icon">🔄</div>
+            <h3>Monthly updates</h3>
+            <p>New platforms added, dead ones removed</p>
+          </div>
+          <div class="card pad feat">
+            <div class="icon">🧰</div>
+            <h3>ADHD toolkit</h3>
+            <p>Focus music, planner, earnings tracker & more</p>
+          </div>
+          <div class="card pad feat">
+            <div class="icon">🚀</div>
+            <h3>Start fast</h3>
+            <p>Many options ready in days, not weeks</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section - Placeholder for individual cards -->
+    <section class="section" style="padding:40px 0;">
+      <div class="wrap">
+        <h2 style="text-align:center;">What Members Are Saying</h2>
+        <p style="text-align:center; margin-bottom:8px;">Real people, real results.</p>
+        
+        <!-- Current image - replace with individual testimonial cards later -->
+        <div style="max-width:600px; margin:24px auto 0;">
+          <div class="card pad" style="text-align:center;">
             <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/reviews3.png" 
                  alt="Customer reviews and testimonials" 
                  style="width:100%; height:auto; display: block; border-radius: 12px;" 
                  loading="lazy">
           </div>
-
         </div>
 
-        <style>
-          @media (max-width: 768px) {
-            .wrap > div[style*="grid-template-columns: 1fr 1fr"] {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        </style>
+        <!-- Placeholder structure for individual testimonials - uncomment when ready
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="quote">"Finally found work that doesn't make me want to crawl under my desk."</div>
+            <div class="author">— Sarah M.</div>
+          </div>
+          <div class="testimonial-card">
+            <div class="quote">"The step-by-step guidance is everything. No more decision paralysis."</div>
+            <div class="author">— Marcus T.</div>
+          </div>
+          <div class="testimonial-card">
+            <div class="quote">"Made back the subscription cost in my first week."</div>
+            <div class="author">— Jamie L.</div>
+          </div>
+        </div>
+        -->
       </div>
     </section>
 
-    <section class="section" id="how-it-works">
-      <div class="wrap">
-        <h2>Built for Minds Like Yours 🧠</h2>
-        <p style="font-size:17px; line-height:1.7; color:rgba(15,23,42,.7); max-width:780px; margin:20px auto;">
-          The 9-to-5 grind wasn't built for ADHD minds. And finding something better usually means endless research and fake "opportunities" that drain your energy. <strong>That's why we built 925 ADHD.</strong>
-        </p>
-
-        <div class="grid3" style="margin-top:32px;">
-          <div class="card pad feat">
-            <div class="icon">✅</div>
-            <h3>Legit work only</h3>
-            <p>So you don't waste time on scams</p>
-          </div>
-          <div class="card pad feat">
-            <div class="icon">🎯</div>
-            <h3>Clear next steps</h3>
-            <p>So you always know what to do</p>
-          </div>
-          <div class="card pad feat">
-            <div class="icon">👁️</div>
-            <h3>Visual, ADHD-friendly systems</h3>
-            <p>That support focus</p>
-          </div>
-          <div class="card pad feat">
-            <div class="icon">📅</div>
-            <h3>Simple daily & weekly plans</h3>
-            <p>That keep things doable</p>
-          </div>
-          <div class="card pad feat">
-            <div class="icon" style="background: rgba(88, 101, 242, 0.18); border: 1px solid rgba(88, 101, 242, 0.26);">
-              <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/discord%20logo-22d0dfd.png" alt="Discord" style="width: 24px; height: 24px; object-fit: contain;">
-            </div>
-            <h3>Access to Discord community that gets it</h3>
-            <p>Support with no pressure</p>
-          </div>
-          <div class="card pad feat">
-            <div class="icon">🚀</div>
-            <h3>Start fast</h3>
-            <p>No resumes, no interviews</p>
-          </div>
-        </div>
-
-        <div class="card pad" style="margin-top:32px; background:rgba(124,58,237,.1); border-color:rgba(124,58,237,.25);">
-          <h3 style="margin:0 0 12px; font-size:24px;">🎯 WHY THIS MATTERS</h3>
-          <p style="font-size:16px; line-height:1.7;">
-            Most "make money online" lists are junk. We do the filtering, testing, and organizing so you can stop chasing dead ends and start moving forward with confidence.
-          </p>
-          <div style="margin-top:16px; padding:16px; background:rgba(0,0,0,.05); border-radius:14px;">
-            <div style="font-weight:900; font-size:15px; color:rgba(15,23,42,.85);">
-              🚫 You're not broken.<br/>
-              🚫 You don't need to fit a 9-to-5 box.<br/>
-              ✅ You just need work that fits your brain.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="pricing" style="background:rgba(0,0,0,.02);">
+    <!-- Pricing - Single Card with Integrated Guarantee -->
+    <section class="section" id="pricing" style="background:rgba(0,0,0,.02); padding:48px 0;">
       <div class="wrap" id="get-started">
-        <h2>Simple, Transparent Pricing</h2>
-        <p>One monthly plan. Cancel anytime.</p>
+        <h2 style="text-align:center;">Simple Pricing. Cancel Anytime.</h2>
+        <p style="text-align:center;">One plan. Everything included.</p>
 
-        <div class="pricing">
+        <div class="pricing-card">
           <div class="card pad">
-            <div style="font-weight:900; color:var(--brand2); font-size:13px; letter-spacing:.5px;">💎 MONTHLY ACCESS</div>
-            <div style="margin-top:8px; font-weight:950; font-size:22px;">925 ADHD Membership</div>
-            <div class="price">
-              <b>$9.25</b>
-              <div class="price-detail">per month • Cancel anytime</div>
+            <div style="text-align:center;">
+              <div style="font-weight:900; color:var(--brand2); font-size:13px; letter-spacing:.5px; margin-bottom:4px;">💎 MONTHLY ACCESS</div>
+              <div style="font-weight:950; font-size:22px;">925 ADHD Membership</div>
+              <div class="price">
+                <b>$9.25</b>
+                <div class="price-detail">per month • Cancel anytime</div>
+              </div>
             </div>
 
             <ul class="list">
               <li><span class="check">✔</span> 50+ opportunities tagged by setup time, effort & payout speed</li>
-              <li><span class="check">✔</span> ADHD toolkit included: Focus music, daily planner, earnings tracker, breathwork studio, receipt stacking & more</li>
-              <li><span class="check">✔</span> Monthly "What's Working" updates: New platforms added, dead ones removed, real lessons shared
-                <div style="margin-top:8px; padding:10px; background:rgba(16,185,129,.08); border-radius:8px; font-size:13px; font-weight:600; color:rgba(15,23,42,.7);">
-                  📊 Last update: Added 1 new platform, removed 1 dead site
-                </div>
-              </li>
-              <li><span class="check">✔</span> Clear "Start Here" steps for every opportunity (no guessing what to do next)</li>
-              <li><span class="check">✔</span> Discord community of ADHDers supporting each other</li>
+              <li><span class="check">✔</span> ADHD toolkit: Focus music, daily planner, earnings tracker, breathwork & more</li>
+              <li><span class="check">✔</span> Monthly updates: New platforms added, dead ones removed</li>
+              <li><span class="check">✔</span> Clear "Start Here" steps for every opportunity</li>
+              <li><span class="check">✔</span> Discord community of ADHDers who get it</li>
             </ul>
 
-            <div style="margin-top:20px;">
-              <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" style="width:100%; justify-content:center; text-align:center; font-size:16px;">
-                👉 Start Earning Without the Overwhelm
+            <!-- Guarantee - Integrated -->
+            <div class="guarantee-badge">
+              <div class="shield">🛡️</div>
+              <div class="text">
+                <strong>30-Day Money-Back Guarantee.</strong> Try it risk-free. If it's not right for your brain, get a full refund—no questions asked.
+              </div>
+            </div>
+
+            <div style="margin-top:24px;">
+              <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" style="width:100%; justify-content:center; text-align:center; font-size:17px; padding:16px 24px;">
+                Get Instant Access →
               </a>
-              <p style="text-align: center; font-size: 0.85rem; color: rgba(15,23,42,.6); margin-top: 12px; font-style: italic;">
-                Instant access via email • No downloads needed • Works in any browser
+              <p style="text-align: center; font-size: 13px; color: rgba(15,23,42,.55); margin-top: 12px;">
+                Instant access via email • Works in any browser • No downloads
               </p>
-            </div>
-          </div>
-
-          <div class="card pad" style="background: linear-gradient(135deg, rgba(34,197,94,.12), rgba(16,185,129,.12)); border: 2px solid rgba(34,197,94,.4); box-shadow: 0 8px 24px rgba(34,197,94,.15);">
-            <div style="text-align: center; margin-bottom: 16px;">
-              <div style="font-size: 3rem; margin-bottom: 8px;">🛡️</div>
-              <div style="font-weight: 900; font-size: 24px; color: var(--brand2); margin-bottom: 8px;">30-Day Money-Back Guarantee</div>
-              <div style="font-weight: 700; font-size: 18px; color: rgba(15,23,42,.75);">100% Risk-Free Trial</div>
-            </div>
-            
-            <p style="font-size:16px; line-height:1.7; margin-bottom:16px; text-align: center;">
-              Try it risk-free for 30 days. If it's not right for your brain, we'll refund you — no questions asked.
-            </p>
-
-            <div style="background: rgba(255,255,255,.6); border: 1px solid rgba(34,197,94,.3); border-radius: 12px; padding: 16px;">
-              <ul class="list" style="margin:0">
-                <li><span class="check">✔</span> <strong>Full refund within 30 days</strong></li>
-                <li><span class="check">✔</span> <strong>Cancel anytime, no questions</strong></li>
-                <li><span class="check">✔</span> <strong>Zero risk, all reward</strong></li>
-              </ul>
-            </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="faq">
+    <!-- FAQ - Compact -->
+    <section class="section" id="faq" style="padding:40px 0;">
       <div class="wrap">
-        <h2>Frequently Asked Questions</h2>
-        <p>Everything you need to know before getting started.</p>
+        <h2 style="text-align:center;">Questions?</h2>
 
         <div class="faq">
           <div class="faq-item">
-            <div class="faq-q">What is 925 ADHD?</div>
-            <p class="faq-a">925 ADHD is a curated membership that helps ADHD minds find legit remote work without the overwhelm. We vet opportunities, filter scams, and give clear next steps.</p>
+            <div class="faq-q">What exactly do I get?</div>
+            <p class="faq-a">A curated hub of 50+ vetted remote work opportunities, organized by effort level and payout speed. Plus ADHD-friendly tools and a supportive Discord community.</p>
           </div>
           <div class="faq-item">
             <div class="faq-q">How fast can I start earning?</div>
-            <p class="faq-a">Some options can start within days. Others take longer depending on setup. Either way, you can take action right after joining.</p>
+            <p class="faq-a">Some options can start within days. Others take longer depending on setup. You can take action right after joining.</p>
           </div>
           <div class="faq-item">
             <div class="faq-q">Do I need experience?</div>
-            <p class="faq-a">No. Many options are beginner-friendly. We tell you what you need and what to do next, even if you are brand new.</p>
+            <p class="faq-a">No. Many options are beginner-friendly. We tell you what you need and what to do next.</p>
           </div>
           <div class="faq-item">
-            <div class="faq-q">Is this legit and safe?</div>
-            <p class="faq-a">Yes. We personally vet every opportunity and remove scams and dead ends. Plus, there is a 30-day money-back guarantee if it is not a fit.</p>
+            <div class="faq-q">What if it's not for me?</div>
+            <p class="faq-a">30-day money-back guarantee. If it's not a fit, you get a full refund—no questions asked.</p>
           </div>
         </div>
       </div>
@@ -785,12 +819,9 @@
 
     <footer>
       <div class="wrap">
-        <div style="text-align:center; margin-bottom:24px; padding:20px; border-radius:var(--radius); background:rgba(124,58,237,.1); border:1px solid rgba(124,58,237,.25);">
-          <div style="font-weight:900; font-size:18px; margin-bottom:8px;">
-            <a href="bonus1.html" style="text-decoration:none;">💡</a> Designed with ADHD <a href="bonus2.html" style="text-decoration:none;">🧠</a>'s in mind.
-          </div>
-          <div style="font-size:14px; color:rgba(15,23,42,.65);">
-            ADHD friendly work from home jobs • ADHD remote income ideas • ADHD focus tips for working from home
+        <div style="text-align:center; margin-bottom:24px; padding:18px; border-radius:var(--radius); background:rgba(124,58,237,.08); border:1px solid rgba(124,58,237,.2);">
+          <div style="font-weight:800; font-size:16px; margin-bottom:4px;">
+            <a href="bonus1.html" style="text-decoration:none;">💡</a> Built by an ADHD brain, for ADHD brains. <a href="bonus2.html" style="text-decoration:none;">🧠</a>
           </div>
         </div>
 
@@ -819,8 +850,8 @@
             <a href="index.html">Home</a>
             <a href="#faq">FAQ</a>
             <a href="contact.html">Contact</a>
-            <a href="terms-of-service.html">Terms of Service</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms</a>
+            <a href="privacy-policy.html">Privacy</a>
             <a href="disclaimer.html">Disclaimer</a>
           </div>
         </div>
