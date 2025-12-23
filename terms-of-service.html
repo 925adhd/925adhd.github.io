@@ -232,6 +232,22 @@
       .links.active{display:flex}
       .hamburger{display:inline-flex}
     }
+    @media (max-width: 768px) {
+      footer .foot {
+        flex-direction: column;
+        text-align: center;
+      }
+      footer .foot > div:first-child {
+        width: 100%;
+      }
+      .footer-social {
+        justify-content: center;
+      }
+      .footer-links {
+        justify-content: center;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -317,7 +333,7 @@
 
       <p><strong>By purchasing a 925 ADHD membership, you agree to these terms.</strong> If you don't agree, you can still browse our site, but it's best not to purchase. 😅</p>
 
-      <p style="margin-top:40px;">Questions? Email us at <a href="/cdn-cgi/l/email-protection#cca5a2aaa38cf5fef9ada8a4a8e2afa3a1" style="color:var(--brand); text-decoration:underline;"><span class="__cf_email__" data-cfemail="c6afa8a0a986fff4f3a7a2aea2e8a5a9ab">[email&#160;protected]</span></a></p>
+      <p style="margin-top:40px;">Questions? Email us at <a href="/cdn-cgi/l/email-protection#731a1d151c334a414612171b175d101c1e" style="color:var(--brand); text-decoration:underline;"><span class="__cf_email__" data-cfemail="6c05020a032c555e590d080408420f0301">[email&#160;protected]</span></a></p>
     </div>
   </main>
 
@@ -365,9 +381,18 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+  <script>
     document.getElementById('year').textContent = '2024-2026';
 
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.querySelector('.links');
-    if (menuBtn 
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+      });
+    }
+  </script>
+</body>
+</html>
