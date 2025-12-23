@@ -465,10 +465,19 @@
     #autoScrollGallery {
       animation: scroll 20s linear infinite;
       will-change: transform;
+      cursor: pointer;
     }
 
     #autoScrollGallery:hover {
       animation-play-state: paused;
+    }
+    
+    #autoScrollGallery img {
+      transition: transform 0.2s ease;
+    }
+    
+    #autoScrollGallery img:active {
+      transform: scale(0.98);
     }
 
     /* Responsive */
@@ -849,6 +858,24 @@
     });
 
     document.getElementById('year').textContent = '2024-2026';
+
+    // Auto-scroll gallery touch controls
+    const gallery = document.getElementById('autoScrollGallery');
+    if (gallery) {
+      let isPaused = false;
+      
+      // Touch/click to pause/resume
+      gallery.addEventListener('click', () => {
+        isPaused = !isPaused;
+        gallery.style.animationPlayState = isPaused ? 'paused' : 'running';
+      });
+      
+      // Also support touch events
+      gallery.addEventListener('touchstart', (e) => {
+        isPaused = !isPaused;
+        gallery.style.animationPlayState = isPaused ? 'paused' : 'running';
+      });
+    }
 
     // Hamburger menu toggle
     const menuBtn = document.getElementById('menuBtn');
