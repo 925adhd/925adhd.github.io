@@ -231,7 +231,7 @@
       border-bottom: 1px solid var(--border);
     }
     .navinner{
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex; gap:16px; align-items:center; justify-content:space-between;
       height:68px;
     }
     .brand{
@@ -265,11 +265,12 @@
     .btn:active{transform: scale(.98)}
     .btn.primary{
       border-color: transparent;
-      background: #10b981;
-      box-shadow: 0 16px 44px rgba(16,185,129,.25);
+      background: var(--brand2);
+      color: white;
+      box-shadow: 0 16px 44px rgba(34,197,94,.25);
     }
     .btn.primary:hover{filter:brightness(1.15); transform: translateY(-1px);}
-    .btn.ghost{background:transparent; border-color: rgba(124,58,237,.3);}
+    .btn.ghost{background:transparent; color:var(--brand); border-color: rgba(124,58,237,.3);}
     .btn.ghost:hover{background: rgba(124,58,237,.1); border-color: var(--brand);}
     .hamburger{display:none}
 
