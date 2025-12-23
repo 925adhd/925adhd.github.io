@@ -355,6 +355,22 @@
       .links.active{display:flex}
       .hamburger{display:inline-flex}
     }
+    @media (max-width: 768px) {
+      footer .foot {
+        flex-direction: column;
+        text-align: center;
+      }
+      footer .foot > div:first-child {
+        width: 100%;
+      }
+      .footer-social {
+        justify-content: center;
+      }
+      .footer-links {
+        justify-content: center;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
