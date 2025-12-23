@@ -436,7 +436,7 @@
     .faq-q{font-weight:850; font-size:15px; margin:0 0 6px; color:var(--text)}
     .faq-a{margin:0; color: rgba(15,23,42,.65); font-weight:600; font-size:14px; line-height:1.6}
 
-    /* Testimonials placeholder */
+    /* Testimonials */
     .testimonials-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -444,22 +444,13 @@
       margin-top:24px;
     }
     .testimonial-card{
-      padding:20px;
+      padding:12px;
       background:rgba(255,255,255,.9);
       border:1px solid var(--border);
       border-radius:14px;
-    }
-    .testimonial-card .quote{
-      font-size:15px;
-      line-height:1.6;
-      color:rgba(15,23,42,.75);
-      font-style:italic;
-      margin-bottom:12px;
-    }
-    .testimonial-card .author{
-      font-size:13px;
-      font-weight:700;
-      color:rgba(15,23,42,.5);
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
     footer{
@@ -468,18 +459,16 @@
       color: rgba(15,23,42,.6);
     }
     footer .foot{
-      display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+      display:flex; flex-direction:column; align-items:center; gap:16px;
       font-weight:650;
       font-size:14px;
-    }
-    footer .foot > div:first-child {
-      flex: 1;
-      min-width: 200px;
+      text-align:center;
     }
     .footer-social {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       align-items: center;
+      justify-content: center;
     }
     .footer-social a {
       color: rgba(15,23,42,.35);
@@ -488,7 +477,7 @@
     .footer-social a:hover {
       color: var(--brand);
     }
-    .footer-links{display:flex; gap:16px; flex-wrap:wrap; flex: 2; justify-content:flex-end; min-width:300px;}
+    .footer-links{display:flex; gap:16px; flex-wrap:wrap; justify-content:center;}
 
     @keyframes scroll {
       0% { transform: translateX(0); }
@@ -515,19 +504,8 @@
       .discord-cta{flex-direction:column; text-align:center}
     }
     @media (max-width: 768px) {
-      footer .foot {
-        flex-direction: column;
-        text-align: center;
-      }
-      footer .foot > div:first-child {
-        width: 100%;
-      }
-      .footer-social {
-        justify-content: center;
-      }
       .footer-links {
-        justify-content: center;
-        width: 100%;
+        gap: 12px;
       }
     }
     @media (prefers-reduced-motion: reduce){
@@ -554,7 +532,7 @@
 
       <div class="actions">
         <a class="btn ghost" href="https://app.925adhd.com" aria-label="Sign In">Sign In</a>
-        <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Get Instant Access</a>
+        <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Start Now</a>
         <button class="btn hamburger" id="menuBtn" aria-label="Open menu">☰</button>
       </div>
     </div>
@@ -596,8 +574,11 @@
 
         <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; max-width: 380px; margin: 24px auto;">
           <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" style="width: 100%; padding: 16px 32px; font-size: 17px; justify-content: center;">
-            See All 50+ Jobs →
+            Get Instant Access →
           </a>
+          <p style="font-size: 13px; color: rgba(15,23,42,.55); margin: 0; text-align: center;">
+            Updated monthly. New gigs added, dead ones removed, real talk on what's working.
+          </p>
         </div>
 
         <!-- Social Proof Stats -->
@@ -607,12 +588,12 @@
             <div class="label">Vetted Remote Gigs</div>
           </div>
           <div class="stat-item">
-            <div class="num">0</div>
-            <div class="label">Scams (we remove them)</div>
+            <div class="num">100%</div>
+            <div class="label">Scam-Free</div>
           </div>
           <div class="stat-item">
             <div class="num">100%</div>
-            <div class="label">No-Resume Options</div>
+            <div class="label">Work On Your Terms</div>
           </div>
         </div>
 
@@ -663,8 +644,8 @@
             <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/discord%20logo-22d0dfd.png" alt="Discord">
           </div>
           <div class="discord-text">
-            <h4>A Space for Spicy Brains 🌶️</h4>
-            <p>Built by and for neurodivergent minds who want to thrive—not just survive. Whether you're escaping the 9-to-5 or just need a flexible way to pay rent, you're not alone.</p>
+            <h4>Private Community Included 🌶️</h4>
+            <p>Get access to our Discord server—a private space for neurodivergent minds who want to thrive, not just survive. Ask questions, share wins, get support from people who actually get it.</p>
           </div>
         </div>
       </div>
@@ -676,10 +657,10 @@
         <h2 style="text-align:center;">What You Get</h2>
         
         <div class="grid3" style="margin-top:24px;">
-          <div class="card pad feat">
-            <div class="icon">🔍</div>
-            <h3>Curated remote gigs</h3>
-            <p>ADHD-friendly ways to earn that actually pay</p>
+          <div class="card pad feat" style="background: linear-gradient(135deg, rgba(124,58,237,.08), rgba(124,58,237,.03)); border-color: rgba(124,58,237,.2);">
+            <div class="icon" style="background: rgba(124,58,237,.25);">🎯</div>
+            <h3>Passion Finder Tool</h3>
+            <p>Answer a few questions, get matched to the gigs that fit your brain</p>
           </div>
           <div class="card pad feat">
             <div class="icon">📋</div>
@@ -716,32 +697,18 @@
         <h2 style="text-align:center;">What Members Are Saying</h2>
         <p style="text-align:center; margin-bottom:8px;">Real people, real results.</p>
         
-        <!-- Current image - replace with individual testimonial cards later -->
-        <div style="max-width:600px; margin:24px auto 0;">
-          <div class="card pad" style="text-align:center;">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/reviews3.png" 
-                 alt="Customer reviews and testimonials" 
-                 style="width:100%; height:auto; display: block; border-radius: 12px;" 
-                 loading="lazy">
-          </div>
-        </div>
-
-        <!-- Placeholder structure for individual testimonials - uncomment when ready
+        <!-- Individual testimonial cards -->
         <div class="testimonials-grid">
           <div class="testimonial-card">
-            <div class="quote">"Finally found work that doesn't make me want to crawl under my desk."</div>
-            <div class="author">— Sarah M.</div>
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/ericareview.png" alt="Review from Erica" style="width:100%; height:auto; border-radius:10px;">
           </div>
           <div class="testimonial-card">
-            <div class="quote">"The step-by-step guidance is everything. No more decision paralysis."</div>
-            <div class="author">— Marcus T.</div>
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/morganreview-e5f8059.png" alt="Review from Morgan" style="width:100%; height:auto; border-radius:10px;">
           </div>
           <div class="testimonial-card">
-            <div class="quote">"Made back the subscription cost in my first week."</div>
-            <div class="author">— Jamie L.</div>
+            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/daniireview-b29eeeb.png" alt="Review from Danii" style="width:100%; height:auto; border-radius:10px;">
           </div>
         </div>
-        -->
       </div>
     </section>
 
