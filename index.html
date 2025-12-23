@@ -465,19 +465,10 @@
     #autoScrollGallery {
       animation: scroll 20s linear infinite;
       will-change: transform;
-      cursor: pointer;
     }
 
     #autoScrollGallery:hover {
       animation-play-state: paused;
-    }
-    
-    #autoScrollGallery img {
-      transition: transform 0.2s ease;
-    }
-    
-    #autoScrollGallery img:active {
-      transform: scale(0.98);
     }
 
     /* Responsive */
@@ -744,7 +735,7 @@
             </ul>
 
             <div style="margin-top:20px;">
-              <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" style="width:100%; justify-content:center; font-size:16px;">
+              <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" style="width:100%; justify-content:center; text-align:center; font-size:16px;">
                 👉 Start Earning Without the Overwhelm
               </a>
               <p style="text-align: center; font-size: 0.85rem; color: rgba(15,23,42,.6); margin-top: 12px; font-style: italic;">
@@ -807,7 +798,7 @@
       <div class="wrap">
         <div style="text-align:center; margin-bottom:24px; padding:20px; border-radius:var(--radius); background:rgba(124,58,237,.1); border:1px solid rgba(124,58,237,.25);">
           <div style="font-weight:900; font-size:18px; margin-bottom:8px;">
-            💡 Designed with ADHD 🧠's in mind.
+            <a href="bonus1.html" style="text-decoration:none;">💡</a> Designed with ADHD <a href="bonus2.html" style="text-decoration:none;">🧠</a>'s in mind.
           </div>
           <div style="font-size:14px; color:rgba(15,23,42,.65);">
             ADHD friendly work from home jobs • ADHD remote income ideas • ADHD focus tips for working from home
@@ -862,24 +853,6 @@
     });
 
     document.getElementById('year').textContent = '2024-2026';
-
-    // Auto-scroll gallery touch controls
-    const gallery = document.getElementById('autoScrollGallery');
-    if (gallery) {
-      let isPaused = false;
-      
-      // Touch/click to pause/resume
-      gallery.addEventListener('click', () => {
-        isPaused = !isPaused;
-        gallery.style.animationPlayState = isPaused ? 'paused' : 'running';
-      });
-      
-      // Also support touch events
-      gallery.addEventListener('touchstart', (e) => {
-        isPaused = !isPaused;
-        gallery.style.animationPlayState = isPaused ? 'paused' : 'running';
-      });
-    }
 
     // Hamburger menu toggle
     const menuBtn = document.getElementById('menuBtn');
