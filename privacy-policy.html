@@ -232,6 +232,22 @@
       .links.active{display:flex}
       .hamburger{display:inline-flex}
     }
+    @media (max-width: 768px) {
+      footer .foot {
+        flex-direction: column;
+        text-align: center;
+      }
+      footer .foot > div:first-child {
+        width: 100%;
+      }
+      .footer-social {
+        justify-content: center;
+      }
+      .footer-links {
+        justify-content: center;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -299,7 +315,7 @@
 
       <p><strong>By using 925 ADHD, you're agreeing to this privacy policy.</strong> If you don't agree, that's cool too—just don't use our site. 🙃</p>
 
-      <p style="margin-top:40px;">Questions? Email us at <a href="/cdn-cgi/l/email-protection#630a0d050c235a515602070b074d000c0e" style="color:var(--brand); text-decoration:underline;"><span class="__cf_email__" data-cfemail="fa93949c95bac3c8cf9b9e929ed4999597">[email&#160;protected]</span></a></p>
+      <p style="margin-top:40px;">Questions? Email us at <a href="/cdn-cgi/l/email-protection#a9c0c7cfc6e9909b9cc8cdc1cd87cac6c4" style="color:var(--brand); text-decoration:underline;"><span class="__cf_email__" data-cfemail="c2abaca4ad82fbf0f7a3a6aaa6eca1adaf">[email&#160;protected]</span></a></p>
     </div>
   </main>
 
@@ -347,9 +363,18 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+  <script>
     document.getElementById('year').textContent = '2024-2026';
 
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.querySelector('.links');
-    if (menuBtn 
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+      });
+    }
+  </script>
+</body>
+</html>
