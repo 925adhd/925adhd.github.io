@@ -57,8 +57,8 @@
       display:flex;
       align-items:center;
       gap:10px;
-      font-weight:900;
-      font-size:20px;
+      font-weight:800;
+      letter-spacing:.2px;
       color:var(--text);
       text-decoration:none;
     }
@@ -71,11 +71,13 @@
     .links{
       display:flex;
       gap:24px;
-      font-weight:650;
-      font-size:15px;
+      
+      
     }
     .links a{
-      color:var(--text);
+      color:rgba(15,23,42,.75);
+      font-weight:600;
+      font-size:14px;
       text-decoration:none;
       transition: color 0.2s;
     }
@@ -342,20 +344,20 @@
   <header class="nav">
     <div class="wrap navinner">
       <a class="brand" href="index.html" aria-label="925 ADHD Home">
-        <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" alt="925 ADHD Logo">
+        <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png/:/rs=h:175,m" alt="925 ADHD Logo" style="width: 34px; height: 34px; border-radius: 12px; object-fit: cover;">
         <span>925 ADHD</span>
       </a>
 
       <nav class="links" aria-label="Primary">
-        <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#faq">FAQ</a>
         <a href="blog.html">Blog</a>
       </nav>
 
       <div class="actions">
-        <a class="btn ghost" href="https://app.925adhd.com" aria-label="Sign In">Sign In</a>
-        <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Get Started</a>
+        <a class="btn ghost" href="https://app.925adhd.com" aria-label="Login">Login</a>
+        <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Sign Up</a>
         <button class="btn hamburger" id="menuBtn" aria-label="Open menu">☰</button>
       </div>
     </div>
