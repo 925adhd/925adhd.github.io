@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - 925 ADHD</title>
+  <link rel="icon" type="image/png" href="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    :root {
+      --bg: #0F0F0F;
+      --card: #1A1A1A;
+      --card-hover: #242424;
+      --border: rgba(255,255,255,.1);
+      --text: #fff;
+      --text-muted: rgba(255,255,255,.55);
+      --brand: #5BBFB5;
+      --brand-glow: rgba(91, 191, 181, 0.25);
+    }
+    
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding-bottom: 70px;
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    /* Top Header */
+    .top-header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .menu-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    
+    .logout-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .logout-btn:hover {
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+    }
+    
+    /* Hero Section - Compact */
+    .hero {
+      text-align: center;
+      padding: 24px 16px 20px;
+      background: linear-gradient(180deg, rgba(91, 191, 181, 0.05) 0%, transparent 100%);
+    }
+    
+    .hero-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    
+    .hero-logo {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+    }
+    
+    .hero-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .hero-text {
+      text-align: left;
+    }
+    
+    .hero-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+    
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    
+    /* Main Content */
+    .main-content {
+      padding: 20px 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+    
+    /* Quick Actions Grid */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    
+    .action-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .action-card:hover {
+      background: var(--card-hover);
+      border-color: var(--brand);
+      transform: translateY(-2px);
+    }
+    
+    .action-card .icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .action-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    
+    .action-card p {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    
+    /* Featured Card */
+    .featured-card {
+      background: linear-gradient(135deg, rgba(91, 191, 181, 0.12), rgba(91, 191, 181, 0.04));
+      border: 1px solid rgba(91, 191, 181, 0.2);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 12px;
+    }
+    
+    .featured-card:hover {
+      background: linear-gradient(135deg, rgba(91, 191, 181, 0.18), rgba(91, 191, 181, 0.08));
+      transform: translateY(-2px);
+    }
+    
+    .featured-card .icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+    
+    .featured-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    
+    .featured-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    /* Discord CTA */
+    .discord-card {
+      background: linear-gradient(135deg, rgba(88, 101, 242, 0.12), rgba(88, 101, 242, 0.04));
+      border: 1px solid rgba(88, 101, 242, 0.2);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    
+    .discord-card .icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    
+    .discord-card .content {
+      flex: 1;
+    }
+    
+    .discord-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    
+    .discord-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .discord-btn {
+      background: #5865F2;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    
+    .discord-btn:hover {
+      background: #4752C4;
+    }
+    
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #1A1A1A;
+      border-top: 1px solid var(--border);
+      padding: 6px 0;
+      padding-bottom: max(6px, env(safe-area-inset-bottom));
+      z-index: 100;
+    }
+    
+    .nav-items {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 6px 10px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    
+    .nav-item.active {
+      color: var(--brand);
+    }
+    
+    .nav-item:hover {
+      color: var(--text);
+    }
+    
+    .nav-item .icon {
+      font-size: 20px;
+    }
+    
+    /* Loading State */
+    .loading-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--border);
+      border-top-color: var(--brand);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Tablet & Desktop */
+    @media (min-width: 600px) {
+      .top-header {
+        padding: 16px 24px;
+      }
+      
+      .hero {
+        padding: 32px 24px 28px;
+      }
+      
+      .hero-row {
+        gap: 20px;
+      }
+      
+      .hero-logo {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .hero-title {
+        font-size: 24px;
+      }
+      
+      .hero-subtitle {
+        font-size: 15px;
+      }
+      
+      .main-content {
+        padding: 28px 24px;
+        max-width: 540px;
+      }
+      
+      .quick-actions {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      
+      .action-card {
+        padding: 20px 14px;
+      }
+      
+      .action-card .icon {
+        font-size: 32px;
+      }
+      
+      .action-card h3 {
+        font-size: 14px;
+      }
+      
+      .nav-items {
+        max-width: 500px;
+      }
+      
+      .nav-item {
+        font-size: 11px;
+        padding: 8px 14px;
+      }
+      
+      .nav-item .icon {
+        font-size: 22px;
+      }
+    }
+    
+    /* Large Desktop - Keep it centered and cozy */
+    @media (min-width: 1024px) {
+      .main-content {
+        max-width: 580px;
+      }
+      
+      .quick-actions {
+        gap: 14px;
+      }
+      
+      .action-card {
+        padding: 24px 16px;
+      }
+      
+      .action-card .icon {
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+      
+      .action-card h3 {
+        font-size: 15px;
+      }
+      
+      .action-card p {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="spinner"></div>
+    <p style="color: var(--text-muted); font-size: 14px;">Loading...</p>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" style="display: none;">
+    <!-- Top Header -->
+    <header class="top-header">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <button class="logout-btn" id="logoutBtn">Log out</button>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-row">
+        <div class="hero-logo">
+          <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" alt="925 ADHD">
+        </div>
+        <div class="hero-text">
+          <h1 class="hero-title">Welcome back!</h1>
+          <p class="hero-subtitle">What would you like to work on today?</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Quick Actions -->
+      <p class="section-label">Quick Actions</p>
+      <div class="quick-actions">
+        <a href="gigs.html" class="action-card">
+          <span class="icon">💰</span>
+          <h3>Make Cash</h3>
+          <p>50+ ways to earn</p>
+        </a>
+        <a href="guides.html" class="action-card">
+          <span class="icon">📖</span>
+          <h3>Guides</h3>
+          <p>Step-by-step help</p>
+        </a>
+        <a href="tools.html" class="action-card">
+          <span class="icon">🛠️</span>
+          <h3>Tools</h3>
+          <p>Focus & productivity</p>
+        </a>
+        <a href="apps.html" class="action-card">
+          <span class="icon">📱</span>
+          <h3>Apps</h3>
+          <p>Recommended apps</p>
+        </a>
+        <a href="favorites.html" class="action-card">
+          <span class="icon">❤️</span>
+          <h3>Favorites</h3>
+          <p>Your saved items</p>
+        </a>
+        <a href="motivation.html" class="action-card">
+          <span class="icon">🔥</span>
+          <h3>Motivation</h3>
+          <p>Remember your why</p>
+        </a>
+      </div>
+      
+      <!-- Featured -->
+      <a href="motivation.html" class="featured-card">
+        <span class="icon">🧠</span>
+        <div>
+          <h3>Need a boost?</h3>
+          <p>When focus fades, remember your why →</p>
+        </div>
+      </a>
+      
+      <!-- Discord -->
+      <a href="https://discord.gg/Nn5XGMZFAC" target="_blank" class="discord-card">
+        <span class="icon">💬</span>
+        <div class="content">
+          <h3>Join the Community</h3>
+          <p>Connect with ADHD brains who get it</p>
+        </div>
+        <span class="discord-btn">Join</span>
+      </a>
+    </main>
+    
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <div class="nav-items">
+        <a href="dashboard.html" class="nav-item active">
+          <span class="icon">🏠</span>
+          <span>Home</span>
+        </a>
+        <a href="guides.html" class="nav-item">
+          <span class="icon">📖</span>
+          <span>Guides</span>
+        </a>
+        <a href="gigs.html" class="nav-item">
+          <span class="icon">💰</span>
+          <span>Cash</span>
+        </a>
+        <a href="apps.html" class="nav-item">
+          <span class="icon">📱</span>
+          <span>Apps</span>
+        </a>
+        <a href="favorites.html" class="nav-item">
+          <span class="icon">❤️</span>
+          <span>Saved</span>
+        </a>
+        <a href="tools.html" class="nav-item">
+          <span class="icon">🛠️</span>
+          <span>Tools</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://ietkanacfoyoswioapqg.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlldGthbmFjZm95b3N3aW9hcHFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY1ODAxMTgsImV4cCI6MjA4MjE1NjExOH0.hpNcynKl-5Hnm-82Z9KM2XHxzHfWAoQq_5N5quaStlM';
+    
+    const { createClient } = window.supabase;
+    const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    
+    const loadingScreen = document.getElementById('loadingScreen');
+    const app = document.getElementById('app');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    // Auth check
+    async function checkAuth() {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      
+      if (!session) {
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      const { data: member } = await supabaseClient
+        .from('Paid')
+        .select('email, status')
+        .eq('email', session.user.email)
+        .eq('status', 'active')
+        .single();
+      
+      if (!member) {
+        loadingScreen.innerHTML = `
+          <div style="text-align: center; padding: 40px; max-width: 360px;">
+            <h2 style="margin-bottom: 12px; font-size: 20px;">Membership Required</h2>
+            <p style="color: rgba(255,255,255,.6); margin-bottom: 20px; font-size: 14px;">
+              Logged in as <strong>${session.user.email}</strong><br>but no active membership found.
+            </p>
+            <a href="https://buy.stripe.com/eVqdRa7Zr6xA5VXbiU7Zu05" 
+               style="display: inline-block; background: #5BBFB5; color: #1a1a1a; padding: 12px 24px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 14px;">
+              Get Access - $9.25/mo
+            </a>
+            <p style="color: rgba(255,255,255,.5); font-size: 12px; margin-top: 16px;">
+              Just purchased? Give it a minute to activate.<br>
+              <a href="#" onclick="supabaseClient.auth.signOut().then(() => window.location.href = 'login.html')" style="color: #5BBFB5;">Try different email</a>
+            </p>
+          </div>
+        `;
+        return;
+      }
+      
+      loadingScreen.style.display = 'none';
+      app.style.display = 'block';
+    }
+    
+    logoutBtn.addEventListener('click', async () => {
+      await supabaseClient.auth.signOut();
+      window.location.href = 'login.html';
+    });
+    
+    supabaseClient.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') window.location.href = 'login.html';
+    });
+    
+    checkAuth();
+  </script>
+</body>
+</html>
