@@ -261,7 +261,7 @@
     .hero-ctas{flex-wrap:nowrap}
 
     /* Hero */
-    .hero{padding:32px 0 24px}
+    .hero{padding:60px 0 48px}
     .pill{
       display:inline-flex; gap:8px; align-items:center;
       padding:8px 14px;
@@ -272,6 +272,9 @@
       font-weight:700;
       font-size:13px;
     }
+
+    /* No animation on the pill (static for accessibility and simplicity) */
+    /* Hover effect kept minimal via transition on other properties if needed */
     .dot{
       width:8px; height:8px; border-radius:99px;
       background: var(--brand2);
@@ -770,14 +773,9 @@
             </div>
 
             <div style="margin-top:24px;">
-              <div class="hero-ctas" role="group" aria-label="Pricing actions" style="justify-content:center;">
-                <a class="btn primary-compact" href="https://buy.stripe.com/eVqdRa7Zr6xA5VXbiU7Zu05">
-                  Get Started →
-                </a>
-                <a class="btn secondary-outline" href="#how-it-works">
-                  View Features
-                </a>
-              </div>
+              <a class="btn primary" href="https://buy.stripe.com/eVqdRa7Zr6xA5VXbiU7Zu05" style="width:100%; justify-content:center; text-align:center; font-size:17px; padding:16px 24px;">
+                Get Instant Access →
+              </a>
               <p style="text-align: center; font-size: 13px; color: rgba(15,23,42,.55); margin-top: 12px;">
                 Instant access via email • Works in any browser • No downloads
               </p>
