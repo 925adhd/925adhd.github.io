@@ -917,30 +917,34 @@
       });
     }
 
-    // Scroll reveal for testimonial cards + images using IntersectionObserver
+    // Scroll reveal: trigger full sequential reveal once the first card appears
     (function(){
       const cards = Array.from(document.querySelectorAll('.reveal-card'));
       if (!cards.length || !('IntersectionObserver' in window)) return;
 
+      const first = cards[0];
+      if (!first) return;
+
       const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          const card = entry.target;
+          if (entry.target !== first) return;
           if (entry.isIntersecting) {
-            const idx = cards.indexOf(card);
-            const delay = (idx >= 0 ? idx * 300 : 0) + 'ms';
-            card.style.transitionDelay = delay;
-            card.classList.add('is-visible');
-            const img = card.querySelector('.reveal-img');
-            if (img) {
-              img.style.transitionDelay = delay;
-              img.classList.add('is-visible');
-            }
-            io.unobserve(card);
+            cards.forEach((card, idx) => {
+              const delay = (idx * 300) + 'ms';
+              card.style.transitionDelay = delay;
+              card.classList.add('is-visible');
+              const img = card.querySelector('.reveal-img');
+              if (img) {
+                img.style.transitionDelay = delay;
+                img.classList.add('is-visible');
+              }
+            });
+            io.disconnect();
           }
         });
       }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
 
-      cards.forEach(c => io.observe(c));
+      io.observe(first);
     })();
   </script>
 </body>
