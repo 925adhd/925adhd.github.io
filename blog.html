@@ -438,7 +438,13 @@
         return;
       }
 
-      const postsHtml = filteredPosts.map(post => {
+      // show only the latest 9 posts by default; when a search is active, show all matching results
+      const searchTerm = (document.getElementById('searchInput') && document.getElementById('searchInput').value || '').trim();
+      // ensure posts are sorted newest-first
+      const sorted = filteredPosts.slice().sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
+      const displayPosts = searchTerm === '' ? sorted.slice(0,9) : sorted;
+
+      const postsHtml = displayPosts.map(post => {
         const description = extractDescription(post.description || post.content || '');
         const imageUrl = extractImageUrl(post);
         const adhdIcon = getAdhdIcon();
