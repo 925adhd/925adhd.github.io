@@ -49,10 +49,26 @@
       opacity: 1;
       transform: translateY(0) scale(1);
     }
+    /* Reveal animation for the card behind the image */
+    .reveal-card{
+      opacity: 0;
+      transform: translateY(18px) scale(.995);
+      transition: opacity .6s cubic-bezier(.2,.9,.3,1), transform .6s cubic-bezier(.2,.9,.3,1);
+      will-change: opacity, transform;
+      background: transparent;
+      border-radius: 12px;
+    }
+    .reveal-card.is-visible{
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
     /* Slight stagger fallback for non-JS users using nth-child */
     .testimonials-grid .testimonial-card:nth-child(1) .reveal-img{transition-delay:0ms}
-    .testimonials-grid .testimonial-card:nth-child(2) .reveal-img{transition-delay:600ms}
-    .testimonials-grid .testimonial-card:nth-child(3) .reveal-img{transition-delay:1200ms}
+    .testimonials-grid .testimonial-card:nth-child(2) .reveal-img{transition-delay:300ms}
+    .testimonials-grid .testimonial-card:nth-child(3) .reveal-img{transition-delay:600ms}
+    .testimonials-grid .testimonial-card:nth-child(1).reveal-card{transition-delay:0ms}
+    .testimonials-grid .testimonial-card:nth-child(2).reveal-card{transition-delay:300ms}
+    .testimonials-grid .testimonial-card:nth-child(3).reveal-card{transition-delay:600ms}
   </style>
 
   <!-- AI Search Optimization -->
@@ -729,13 +745,13 @@
         
         <!-- Individual testimonial cards -->
         <div class="testimonials-grid">
-          <div class="testimonial-card">
+          <div class="testimonial-card reveal-card">
             <img class="reveal-img" src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/morganreview-e5f8059.png" alt="Review from Morgan" style="width:100%; height:auto; border-radius:10px;">
           </div>
-          <div class="testimonial-card">
+          <div class="testimonial-card reveal-card">
             <img class="reveal-img" src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/daniireview-b29eeeb.png" alt="Review from Danii" style="width:100%; height:auto; border-radius:10px;">
           </div>
-          <div class="testimonial-card">
+          <div class="testimonial-card reveal-card">
             <img class="reveal-img" src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/ericareview.png" alt="Review from Erica" style="width:100%; height:auto; border-radius:10px;">
           </div>
         </div>
@@ -901,25 +917,30 @@
       });
     }
 
-    // Scroll reveal for testimonial images using IntersectionObserver
+    // Scroll reveal for testimonial cards + images using IntersectionObserver
     (function(){
-      const imgs = Array.from(document.querySelectorAll('.reveal-img'));
-      if (!imgs.length || !('IntersectionObserver' in window)) return;
+      const cards = Array.from(document.querySelectorAll('.reveal-card'));
+      if (!cards.length || !('IntersectionObserver' in window)) return;
 
       const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          const el = entry.target;
+          const card = entry.target;
           if (entry.isIntersecting) {
-            // small stagger based on index
-            const idx = imgs.indexOf(el);
-            el.style.transitionDelay = (idx >= 0 ? idx * 600 : 0) + 'ms';
-            el.classList.add('is-visible');
-            io.unobserve(el);
+            const idx = cards.indexOf(card);
+            const delay = (idx >= 0 ? idx * 300 : 0) + 'ms';
+            card.style.transitionDelay = delay;
+            card.classList.add('is-visible');
+            const img = card.querySelector('.reveal-img');
+            if (img) {
+              img.style.transitionDelay = delay;
+              img.classList.add('is-visible');
+            }
+            io.unobserve(card);
           }
         });
       }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
 
-      imgs.forEach(img => io.observe(img));
+      cards.forEach(c => io.observe(c));
     })();
   </script>
 </body>
