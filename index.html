@@ -33,6 +33,28 @@
   <link rel="icon" type="image/png" href="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" />
   <link rel="apple-touch-icon" href="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" />
 
+  <style>
+    /* Reveal animation for testimonial images */
+    .reveal-img{
+      opacity: 0;
+      transform: translateY(24px) scale(.98);
+      transition: opacity .6s cubic-bezier(.2,.9,.3,1), transform .6s cubic-bezier(.2,.9,.3,1);
+      will-change: opacity, transform;
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:10px;
+    }
+    .reveal-img.is-visible{
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    /* Slight stagger fallback for non-JS users using nth-child */
+    .testimonials-grid .testimonial-card:nth-child(1) .reveal-img{transition-delay:0ms}
+    .testimonials-grid .testimonial-card:nth-child(2) .reveal-img{transition-delay:600ms}
+    .testimonials-grid .testimonial-card:nth-child(3) .reveal-img{transition-delay:1200ms}
+  </style>
+
   <!-- AI Search Optimization -->
   <meta name="abstract" content="925 ADHD provides a curated membership platform with 50+ vetted online work opportunities specifically designed for people with ADHD. Monthly subscription at $9.25 includes regular updates, ADHD-friendly guidance, and Discord community support." />
   <meta name="summary" content="ADHD-friendly online work hub: 50+ vetted ways to earn, regularly updated, $9.25/month, no resumes required, instant browser access, 30-day guarantee" />
@@ -708,13 +730,13 @@
         <!-- Individual testimonial cards -->
         <div class="testimonials-grid">
           <div class="testimonial-card">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/morganreview-e5f8059.png" alt="Review from Morgan" style="width:100%; height:auto; border-radius:10px;">
+            <img class="reveal-img" src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/morganreview-e5f8059.png" alt="Review from Morgan" style="width:100%; height:auto; border-radius:10px;">
           </div>
           <div class="testimonial-card">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/daniireview-b29eeeb.png" alt="Review from Danii" style="width:100%; height:auto; border-radius:10px;">
+            <img class="reveal-img" src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/daniireview-b29eeeb.png" alt="Review from Danii" style="width:100%; height:auto; border-radius:10px;">
           </div>
           <div class="testimonial-card">
-            <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/ericareview.png" alt="Review from Erica" style="width:100%; height:auto; border-radius:10px;">
+            <img class="reveal-img" src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/ericareview.png" alt="Review from Erica" style="width:100%; height:auto; border-radius:10px;">
           </div>
         </div>
       </div>
@@ -878,6 +900,27 @@
         menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
       });
     }
+
+    // Scroll reveal for testimonial images using IntersectionObserver
+    (function(){
+      const imgs = Array.from(document.querySelectorAll('.reveal-img'));
+      if (!imgs.length || !('IntersectionObserver' in window)) return;
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const el = entry.target;
+          if (entry.isIntersecting) {
+            // small stagger based on index
+            const idx = imgs.indexOf(el);
+            el.style.transitionDelay = (idx >= 0 ? idx * 600 : 0) + 'ms';
+            el.classList.add('is-visible');
+            io.unobserve(el);
+          }
+        });
+      }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
+
+      imgs.forEach(img => io.observe(img));
+    })();
   </script>
 </body>
 </html>
