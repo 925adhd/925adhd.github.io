@@ -370,6 +370,19 @@
     
     /* Feature grid */
     .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:24px}
+    /* Tools preview */
+    .tools-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:18px}
+    .tools-card{display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px; border:1px solid var(--border); border-radius:12px; background: rgba(255,255,255,.92);}
+    .tools-card img{width:56px; height:56px; object-fit:contain; border-radius:10px}
+    .tools-card h4{margin:0; font-size:14px; font-weight:800}
+    .tools-card p{margin:0; font-size:13px; color:rgba(15,23,42,.65)}
+    /* Collapsible tools toggle */
+    .tools-toggle{font-size:14px}
+    .tools-toggle .chev{transition: transform 250ms ease}
+    .tools-toggle.open .chev{transform: rotate(180deg)}
+    .tools-collapse-inner{padding-bottom:12px}
+    .tools-note{opacity:.95}
+    .tools-cta{margin-top:18px; text-align:center}
     .feat h3{margin:0 0 6px; font-size:17px}
     .feat p{margin:0; font-size:14px; color:rgba(15,23,42,.65)}
     .icon{
@@ -698,10 +711,10 @@
         
 		<div class="grid3" style="margin-top:24px;">
 
-  <div class="card pad">
+  <div class="card pad feat">
     <div class="icon" aria-hidden="true">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:var(--brand);">
-        <path d="M13.5 2L3 14h7l-1 8L21 10h-7l-.5-8z" fill="currentColor"/>
+      <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="display:block;">
+        <path d="M13 2 L3 14h7l-1 8 11-12h-8l1-8z" style="fill:var(--brand);"></path>
       </svg>
     </div>
     <h3>Passion Finder Quiz</h3>
@@ -741,6 +754,8 @@
   
 
 </div>
+    
+    <!-- Tools preview removed from here and moved to Pricing card -->
 
     <!-- Testimonials Section -->
     <section class="section" style="padding:40px 0;">
@@ -800,12 +815,67 @@
     <span class="check">✔</span>
     <span class="item">Discord community of like-minded people building flexible income together</span>
   </li>
-</ul>
-<br>
-<div class="bonus">
-  ✨ <strong>ADHD toolkit:</strong> Focus tools, planners, and earnings trackers
-</div>
+            </ul>
 
+            <div class="card" style="margin-top:16px; padding:14px; background:rgba(124,58,237,.04); border:1px solid rgba(124,58,237,.14); box-shadow:none;">
+              <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+                <div>
+                  <div style="font-weight:900; font-size:14px;">✨ Included bonus: ADHD Toolkit</div>
+                  <div style="font-size:13px; color:rgba(15,23,42,.62); margin-top:2px;">Built-in tools that make follow-through easier.</div>
+                </div>
+
+                <button id="toolsToggle" class="tools-toggle" aria-expanded="false" aria-controls="toolsCollapse" style="background:#fff; border:1px solid var(--border); padding:8px 12px; border-radius:12px; display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-weight:800; font-size:13px; color:var(--text); white-space:nowrap;">
+                  <span class="tools-toggle-label">View tools</span>
+                  <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+
+              <div id="toolsCollapse" class="tools-collapse" style="max-height:0; overflow:hidden; transition:max-height 250ms ease;">
+                <div class="tools-collapse-inner" style="padding-top:12px;">
+                
+
+                  <div class="tools-grid" style="margin-top:10px;">
+                    <div class="tools-card" role="article" aria-label="Daily Schedule">
+                      <img src="assets/dailyschedule.png" alt="Daily Schedule">
+                      <h4>Daily Schedule</h4>
+                      <p>Structure tasks, boost daily flow</p>
+                    </div>
+
+                    <div class="tools-card" role="article" aria-label="Hourly Optimizer">
+                      <img src="assets/hourlyoptimizer.png" alt="Hourly Optimizer">
+                      <h4>Hourly Optimizer</h4>
+                      <p>Maximize focus every hour</p>
+                    </div>
+
+                    <div class="tools-card" role="article" aria-label="Mindshift">
+                      <img src="assets/mindshift.png" alt="Mindshift">
+                      <h4>Mindshift</h4>
+                      <p>Quick mindset resets to refocus</p>
+                    </div>
+
+                    <div class="tools-card" role="article" aria-label="Earnings Tracker">
+                      <img src="assets/earnings.png" alt="Earnings Tracker">
+                      <h4>Earnings Tracker</h4>
+                      <p>Monitor income & progress</p>
+                    </div>
+
+                    <div class="tools-card" role="article" aria-label="Freelance Calculator">
+                      <img src="assets/calculator.png" alt="Freelance Calculator">
+                      <h4>Freelance Calculator</h4>
+                      <p>Estimate rates & plan goals</p>
+                    </div>
+
+                    <div class="tools-card" role="article" aria-label="Breathwork Studio">
+                      <img src="assets/breathwork.png" alt="Breathwork Studio">
+                      <h4>Breathwork Studio</h4>
+                      <p>Guided breathing exercises</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!-- Guarantee - Integrated -->
             <div class="guarantee-badge">
@@ -950,6 +1020,42 @@
       }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
 
       io.observe(first);
+    })();
+
+    // Tools collapse toggle
+    (function(){
+      const toggle = document.getElementById('toolsToggle');
+      const collapse = document.getElementById('toolsCollapse');
+      if (!toggle || !collapse) return;
+
+      function openCollapse(){
+        const inner = collapse.querySelector('.tools-collapse-inner');
+        if (!inner) return;
+        const height = inner.scrollHeight;
+        collapse.style.maxHeight = height + 'px';
+        toggle.classList.add('open');
+        toggle.setAttribute('aria-expanded','true');
+      }
+
+      function closeCollapse(){
+        collapse.style.maxHeight = '0';
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+      }
+
+      // Toggle on click
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        if (expanded) closeCollapse(); else openCollapse();
+      });
+
+      // Recalc on resize when open
+      window.addEventListener('resize', () => {
+        if (toggle.getAttribute('aria-expanded') === 'true'){
+          const inner = collapse.querySelector('.tools-collapse-inner');
+          collapse.style.maxHeight = (inner ? inner.scrollHeight : 0) + 'px';
+        }
+      });
     })();
   </script>
 </body>
