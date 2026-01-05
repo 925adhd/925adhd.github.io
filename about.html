@@ -207,57 +207,14 @@
       font-weight:600;
       margin-bottom:40px;
     }
-    .mission-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:30px;
-      max-width:900px;
-      margin:0 auto 50px;
-    }
-    .mission-item{
-      text-align:center;
-      padding:24px;
-    }
-    .mission-item .icon{
-      font-size:40px;
-      margin-bottom:12px;
-    }
-    .mission-item p{
-      font-size:16px;
-      font-weight:650;
-      color:rgba(15,23,42,.8);
-      margin:0;
-    }
+    /* mission-grid / mission-item removed (not used in updated mission layout) */
 
     /* CTA Section */
     .cta-section{
-      padding:60px 0 80px;
+      padding:28px 0 36px;
       text-align:center;
     }
-    .cta-box{
-      background:linear-gradient(135deg, rgba(124,58,237,.08), rgba(34,197,94,.08));
-      border:2px solid rgba(124,58,237,.2);
-      border-radius:var(--radius);
-      padding:50px 40px;
-      max-width:700px;
-      margin:0 auto;
-    }
-    .cta-box h3{
-      font-size:clamp(24px, 3vw, 32px);
-      font-weight:900;
-      margin:0 0 16px;
-    }
-    .cta-box p{
-      font-size:17px;
-      color:rgba(15,23,42,.7);
-      margin-bottom:30px;
-    }
-    .cta-note{
-      font-size:14px;
-      font-style:italic;
-      color:rgba(15,23,42,.5);
-      margin-top:16px;
-    }
+    /* CTA card removed; donate form will sit in a simple centered wrapper */
 
     /* Footer */
     footer{
@@ -336,8 +293,8 @@
       </nav>
 
       <div class="actions">
-        <a class="btn ghost" href="https://app.925adhd.com" aria-label="Login">Login</a>
-        <a class="btn primary" href="https://buy.stripe.com/eVqdRa7Zr6xA5VXbiU7Zu05">Sign Up</a>
+        <a class="btn ghost" href="https://925adhd.github.io/app-925adhd/login.html" aria-label="Login">Login</a>
+        <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Get Access</a>
         <button class="btn hamburger" id="menuBtn" aria-label="Open menu">☰</button>
       </div>
     </div>
@@ -389,65 +346,55 @@
         <h2>Our Mission</h2>
         <p class="subtitle">We don't fix you. We build with you.</p>
 
-        <div style="max-width:700px; margin:0 auto 40px; text-align:left;">
-          <p style="font-size:18px; line-height:1.8; color:rgba(15,23,42,.75); margin-bottom:20px;">
+        <div style="max-width:760px; margin:0 auto 24px; text-align:left;">
+          <p style="font-size:18px; line-height:1.8; color:rgba(15,23,42,.75); margin-bottom:12px;">
             <strong>If you've ever felt…</strong>
           </p>
-          <ul style="list-style:none; padding:0; font-size:17px; line-height:1.9; color:rgba(15,23,42,.75);">
+          <ul style="list-style:none; padding:0; font-size:17px; line-height:1.9; color:rgba(15,23,42,.75); margin-bottom:18px;">
             <li style="margin-bottom:10px;">• Like you don't "fit" traditional work</li>
             <li style="margin-bottom:10px;">• Burned out by expectations made for someone else</li>
-            <li style="margin-bottom:10px;">• Overwhelmed by starting something new</li>
+            <li style="margin-bottom:10px;">• Overwhelmed by where to even start</li>
           </ul>
-          <p style="font-size:18px; line-height:1.8; color:rgba(15,23,42,.75); margin-top:24px;">
+          <p style="font-size:18px; line-height:1.8; color:rgba(15,23,42,.75); margin-top:8px; margin-bottom:18px;">
             …you're in the right place.
           </p>
-        </div>
 
-        <div style="max-width:600px; margin:0 auto; text-align:left;">
-          <p style="font-size:20px; line-height:1.8; color:rgba(15,23,42,.85); margin-bottom:12px; font-weight:700;">
-            🔥 Take back your time.
+          <p style="font-size:16.5px; line-height:1.8; color:rgba(15,23,42,.85); margin-bottom:12px;">
+            This isn't a get-rich-quick scheme. It's a real starting point.
           </p>
-          <p style="font-size:20px; line-height:1.8; color:rgba(15,23,42,.85); margin-bottom:12px; font-weight:700;">
-            🔥 Take back your peace of mind.
+
+          <p style="font-size:16.5px; line-height:1.8; color:rgba(15,23,42,.85); margin-bottom:12px;">
+            50+ vetted ways to earn — organized for ADHD brains, updated regularly, no scams, no fluff. Some are quick cash. Some take time to build. All of them let you work on your own terms.
           </p>
-          <p style="font-size:20px; line-height:1.8; color:rgba(15,23,42,.85); font-weight:700;">
-            🔥 Build your own path — and thrive.
+
+          <p style="font-size:16.5px; line-height:1.8; color:rgba(15,23,42,.85); font-weight:700;">
+            Start small. Stack what works. Go at your own pace.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA Section (trimmed) -->
     <section class="cta-section">
       <div class="wrap">
-        <div class="cta-box">
-          <h3>Explore how it works. No pressure, no commitment.</h3>
-          <p>
-            I once risked my life speeding 100 mph to a job that would've replaced me before my funeral.
-          </p>
-          <p>
-            Now I work on my terms. And so can you.
-          </p>
-          <a class="btn primary" href="https://free.925adhd.com" style="font-size:16px; padding:14px 32px;">
-            Start with the free version
-          </a>
-          <p class="cta-note">Instant access via email • No downloads needed • Works in any browser</p>
-        </div>
-
-        <div style="margin-top:80px; text-align:center;">
-          <form action="https://www.paypal.com/donate" method="post" target="_top">
+        <div style="max-width:680px; margin:0 auto 8px; text-align:center;">
+          <div style="font-size:16px; font-weight:400; margin:0 0 8px; color:var(--muted);">Support the project</div>
+          <form action="https://www.paypal.com/donate" method="post" target="_top" style="display:inline-block; margin:10px 0;">
             <input type="hidden" name="hosted_button_id" value="Q6AEK9XUSECDS" />
-            <input type="image" src="https://pics.paypal.com/00/s/ZGMzNzRhYzktMTUzNy00YTVjLWFhMjctMTAwODg4NDMyOGU4/file.PNG" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <input type="image" src="https://pics.paypal.com/00/s/ZGMzNzRhYzktMTUzNy00YTVjLWFhMjctMTAwODg4NDMyOGU4/file.PNG" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" style="max-width:200px; width:180px;">
             <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
           </form>
         </div>
+        <!-- PayPal donate form moved to footer area per request -->
       </div>
     </section>
   </main>
 
   <footer>
       <div class="wrap">
-        <div style="text-align:center; margin-bottom:24px; padding:18px; border-radius:var(--radius); background:rgba(124,58,237,.08); border:1px solid rgba(124,58,237,.2);">
+        <!-- Donate form moved into CTA box; removed duplicate here -->
+
+        <div style="text-align:center; margin-top:18px; margin-bottom:24px; padding:18px; border-radius:var(--radius); background:rgba(124,58,237,.08); border:1px solid rgba(124,58,237,.2);">
           <div style="font-weight:800; font-size:16px; margin-bottom:4px;">
             <a href="bonus1.html" style="text-decoration:none;">💡</a> Built by an ADHD brain, for ADHD brains. <a href="bonus2.html" style="text-decoration:none;">🧠</a>
           </div>

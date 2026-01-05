@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   
   <!-- Primary Meta Tags -->
-  <title>925 ADHD - 50+ Ways to Make Money Online for ADHD Minds | $9.25/mo</title>
-  <meta name="title" content="925 ADHD - 50+ Ways to Make Money Online for ADHD Minds | $9.25/mo">
-  <meta name="description" content="Find ADHD-friendly ways to make money online without the overwhelm. 50+ curated flexible work options, vetted and scam-free, with step-by-step guidance. No resumes required." />
+  <title>925 ADHD - 50+ Ways to Make Money Online for ADHD Minds | $9.25 One-Time</title>
+  <meta name="title" content="925 ADHD - 50+ Ways to Make Money Online for ADHD Minds | $9.25 One-Time">
+  <meta name="description" content="Find ADHD-friendly ways to make money online without the overwhelm. 50+ curated flexible work options, vetted and scam-free, with step-by-step guidance. No resumes required. One-time payment, lifetime access." />
   <meta name="keywords" content="ADHD remote work, ADHD jobs, work from home ADHD, ADHD-friendly jobs, remote work for ADHD, ADHD side hustles, flexible work ADHD, ADHD gig work, neurodivergent jobs, ADHD online income" />
   <meta name="author" content="925 ADHD LLC" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -72,8 +72,8 @@
   </style>
 
   <!-- AI Search Optimization -->
-  <meta name="abstract" content="925 ADHD provides a curated membership platform with 50+ vetted online work opportunities specifically designed for people with ADHD. Monthly subscription at $9.25 includes regular updates, ADHD-friendly guidance, and Discord community support." />
-  <meta name="summary" content="ADHD-friendly online work hub: 50+ vetted ways to earn, regularly updated, $9.25/month, no resumes required, instant browser access, 30-day guarantee" />
+  <meta name="abstract" content="925 ADHD provides a curated platform with 50+ vetted online work opportunities specifically designed for people with ADHD. One-time payment of $9.25 includes lifetime access to opportunities, ADHD-friendly guidance, and community support." />
+  <meta name="summary" content="ADHD-friendly online work hub: 50+ vetted ways to earn, regularly updated, $9.25 one-time, no resumes required, instant browser access, 30-day guarantee" />
   <meta name="topic" content="ADHD Online Work, Neurodivergent Employment, Work From Home, Flexible Jobs" />
   <meta name="target_audience" content="Adults with ADHD seeking online work, neurodivergent individuals, people struggling with traditional job searches" />
   <meta name="coverage" content="Worldwide" />
@@ -109,8 +109,8 @@
   {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "925 ADHD Membership",
-    "description": "Curated hub of 50+ vetted online work opportunities designed specifically for ADHD minds. Regularly updated with new opportunities, scams removed, with ADHD-friendly guidance and Discord community support.",
+    "name": "925 ADHD Lifetime Access",
+    "description": "Curated hub of 50+ vetted online work opportunities designed specifically for ADHD minds. Regularly updated with new opportunities, scams removed, with ADHD-friendly guidance and community support.",
     "brand": {
       "@type": "Brand",
       "name": "925 ADHD"
@@ -122,7 +122,6 @@
       "price": "9.25",
       "priceValidUntil": "2026-12-31",
       "availability": "https://schema.org/InStock",
-      "billingDuration": "P1M",
       "hasMerchantReturnPolicy": {
         "@type": "MerchantReturnPolicy",
         "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
@@ -148,7 +147,7 @@
         "name": "What is 925 ADHD?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "925 ADHD is a curated membership that helps ADHD minds find legit online work without the overwhelm. We vet opportunities, filter scams, and give clear next steps."
+          "text": "925 ADHD is a curated platform that helps ADHD minds find legit online work without the overwhelm. We vet opportunities, filter scams, and give clear next steps."
         }
       },
       {
@@ -368,8 +367,19 @@
     .section h2{margin:0 0 10px; font-size:30px; letter-spacing:-.4px}
     .section p{margin:0; color:rgba(15,23,42,.65); font-size:17px}
     
-    /* Feature grid */
-    .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:24px}
+    /* Feature grid (use flex so last row centers when fewer items) */
+    .grid3{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .grid3 .card{
+      flex: 0 1 calc(33.333% - 14px);
+      max-width: 360px;
+    }
     /* Tools preview */
     .tools-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:18px}
     .tools-card{display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px; border:1px solid var(--border); border-radius:12px; background: rgba(255,255,255,.92);}
@@ -392,6 +402,10 @@
       display:flex; align-items:center; justify-content:center;
       margin-bottom:10px;
       font-size:22px;
+      overflow:hidden;
+    }
+    .icon img{
+      width:100%; height:100%; object-fit:cover; border-radius:10px;
     }
 
     /* Pricing */
@@ -565,7 +579,7 @@
 
     /* Responsive */
     @media (max-width: 920px){
-      .grid3{grid-template-columns: 1fr}
+      .grid3 .card { flex: 0 1 100%; max-width: none; }
       .testimonials-grid{grid-template-columns:1fr}
       .links{display:none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--border); padding: 20px; flex-direction: column; gap: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.1);}
       .links.active{display:flex}
@@ -604,7 +618,7 @@
 
       <div class="actions">
         <a class="btn ghost" href="https://925adhd.github.io/app-925adhd/login.html" aria-label="Login">Login</a>
-        <a class="btn primary" href="https://buy.stripe.com/eVqdRa7Zr6xA5VXbiU7Zu05">Sign Up</a>
+        <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Get Access</a>
         <button class="btn hamburger" id="menuBtn" aria-label="Open menu">☰</button>
       </div>
     </div>
@@ -616,9 +630,9 @@
       <article itemscope itemtype="https://schema.org/Article">
         <h2 itemprop="headline">925 ADHD: Complete Overview for ADHD Online Work Seekers</h2>
         <div itemprop="articleBody">
-          <p><strong>What is 925 ADHD?</strong> A curated membership platform providing 50+ vetted online work opportunities specifically designed for people with ADHD and neurodivergent individuals.</p>
-          <p><strong>Core Features:</strong> Regular updates with new opportunities added and outdated/scam sites removed. ADHD-friendly step-by-step guidance for each opportunity. No resumes or interviews required. Supportive Discord community. Instant browser-based access with no downloads needed.</p>
-          <p><strong>Pricing:</strong> $9.25 per month subscription with 30-day money-back guarantee. Cancel anytime with no penalties.</p>
+          <p><strong>What is 925 ADHD?</strong> A curated platform providing 50+ vetted online work opportunities specifically designed for people with ADHD and neurodivergent individuals.</p>
+          <p><strong>Core Features:</strong> Regular updates with new opportunities added and outdated/scam sites removed. ADHD-friendly step-by-step guidance for each opportunity. No resumes or interviews required. Supportive community. Instant browser-based access with no downloads needed.</p>
+          <p><strong>Pricing:</strong> $9.25 one-time payment for lifetime access with 30-day money-back guarantee.</p>
           <p><strong>Target Audience:</strong> Adults with ADHD, neurodivergent individuals, people experiencing decision paralysis in job searches, anyone seeking flexible online work without traditional corporate barriers.</p>
           <p><strong>Problem Solved:</strong> Eliminates endless research rabbit holes, filters out scam opportunities, removes traditional job search barriers (resumes, interviews, corporate hoops), organizes information in ADHD-friendly format, reduces overwhelm and decision paralysis.</p>
         </div>
@@ -639,15 +653,15 @@
 
         <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; max-width: 540px; margin: 24px auto;">
           <div class="hero-ctas" role="group" aria-label="Primary actions">
-            <a class="btn primary-compact" href="https://buy.stripe.com/eVqdRa7Zr6xA5VXbiU7Zu05">
-              Get Started →
+            <a class="btn primary-compact" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">
+              Get Instant Access →
             </a>
             <a class="btn secondary-outline" href="#what-you-get">
               View Features
             </a>
           </div>
           <p style="font-size: 13px; color: rgba(15,23,42,.55); margin: 0; text-align: center;">
-            Updated monthly. New options added, dead ones removed, real talk on what's working.
+            One-time payment. Lifetime access. New options added, dead ones removed.
           </p>
         </div>
 
@@ -659,7 +673,7 @@
           </div>
           <div class="stat-item">
             <div class="num">100%</div>
-            <div class="label">Scam-Free</div>
+            <div class="label">Scam-Free opportunities</div>
           </div>
           <div class="stat-item">
             <div class="num">100%</div>
@@ -670,92 +684,76 @@
         <!-- Gallery -->
         <div style="overflow: hidden; width: 100%; margin: 28px 0 20px;">
             <div id="autoScrollGallery" style="display: flex; gap: 15px; width: max-content;">
-            <img src="assets/Screenshot%202025-12-27%20084406.png" alt="925 ADHD App Preview" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="assets/Screenshot%202025-12-27%20084419.png" alt="925 ADHD Interface" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="assets/Screenshot%202025-12-27%20084443.png" alt="Work Opportunities" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="assets/Screenshot%202025-12-27%20084549.png" alt="Site Details" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <!-- Duplicate for seamless loop -->
-            <img src="assets/Screenshot%202025-12-27%20084406.png" alt="925 ADHD App Preview" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="assets/Screenshot%202025-12-27%20084419.png" alt="925 ADHD Interface" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="assets/Screenshot%202025-12-27%20084443.png" alt="Work Opportunities" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-            <img src="assets/Screenshot%202025-12-27%20084549.png" alt="Site Details" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works - Consolidated -->
-    <section class="section" id="whats-inside" style="padding-top:32px;">
-      <div class="wrap">
-        <p style="text-align:center; color:rgba(15,23,42,.6); font-size:13px; margin-bottom:8px;">Built for brains that don’t fit neatly into traditional work.</p>
-        <h2 style="text-align:center;">See what's inside</h2>
-
-        <!-- Removed numbered step cards; community moved into feature cards below -->
-
-        <!-- Video placeholder (centered) -->
-        <div style="display:flex; justify-content:center; margin-top:22px;">
-          <div style="max-width:820px; width:100%;">
-            <div style="height:360px; border-radius:12px; background:rgba(0,0,0,.04); display:flex; align-items:center; justify-content:center;">
-              <div style="font-size:56px; color:rgba(15,23,42,.45);">▶</div>
+              <img src="assets/1.png" alt="Hero image 1" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+              <img src="assets/2.png" alt="Hero image 2" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+              <img src="assets/3.png" alt="Hero image 3" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+              <img src="assets/4.png" alt="Hero image 4" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+              <img src="assets/5.png" alt="Hero image 5" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+              <!-- Duplicate for seamless loop -->
+              <img src="assets/1.png" alt="Hero image 1" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+              <img src="assets/2.png" alt="Hero image 2" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+              <img src="assets/3.png" alt="Hero image 3" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+              <img src="assets/4.png" alt="Hero image 4" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+              <img src="assets/5.png" alt="Hero image 5" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
             </div>
-            <p style="text-align:center; margin-top:12px; color:rgba(15,23,42,.65);">Demo video coming soon — placeholder for future walkthrough.</p>
-          </div>
         </div>
       </div>
     </section>
 
     <!-- What's Included - Compact -->
-    <section class="section" id="what-you-get" style="padding:32px 0; background:rgba(0,0,0,.015);">
+    <section class="section" id="what-you-get" style="padding:48px 0 32px; background:rgba(0,0,0,.015);">
       <div class="wrap">
+        <p style="text-align:center; color:rgba(15,23,42,.6); font-size:13px; margin-bottom:8px;">Built for brains that don't fit neatly into traditional work.</p>
         <h2 style="text-align:center;">What You Get</h2>
         
 		<div class="grid3" style="margin-top:24px;">
 
   <div class="card pad feat">
-    <div class="icon" aria-hidden="true">
-      <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="display:block;">
-        <path d="M13 2 L3 14h7l-1 8 11-12h-8l1-8z" style="fill:var(--brand);"></path>
-      </svg>
+    <div class="icon">
+      <img src="https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/bIquIPZf7ZEXDA4vlm8R/pub/V9fFmHmj0sNrFWEZxvre.png" alt="Passion Finder">
     </div>
     <h3>Passion Finder Quiz</h3>
     <p>Get matched to work that fits your energy and interests</p>
   </div>
 
   <div class="card pad feat">
-    <div class="icon">📋</div>
+    <div class="icon">
+      <img src="assets/guide.png" alt="Guides icon">
+    </div>
     <h3>Easy-to-follow guides</h3>
     <p>Know exactly what to do first. Nothing extra</p>
   </div>
 
-  <div class="card pad feat">
-    <div class="icon"><img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/discord%20logo-22d0dfd.png" alt="Discord" style="height:24px; width:auto;"></div>
-    <h3>Private ADHD-Friendly Community</h3>
-    <p>Optional, low-pressure support when you want it. Lurk, ask questions, or jump in. No expectations. No judgment.</p>
-  </div>
+  <!-- Private ADHD-Friendly Community card removed per request -->
 
   <div class="card pad feat">
-    <div class="icon">💬</div>
+    <div class="icon">
+      <img src="assets/begin.png" alt="Real talk icon">
+    </div>
     <h3>Real talk</h3>
-    <p>What’s worth your time. What isn’t</p>
+    <p>What's worth your time. What isn't</p>
   </div>
 
   <div class="card pad feat">
-    <div class="icon">🎯</div>
+    <div class="icon">
+      <img src="assets/hacksicon.png" alt="Dopamine-friendly tips icon">
+    </div>
     <h3>Dopamine-friendly tips</h3>
     <p>So you <em>actually finish</em> what you start</p>
   </div>
 
   <div class="card pad feat">
-    <div class="icon">💰</div>
+    <div class="icon">
+      <img src="assets/hearticon.png" alt="Stack income streams icon">
+    </div>
     <h3>Stack income streams</h3>
-    <p>Save your favorites and come back when you’re ready</p>
+    <p>Save your favorites and come back when you're ready</p>
   </div>
-
-  
 
 </div>
     
     <!-- Tools preview removed from here and moved to Pricing card -->
+  </section>
 
     <!-- Testimonials Section -->
     <section class="section" style="padding:40px 0;">
@@ -781,17 +779,17 @@
     <!-- Pricing - Single Card with Integrated Guarantee -->
     <section class="section" id="pricing" style="background:rgba(0,0,0,.02); padding:48px 0;">
       <div class="wrap" id="get-started">
-        <h2 style="text-align:center;">Simple Pricing. Cancel Anytime.</h2>
-        <p style="text-align:center;">One plan. Everything included.</p>
+        <h2 style="text-align:center;">One Price. Lifetime Access.</h2>
+        <p style="text-align:center;">Pay once, get everything. No recurring fees.</p>
 
         <div class="pricing-card">
           <div class="card pad">
             <div style="text-align:center;">
-              <div style="font-weight:900; color:var(--brand2); font-size:13px; letter-spacing:.5px; margin-bottom:4px;">💎 MONTHLY ACCESS</div>
-              <div style="font-weight:950; font-size:22px;">925 ADHD Membership</div>
+              <div style="font-weight:900; color:var(--brand2); font-size:13px; letter-spacing:.5px; margin-bottom:4px;">💎 LIFETIME ACCESS</div>
+              <div style="font-weight:950; font-size:22px;">925 ADHD</div>
               <div class="price">
                 <b>$9.25</b>
-                <div class="price-detail">per month • Cancel anytime</div>
+                <div class="price-detail">one-time payment • yours forever</div>
                 <div style="margin-top:8px;">
                   <span style="display:inline-block; background:rgba(124,58,237,.1); color:var(--brand); font-size:13px; font-weight:700; padding:6px 12px; border-radius:20px;">Ad-free • No distractions</span>
                 </div>
@@ -801,7 +799,7 @@
             <ul class="list">
   <li>
     <span class="check">✔</span>
-    <span class="item">50+ curated ways to earn tagged by setup time, effort & payout speed</span>
+    <span class="item">50+ curated ways to earn online tagged by setup time, effort & payout speed</span>
   </li>
   <li>
     <span class="check">✔</span>
@@ -809,70 +807,17 @@
   </li>
   <li>
     <span class="check">✔</span>
-    <span class="item">Monthly updates: New options added, dead ones removed</span>
+    <span class="item">Lifetime updates: New options added, dead ones removed</span>
   </li>
-  <li>
-    <span class="check">✔</span>
-    <span class="item">Discord community of like-minded people building flexible income together</span>
-  </li>
+  <!-- Removed Discord bullet; cleaned up stray check element -->
             </ul>
 
             <div class="card" style="margin-top:16px; padding:14px; background:rgba(124,58,237,.04); border:1px solid rgba(124,58,237,.14); box-shadow:none;">
-              <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <img src="assets/passionfinder.png" alt="Passion Finder" style="width:72px; height:72px; object-fit:contain; border-radius:8px; flex-shrink:0;">
                 <div>
-                  <div style="font-weight:900; font-size:14px;">✨ Included bonus: ADHD Toolkit</div>
-                  <div style="font-size:13px; color:rgba(15,23,42,.62); margin-top:2px;">Built-in tools that make follow-through easier.</div>
-                </div>
-
-                <button id="toolsToggle" class="tools-toggle" aria-expanded="false" aria-controls="toolsCollapse" style="background:#fff; border:1px solid var(--border); padding:8px 12px; border-radius:12px; display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-weight:800; font-size:13px; color:var(--text); white-space:nowrap;">
-                  <span class="tools-toggle-label">View tools</span>
-                  <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </button>
-              </div>
-
-              <div id="toolsCollapse" class="tools-collapse" style="max-height:0; overflow:hidden; transition:max-height 250ms ease;">
-                <div class="tools-collapse-inner" style="padding-top:12px;">
-                
-
-                  <div class="tools-grid" style="margin-top:10px;">
-                    <div class="tools-card" role="article" aria-label="Daily Schedule">
-                      <img src="assets/dailyschedule.png" alt="Daily Schedule">
-                      <h4>Daily Schedule</h4>
-                      <p>Structure tasks, boost daily flow</p>
-                    </div>
-
-                    <div class="tools-card" role="article" aria-label="Hourly Optimizer">
-                      <img src="assets/hourlyoptimizer.png" alt="Hourly Optimizer">
-                      <h4>Hourly Optimizer</h4>
-                      <p>Maximize focus every hour</p>
-                    </div>
-
-                    <div class="tools-card" role="article" aria-label="Mindshift">
-                      <img src="assets/mindshift.png" alt="Mindshift">
-                      <h4>Mindshift</h4>
-                      <p>Quick mindset resets to refocus</p>
-                    </div>
-
-                    <div class="tools-card" role="article" aria-label="Earnings Tracker">
-                      <img src="assets/earnings.png" alt="Earnings Tracker">
-                      <h4>Earnings Tracker</h4>
-                      <p>Monitor income & progress</p>
-                    </div>
-
-                    <div class="tools-card" role="article" aria-label="Freelance Calculator">
-                      <img src="assets/calculator.png" alt="Freelance Calculator">
-                      <h4>Freelance Calculator</h4>
-                      <p>Estimate rates & plan goals</p>
-                    </div>
-
-                    <div class="tools-card" role="article" aria-label="Breathwork Studio">
-                      <img src="assets/breathwork.png" alt="Breathwork Studio">
-                      <h4>Breathwork Studio</h4>
-                      <p>Guided breathing exercises</p>
-                    </div>
-                  </div>
+                  <div style="font-weight:900; font-size:14px;">✨ Included: Passion Finder Quiz</div>
+                  <div style="font-size:13px; color:rgba(15,23,42,.62); margin-top:2px;">Get matched to work that fits your unique brain.</div>
                 </div>
               </div>
             </div>
@@ -886,7 +831,7 @@
             </div>
 
             <div style="margin-top:24px;">
-              <a class="btn primary" href="https://buy.stripe.com/eVqdRa7Zr6xA5VXbiU7Zu05" style="width:100%; justify-content:center; text-align:center; font-size:17px; padding:16px 24px;">
+              <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" style="width:100%; justify-content:center; text-align:center; font-size:17px; padding:16px 24px;">
                 Get Instant Access →
               </a>
               <p style="text-align: center; font-size: 13px; color: rgba(15,23,42,.55); margin-top: 12px;">
@@ -906,7 +851,7 @@
         <div class="faq">
           <div class="faq-item">
             <div class="faq-q">What exactly do I get?</div>
-            <p class="faq-a">50+ vetted ways to earn online, updated monthly. Tagged by effort and payout speed, with simple guides. Plus ADHD tools and an optional Discord community.</p>
+            <p class="faq-a">50+ vetted ways to earn online, with lifetime updates. Tagged by effort and payout speed, with simple guides. Plus access to the Passion Finder quiz.</p>
           </div>
           <div class="faq-item">
             <div class="faq-q">How fast can I start earning?</div>
@@ -919,6 +864,10 @@
           <div class="faq-item">
             <div class="faq-q">What if it's not for me?</div>
             <p class="faq-a">30-day money-back guarantee. If it's not a fit, you get a full refund—no questions asked.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Is this a one-time payment?</div>
+            <p class="faq-a">Yes! Pay $9.25 once and get lifetime access. No recurring charges, no hidden fees.</p>
           </div>
         </div>
       </div>
@@ -1020,42 +969,6 @@
       }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
 
       io.observe(first);
-    })();
-
-    // Tools collapse toggle
-    (function(){
-      const toggle = document.getElementById('toolsToggle');
-      const collapse = document.getElementById('toolsCollapse');
-      if (!toggle || !collapse) return;
-
-      function openCollapse(){
-        const inner = collapse.querySelector('.tools-collapse-inner');
-        if (!inner) return;
-        const height = inner.scrollHeight;
-        collapse.style.maxHeight = height + 'px';
-        toggle.classList.add('open');
-        toggle.setAttribute('aria-expanded','true');
-      }
-
-      function closeCollapse(){
-        collapse.style.maxHeight = '0';
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded','false');
-      }
-
-      // Toggle on click
-      toggle.addEventListener('click', () => {
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        if (expanded) closeCollapse(); else openCollapse();
-      });
-
-      // Recalc on resize when open
-      window.addEventListener('resize', () => {
-        if (toggle.getAttribute('aria-expanded') === 'true'){
-          const inner = collapse.querySelector('.tools-collapse-inner');
-          collapse.style.maxHeight = (inner ? inner.scrollHeight : 0) + 'px';
-        }
-      });
     })();
   </script>
 </body>
