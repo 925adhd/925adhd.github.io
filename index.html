@@ -574,6 +574,18 @@
       will-change: transform;
     }
 
+    /* Pause control for desktop (hover) and paused class for JS-controlled pause */
+    @media (hover: hover) and (pointer: fine) {
+      #autoScrollGallery:hover {
+        animation-play-state: paused;
+      }
+      #autoScrollGallery img{transition: transform .18s ease, box-shadow .18s ease; cursor: pointer;}
+      #autoScrollGallery img:hover{transform: scale(1.06); box-shadow: 0 12px 30px rgba(0,0,0,.18); z-index:2}
+    }
+
+    /* Class-based pause (used by JS when lightbox is open) */
+    #autoScrollGallery.paused { animation-play-state: paused !important; }
+
     /* Responsive */
     @media (max-width: 920px){
       .grid3 .card { flex: 0 1 100%; max-width: none; }
@@ -912,6 +924,12 @@
     </footer>
   </main>
 
+  <!-- Lightbox for mobile/touch enlarge -->
+  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); align-items:center; justify-content:center; z-index:9999;">
+    <button class="lb-close" aria-label="Close" style="position:absolute; top:18px; right:18px; background:transparent; border:none; color:#fff; font-size:28px; cursor:pointer;">✕</button>
+    <img src="" alt="" style="max-width:92%; max-height:86%; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.5);">
+  </div>
+
   <script>
     // Smooth scrolling for in-page links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -966,6 +984,50 @@
       }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
 
       io.observe(first);
+    })();
+
+    // Lightbox / tap-to-enlarge for touch devices
+    (function(){
+      const gallery = document.getElementById('autoScrollGallery');
+      const lightbox = document.getElementById('lightbox');
+      if (!gallery || !lightbox) return;
+
+      const lightboxImg = lightbox.querySelector('img');
+      const closeBtn = lightbox.querySelector('.lb-close');
+
+      const isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window);
+
+      function openLightbox(src, alt){
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        lightbox.style.display = 'flex';
+        gallery.classList.add('paused');
+        document.documentElement.style.overflow = 'hidden';
+      }
+      function closeLightbox(){
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+        gallery.classList.remove('paused');
+        document.documentElement.style.overflow = '';
+      }
+
+      if (isTouch) {
+        // On touch devices, tapping an image opens the lightbox
+        Array.from(gallery.querySelectorAll('img')).forEach(img => {
+          img.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLightbox(img.src, img.alt);
+          });
+        });
+      }
+
+      // Close handlers
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === closeBtn) closeLightbox();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox();
+      });
     })();
   </script>
 </body>
