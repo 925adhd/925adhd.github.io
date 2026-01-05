@@ -1011,15 +1011,13 @@
         document.documentElement.style.overflow = '';
       }
 
-      if (isTouch) {
-        // On touch devices, tapping an image opens the lightbox
-        Array.from(gallery.querySelectorAll('img')).forEach(img => {
-          img.addEventListener('click', (e) => {
-            e.preventDefault();
-            openLightbox(img.src, img.alt);
-          });
+      // Attach click handlers for all devices so desktop clicks open the lightbox too
+      Array.from(gallery.querySelectorAll('img')).forEach(img => {
+        img.addEventListener('click', (e) => {
+          e.preventDefault();
+          openLightbox(img.src, img.alt);
         });
-      }
+      });
 
       // Close handlers
       lightbox.addEventListener('click', (e) => {
