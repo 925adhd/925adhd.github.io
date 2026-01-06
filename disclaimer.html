@@ -7,7 +7,7 @@
   <title>Disclaimer - 925 ADHD</title>
   <meta name="description" content="Disclaimer for 925 ADHD - Important information about our platform and content." />
   
-  <link rel="icon" type="image/png" href="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" />
+  <link rel="icon" type="image/png" href="assets/925-adhd-logo.png" />
 
   <style>
     :root{
@@ -216,7 +216,7 @@
   <header class="nav">
     <div class="wrap navinner">
       <a class="brand" href="index.html" aria-label="925 ADHD Home">
-        <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png/:/rs=h:175,m" alt="925 ADHD Logo" style="width: 34px; height: 34px; border-radius: 12px; object-fit: cover;">
+        <img src="assets/925-adhd-logo.png" alt="925 ADHD Logo" style="width: 34px; height: 34px; border-radius: 12px; object-fit: cover;">
         <span>925 ADHD</span>
       </a>
 
@@ -229,7 +229,7 @@
 
       <div class="actions">
         <a class="btn ghost" href="https://925adhd.github.io/app-925adhd/login.html" aria-label="Login">Login</a>
-        <a class="btn primary" href="https://buy.stripe.com/eVqdRa7Zr6xA5VXbiU7Zu05">Get Access</a>
+        <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Get Access</a>
         <button class="btn hamburger" id="menuBtn" aria-label="Open menu">☰</button>
       </div>
     </div>
@@ -337,4 +337,12 @@
 
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.querySelector('.links');
-    if (menuBtn 
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+      });
+    }
+  </script>
+</body>
+</html>

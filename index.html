@@ -18,7 +18,7 @@
   <meta property="og:url" content="https://get.925adhd.com/" />
   <meta property="og:title" content="925 ADHD - 50+ Ways to Earn Online for ADHD Minds" />
   <meta property="og:description" content="Find ADHD-friendly ways to make money online without the overwhelm. 50+ curated options, regularly updated, with step-by-step guidance. No resumes required." />
-  <meta property="og:image" content="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" />
+  <meta property="og:image" content="assets/925-adhd-logo.png" />
   <meta property="og:site_name" content="925 ADHD" />
   <meta property="og:locale" content="en_US" />
 
@@ -27,11 +27,11 @@
   <meta property="twitter:url" content="https://get.925adhd.com/" />
   <meta property="twitter:title" content="925 ADHD - 50+ Ways to Earn Online for ADHD Minds" />
   <meta property="twitter:description" content="Find ADHD-friendly ways to make money online without the overwhelm. 50+ curated options, regularly updated. No resumes required." />
-  <meta property="twitter:image" content="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" />
+  <meta property="twitter:image" content="assets/925-adhd-logo.png" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" />
-  <link rel="apple-touch-icon" href="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png" />
+  <link rel="icon" type="image/png" href="assets/925-adhd-logo.png" />
+  <link rel="apple-touch-icon" href="assets/925-adhd-logo.png" />
 
   <style>
     /* Reveal animation for testimonial images */
@@ -88,7 +88,7 @@
     "name": "925 ADHD LLC",
     "alternateName": "925 ADHD",
     "url": "https://925adhd.com",
-    "logo": "https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png",
+    "logo": "assets/925-adhd-logo.png",
     "description": "Helping ADHD minds find legitimate online work without the overwhelm",
     "foundingDate": "2024",
     "sameAs": [
@@ -587,9 +587,20 @@
     #autoScrollGallery.paused { animation-play-state: paused !important; }
 
     /* Responsive */
+    /* Tablet size: testimonials horizontal */
+    @media (max-width: 920px) and (min-width: 601px){
+      .testimonials-grid{
+        display:flex;
+        flex-direction:row;
+        gap:12px;
+      }
+      .testimonial-card{
+        flex:1;
+        min-width:0;
+      }
+    }
     @media (max-width: 920px){
       .grid3 .card { flex: 0 1 100%; max-width: none; }
-      .testimonials-grid{grid-template-columns:1fr}
       .links{display:none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--border); padding: 20px; flex-direction: column; gap: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.1);}
       .links.active{display:flex}
       .hamburger{display:inline-flex}
@@ -597,6 +608,9 @@
       .stats-bar{gap:20px}
       .stat-item .num{font-size:24px}
       .discord-cta{flex-direction:column; text-align:center}
+    }
+    @media (max-width: 600px){
+      .testimonials-grid{grid-template-columns:1fr}
     }
     @media (max-width: 768px) {
       .footer-links {
@@ -614,7 +628,7 @@
   <header class="nav">
     <div class="wrap navinner">
       <a class="brand" href="index.html" aria-label="925 ADHD Home">
-        <img src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/SmartSelect_20241218_055052_Gallery.png/:/rs=h:175,m" alt="925 ADHD Logo" style="width: 34px; height: 34px; border-radius: 12px; object-fit: cover;">
+        <img src="assets/925-adhd-logo.png" alt="925 ADHD Logo" style="width: 34px; height: 34px; border-radius: 12px; object-fit: cover;">
         <span>925 ADHD</span>
       </a>
 
@@ -773,13 +787,13 @@
         <!-- Individual testimonial cards -->
         <div class="testimonials-grid">
           <div class="testimonial-card reveal-card">
-            <img class="reveal-img" src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/morganreview-e5f8059.png" alt="Review from Morgan" style="width:100%; height:auto; border-radius:10px;">
+            <img class="reveal-img" src="assets/morganreview.png" alt="Review from Morgan" style="width:100%; height:auto; border-radius:10px;">
           </div>
           <div class="testimonial-card reveal-card">
-            <img class="reveal-img" src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/daniireview-b29eeeb.png" alt="Review from Danii" style="width:100%; height:auto; border-radius:10px;">
+            <img class="reveal-img" src="assets/daniireview.png" alt="Review from Danii" style="width:100%; height:auto; border-radius:10px;">
           </div>
           <div class="testimonial-card reveal-card">
-            <img class="reveal-img" src="https://img1.wsimg.com/isteam/ip/e5c52ac6-7189-421d-9701-bbc6d6a027fc/ericareview.png" alt="Review from Erica" style="width:100%; height:auto; border-radius:10px;">
+            <img class="reveal-img" src="assets/ericareview.png" alt="Review from Erica" style="width:100%; height:auto; border-radius:10px;">
           </div>
         </div>
       </div>
