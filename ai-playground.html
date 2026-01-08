@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Playground — Learn AI for Freelancing | 925 ADHD</title>
+  <meta name="description" content="Practice using AI for freelance work with real prompts. ADHD-friendly templates for proposals, client communication, pricing, and more.">
+  <meta name="theme-color" content="#56C3AE">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --bg-card: #131316;
+      --bg-elevated: #1a1a1f;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.15);
+      --text: #e8e8ed;
+      --text-muted: rgba(232,232,237,0.6);
+      --text-dim: rgba(232,232,237,0.4);
+      --brand: #56C3AE;
+      --brand-glow: rgba(86,195,174,0.3);
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+      --pink: #f472b6;
+      --amber: #fbbf24;
+      --green: #34d399;
+      --red: #f87171;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --font: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding-top: 40px;
+      overflow-x: hidden;
+    }
+    .bg-effects { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+    .grid-pattern {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(86,195,174,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(86,195,174,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+    }
+    .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; animation: float 20s ease-in-out infinite; }
+    .orb-1 { width: 400px; height: 400px; background: var(--brand); top: 10%; left: 10%; }
+    .orb-2 { width: 300px; height: 300px; background: var(--purple); top: 50%; right: 10%; animation-delay: -7s; }
+    .orb-3 { width: 350px; height: 350px; background: var(--blue); bottom: 10%; left: 30%; animation-delay: -14s; }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -30px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(-30px, -20px) scale(1.02); }
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 12px; }
+    .hero { text-align: center; padding: 20px 0 12px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(86,195,174,0.1); border: 1px solid rgba(86,195,174,0.3);
+      padding: 6px 12px; border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--brand); margin-bottom: 12px;
+    }
+    .hero-badge svg { width: 16px; height: 16px; }
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 42px); font-weight: 700; line-height: 1.2; margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--brand) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p { font-size: 17px; color: var(--text-muted); max-width: 600px; margin: 0 auto 24px; }
+    .tips-banner {
+      background: linear-gradient(90deg, rgba(167,139,250,0.08), rgba(86,195,174,0.08), rgba(244,114,182,0.08));
+      border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px;
+      margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+    }
+    .tips-icon { flex-shrink: 0; width: 28px; height: 28px; background: rgba(251,191,36,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    /* Lock tip banner height to prevent layout shift; height is set by JS to match longest tip */
+    .tips-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: opacity 0.3s ease;
+      min-height: var(--tip-min-height, 2.6em); /* JS will override to exact pixel height when available */
+      display: flex;
+      align-items: center;
+      width: var(--tip-width, auto);
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    /* Slightly taller on very small screens as a sensible fallback */
+    @media (max-width: 480px) {
+      .tips-text { min-height: var(--tip-min-height, 3.4em); }
+    }
+    .progress-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 30px; }
+    .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+    .progress-title { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .progress-title svg { width: 18px; height: 18px; color: var(--brand); }
+    .progress-stats { font-size: 13px; color: var(--text-muted); }
+    .progress-bar-container { background: var(--bg); border-radius: 100px; height: 10px; overflow: hidden; margin-bottom: 16px; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--brand), var(--purple)); border-radius: 100px; transition: width 0.5s ease; position: relative; }
+    .progress-bar::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation: shimmer 2s infinite; }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+    .badges-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+    .badge { display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--text-dim); transition: all 0.3s ease; }
+    .badge.unlocked { background: rgba(86,195,174,0.1); border-color: rgba(86,195,174,0.3); color: var(--brand); }
+    .badge-icon { font-size: 14px; filter: grayscale(1); opacity: 0.5; transition: all 0.3s ease; }
+    .badge.unlocked .badge-icon { filter: none; opacity: 1; }
+    .tabs-container { margin-bottom: 12px; }
+    .tabs { display: flex; gap: 8px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px; overflow-x: visible; flex-wrap: wrap; }
+    .tab { flex: 1; min-width: fit-content; padding: 12px 20px; border: none; background: transparent; color: var(--text-muted); font-family: var(--font); font-size: 14px; font-weight: 500; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; }
+    .tab:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .tab.active { background: var(--brand); color: var(--bg); }
+    .tab svg { width: 16px; height: 16px; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .ready-banner { background: transparent; border: none; border-radius: 0; padding: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .ready-icon { width: 48px; height: 48px; background: rgba(52,211,153,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+    .ready-text h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; color: var(--green); }
+    .ready-text p { font-size: 14px; color: var(--text-muted); margin: 0; }
+    .chat-container { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .chat-header { padding: 10px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .model-select-wrapper { display: flex; align-items: center; gap: 10px; }
+    .model-select-wrapper label { font-size: 13px; color: var(--text-muted); }
+    .model-select { padding: 8px 32px 8px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--font); font-size: 13px; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; }
+    .model-select:focus { outline: none; border-color: var(--brand); }
+    .chat-actions { display: flex; gap: 8px; }
+    .chat-messages { min-height: 220px; max-height: 420px; overflow-y: auto; padding: 12px; }
+    .chat-messages::-webkit-scrollbar { width: 6px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    .message { margin-bottom: 20px; animation: messageIn 0.3s ease; }
+    @keyframes messageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .message-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .message-avatar { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .message.user .message-avatar { background: rgba(167,139,250,0.2); }
+    .message.assistant .message-avatar { background: rgba(86,195,174,0.2); }
+    .message-sender { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+    .message-content { padding: 16px; border-radius: var(--radius); font-size: 15px; line-height: 1.7; }
+    .message.user .message-content { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.2); }
+    .message.assistant .message-content { background: var(--bg-elevated); border: 1px solid var(--border); }
+    .message-content pre { background: var(--bg); padding: 12px; border-radius: 8px; overflow-x: auto; margin: 12px 0; font-family: var(--font-mono); font-size: 13px; }
+    .message-content code { font-family: var(--font-mono); background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+    .message-content pre code { background: none; padding: 0; }
+    .empty-chat { text-align: center; padding: 8px 10px; color: var(--text-dim); }
+    .empty-chat svg { width: 40px; height: 40px; margin-bottom: 6px; opacity: 0.5; }
+    .empty-chat h4 { font-size: 15px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+    .empty-chat p { font-size: 13px; }
+    .typing-indicator { display: flex; gap: 4px; padding: 16px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); width: fit-content; }
+    .typing-indicator span { width: 8px; height: 8px; background: var(--brand); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out; }
+    .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
+    .chat-input-area { padding: 8px 10px; border-top: 1px solid var(--border); background: var(--bg-elevated); }
+    .input-wrapper { display: flex; gap: 12px; align-items: center; }
+    .chat-input { flex: 1; padding: 14px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-family: var(--font); font-size: 15px; height: auto; resize: none; min-height: 72px; max-height: 45vh; transition: border-color 0.2s ease; overflow-y: hidden; }
+    .chat-input:focus { outline: none; border-color: var(--brand); }
+    .chat-input::placeholder { color: var(--text-dim); }
+    .btn { padding: 12px 24px; border: none; border-radius: var(--radius); font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary { background: var(--brand); color: var(--bg); }
+    .btn-primary:hover { background: #4db9a5; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text-muted); padding: 8px 12px; }
+    .btn-ghost:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .send-btn { width: 48px; height: 48px; padding: 0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .send-btn svg { width: 18px; height: 18px; }
+    .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Copy button in chat header */
+    .copy-btn { margin-left: 8px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; background: transparent; border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; }
+    .copy-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
+
+    /* Modal shown after copying to remind user to remove extra AI response */
+    .copy-modal { position: fixed; inset: 0; display: none; align-items: flex-start; justify-content: center; z-index: 2000; }
+    .copy-modal.show { display: flex; }
+    .copy-modal .backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+    .copy-modal .dialog { position: relative; background: var(--bg-card); border: 1px solid var(--border); color: var(--text); padding: 18px; border-radius: 12px; max-width: 420px; width: calc(100% - 40px); box-shadow: 0 12px 40px rgba(0,0,0,0.6); z-index: 2; margin-top: 18vh; }
+
+    /* ADHD-friendly reminder styling inside modal */
+    .copy-modal .dialog .reminder-label {
+      color: var(--brand);
+      font-weight: 600;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 6px;
+    }
+    .copy-modal .dialog .reminder-label .icon { font-size: 16px; line-height: 1; }
+    .copy-modal .dialog .reminder-text {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    /* Mobile: nudge the modal further down so it doesn't sit under small headers */
+    @media (max-width: 480px) {
+      .copy-modal .dialog { margin-top: 30vh; }
+    }
+    .copy-modal .dialog h4 { margin-bottom: 8px; font-size: 16px; }
+    .copy-modal .dialog p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+    .copy-modal .dialog .ok-btn { padding: 8px 12px; border-radius: 8px; background: var(--brand); color: var(--bg); border: none; cursor: pointer; }
+
+    /* reduce space below the chat card */
+    .chat-container { margin-bottom: 12px; }
+    .quick-prompts { margin-top: 24px; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .section-title { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .section-title svg { width: 18px; height: 18px; color: var(--amber); }
+    .prompts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    /* Horizontal prompt pills that wrap so all are visible on any screen size */
+    .prompts-scroll { display: flex; gap: 6px; padding: 4px 4px; flex-wrap: wrap; overflow-x: visible; align-items: center; }
+    .prompts-scroll::-webkit-scrollbar { display: none; }
+    .prompts-scroll .prompt-btn { flex: 0 1 auto; min-width: 100px; border-radius: 999px; padding: 8px 10px; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; text-align: left; }
+    .prompts-scroll .prompt-btn .icon { font-size: 16px; line-height: 1; }
+    /* Mobile: single-row swipeable prompt pills */
+    @media (max-width: 480px) {
+      .prompts-scroll {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        padding: 6px 4px;
+      }
+
+      .prompts-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      .prompts-scroll .prompt-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 10px 14px;
+        font-size: 13px;
+        border-radius: 999px;
+        justify-content: center; /* center content horizontally */
+        text-align: center; /* center multi-word labels */
+      }
+
+      .prompts-scroll .prompt-btn .icon {
+        font-size: 18px;
+        display: none; /* hide icons/emojis on very small screens to keep pills single-line */
+      }
+    }
+    .prompt-btn { padding: 10px 14px; background: transparent; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; color: var(--text-muted); font-family: var(--font); font-size: 13px; font-weight: 400; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; }
+    .prompt-btn:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.03); color: var(--text); }
+    .prompt-btn .icon { font-size: 18px; flex-shrink: 0; }
+    .prompt-btn span { line-height: 1.4; }
+    .templates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+    .template-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 12px; cursor: pointer; transition: all 0.2s ease; }
+    .template-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .template-card.category-content { border-left: 3px solid var(--purple); }
+    .template-card.category-client { border-left: 3px solid var(--blue); }
+    .template-card.category-proposal { border-left: 3px solid var(--brand); }
+    .template-card.category-social { border-left: 3px solid var(--pink); }
+    .template-card.category-problem { border-left: 3px solid var(--amber); }
+    .template-card.category-pricing { border-left: 3px solid var(--green); }
+    .template-card.category-testimonial { border-left: 3px solid var(--red); }
+    .template-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .template-title { font-size: 15px; font-weight: 600; }
+    .template-category { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 8px; border-radius: 4px; background: rgba(255,255,255,0.05); }
+    .category-content .template-category { color: var(--purple); }
+    .category-client .template-category { color: var(--blue); }
+    .category-proposal .template-category { color: var(--brand); }
+    .category-social .template-category { color: var(--pink); }
+    .category-problem .template-category { color: var(--amber); }
+    .category-pricing .template-category { color: var(--green); }
+    .category-testimonial .template-category { color: var(--red); }
+    .template-preview { font-size: 13px; color: var(--text-muted); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .template-preview .blank { background: rgba(86,195,174,0.2); padding: 1px 6px; border-radius: 4px; color: var(--brand); font-weight: 500; }
+    .template-use-hint { margin-top: 8px; font-size: 12px; color: var(--text-dim); display: flex; align-items: center; gap: 6px; }
+    .learn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+    .learn-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; transition: all 0.2s ease; }
+    .learn-card:hover { border-color: var(--border-hover); }
+    .learn-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .learn-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .learn-card:nth-child(1) .learn-icon { background: rgba(167,139,250,0.2); }
+    .learn-card:nth-child(2) .learn-icon { background: rgba(86,195,174,0.2); }
+    .learn-card:nth-child(3) .learn-icon { background: rgba(96,165,250,0.2); }
+    .learn-card:nth-child(4) .learn-icon { background: rgba(244,114,182,0.2); }
+    .learn-card:nth-child(5) .learn-icon { background: rgba(251,191,36,0.2); }
+    .learn-card:nth-child(6) .learn-icon { background: rgba(52,211,153,0.2); }
+    .learn-card h3 { font-size: 15px; font-weight: 600; }
+    .learn-card > p { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
+    .example-prompt { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; font-size: 13px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.6; }
+    .try-prompt-btn { width: 100%; padding: 10px; background: transparent; border: 1px dashed var(--border); border-radius: 8px; color: var(--brand); font-family: var(--font); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+    .try-prompt-btn:hover { background: rgba(86,195,174,0.1); border-style: solid; border-color: var(--brand); }
+    .category-filter { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .filter-btn { padding: 8px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; color: var(--text-muted); font-family: var(--font); font-size: 13px; cursor: pointer; transition: all 0.2s ease; }
+    .filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
+    .filter-btn.active { background: var(--brand); border-color: var(--brand); color: var(--bg); }
+    .error-message { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); border-radius: var(--radius); padding: 14px 16px; color: var(--red); font-size: 14px; margin-bottom: 16px; display: none; }
+    .error-message.show { display: flex; align-items: center; gap: 10px; }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 20px; font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 10px; z-index: 1000; opacity: 0; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .toast.success { border-color: rgba(52,211,153,0.3); }
+    .toast.success::before { content: '✓'; width: 20px; height: 20px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--bg); }
+    @media (max-width: 768px) {
+      body { padding-top: 8px; }
+      .container { padding: 0 10px; }
+      .hero { padding: 12px 0 8px; }
+      .hero-badge { margin-bottom: 6px; padding: 4px 10px; font-size: 11px; }
+      .hero h1 { font-size: 20px; margin-bottom: 6px; }
+      .tabs-container { margin-bottom: 8px; }
+      .tabs { padding: 4px; gap: 4px; }
+      .tab { padding: 8px 12px; font-size: 12px; gap: 6px; }
+      .tab svg { width: 14px; height: 14px; }
+      /* Show tab text on mobile so icons are labeled */
+      .tab span.tab-text { display: inline; }
+      .tips-banner { padding: 6px 10px; margin-bottom: 10px; }
+      .tips-icon { width: 24px; height: 24px; font-size: 12px; }
+      .tips-text { font-size: 12px; }
+      .ready-banner { padding: 0; margin-bottom: 8px; }
+      .chat-container { margin-bottom: 8px; }
+      .chat-header { padding: 8px 10px; }
+      .chat-messages { min-height: 160px; max-height: 280px; padding: 10px; }
+      .chat-input { min-height: 48px; padding: 10px 12px; font-size: 14px; }
+      .send-btn { width: 42px; height: 42px; }
+      .chat-input-area { padding: 6px 8px; }
+      .prompts-grid { grid-template-columns: 1fr; }
+      .templates-grid { grid-template-columns: 1fr; }
+      /* Show full template previews on mobile to make them readable */
+      .template-preview { display: block !important; -webkit-line-clamp: unset !important; -webkit-box-orient: unset !important; overflow: visible !important; }
+      .learn-grid { grid-template-columns: 1fr; }
+      .progress-section { padding: 16px; }
+    }
+
+    /* Visual hint that prompt pills are swipeable on narrow screens */
+    @media (max-width: 480px) {
+      .quick-prompts { position: relative; }
+
+      /* Right edge fade */
+      .quick-prompts::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 48px;
+        height: 100%;
+        pointer-events: none;
+        background: linear-gradient(
+          to left,
+          rgba(10,10,11,0.95),
+          rgba(10,10,11,0)
+        );
+      }
+
+      /* Chevron hint */
+      .quick-prompts::before {
+        content: "›";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+        color: rgba(232,232,237,0.5);
+        pointer-events: none;
+        animation: swipeHint 1.6s ease-in-out infinite;
+      }
+
+      @keyframes swipeHint {
+        0% { opacity: 0.3; transform: translate(0, -50%); }
+        50% { opacity: 0.8; transform: translate(-4px, -50%); }
+        100% { opacity: 0.3; transform: translate(0, -50%); }
+      }
+    }
+
+    /* Mobile: tabs styled as rounded container with pill buttons (match mock) */
+    @media (max-width: 480px) {
+      .tabs {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 6px;
+      }
+      .tabs .tab { flex: 0 1 auto; padding: 8px 12px; border-radius: 8px; min-width: 0; display: inline-flex; align-items: center; gap: 8px; }
+      .tabs .tab svg { width: 14px; height: 14px; }
+      .tabs .tab { color: var(--text-muted); background: transparent; }
+      .tabs .tab.active { background: var(--brand); color: var(--bg); box-shadow: none; }
+      .tabs .tab:hover { background: rgba(255,255,255,0.03); color: var(--text); }
+    }
+
+    @keyframes badgeUnlock { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+    .badge.just-unlocked { animation: badgeUnlock 0.5s ease; }
+    .page-footer { margin-top: 8px; padding: 8px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); font-size: 12px; }
+
+    @media (max-width: 480px) {
+      .hero p { display: none; }
+    }
+    @media (max-width: 480px) {
+      /* wrapper stays non-scrolling and allows chevrons to sit outside the visible pill row */
+      .prompt-scroll-wrapper { position: relative; overflow: visible; }
+
+      .prompt-scroll-wrapper::before,
+      .prompt-scroll-wrapper::after {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: rgba(232,232,237,0.6);
+        font-size: 20px;
+        line-height: 1;
+        text-shadow: 0 1px 0 rgba(0,0,0,0.6);
+        z-index: 12;
+      }
+
+      /* place chevrons *outside* the pill area using negative offsets */
+      .prompt-scroll-wrapper::before { content: '‹'; left: -12px; }
+      .prompt-scroll-wrapper::after { content: '›'; right: -12px; }
+
+      /* keep the inner row as the real scroller; add internal padding so pills don't sit under chevrons */
+      .prompts-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; z-index: 1; padding-left: 20px; padding-right: 20px; }
+
+      /* Hide template category filter pills on small screens to reduce clutter */
+      .category-filter { display: none; }
+
+      /* When we want exactly two pills visible between chevrons, toggle this class via JS */
+      .prompt-scroll-wrapper.two-visible .prompts-scroll {
+        padding-left: 0; /* JS will set precise padding based on chevron width */
+        padding-right: 0;
+      }
+
+      .prompt-scroll-wrapper.two-visible .prompts-scroll .prompt-btn {
+        flex: 0 0 calc((var(--visible-width, 200px) - var(--prompts-gap, 8px)) / 2);
+        max-width: calc((var(--visible-width, 200px) - var(--prompts-gap, 8px)) / 2);
+        min-width: 0;
+        box-sizing: border-box;
+        white-space: nowrap; /* keep pill a single line */
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .page-footer a { color: var(--brand); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body data-page-title="AI Playground">
+  <div class="bg-effects">
+    <div class="grid-pattern"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Free AI Practice Zone
+      </div>
+      <h1>AI Playground for Freelancers</h1>
+      <p>Learn to use AI for client emails, proposals, pricing, and more. Real practice with pre-built templates — no experience needed.</p>
+    </section>
+
+
+    <!-- progress and badge UI removed -->
+
+
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab active" data-tab="playground">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <!-- rocket body -->
+            <path d="M12 2c3 2 5 5 5 9 0 4-2 7-5 9-3-2-5-5-5-9 0-4 2-7 5-9z" />
+
+            <!-- window -->
+            <circle cx="12" cy="11" r="1.5" />
+
+            <!-- fins -->
+            <path d="M7 14l-3 3" />
+            <path d="M17 14l3 3" />
+
+            <!-- flame -->
+            <path d="M12 20c-.8 1-1.5 2-1.5 2s1 .5 1.5.5 1.5-.5 1.5-.5-0.7-1-1.5-2z" />
+          </svg>
+          <span class="tab-text">Playground</span>
+        </button>
+        <button class="tab" data-tab="templates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><span class="tab-text">Templates</span></button>
+        <button class="tab" data-tab="learn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="tab-text">Learn</span></button>
+      </div>
+    </div>
+
+    <div class="tips-banner">
+      <div class="tips-icon">💡</div>
+      <div class="tips-text" id="tipText">Tip: The more specific you are with AI, the better results you'll get. Include context!</div>
+    </div>
+
+    <div class="tab-content active" id="playground-tab">
+      <div class="ready-banner">
+        <div class="prompt-scroll-wrapper" style="width:100%;">
+          <div class="prompts-scroll">
+            <button class="prompt-btn" data-prompt="Write a polite but firm email to a client whose payment is 2 weeks overdue. Keep it professional and mention that I'll need to pause work until payment is received." data-category="client"><span class="icon">💰</span><span>Ask for Payment</span></button>
+            <button class="prompt-btn" data-prompt="Write a proposal for a website redesign project. Include an introduction about my approach, estimated timeline of 4-6 weeks, and why I'm a good fit. Keep it under 200 words." data-category="proposal"><span class="icon">📋</span><span>Make a Proposal</span></button>
+            <button class="prompt-btn" data-prompt="Help me write a response to a client who keeps adding new requests outside the original scope. I want to be firm but not lose the relationship." data-category="client"><span class="icon">🛑</span><span>Handle Extra Requests</span></button>
+            <button class="prompt-btn" data-prompt="Write a LinkedIn post about landing my first freelance client. Make it engaging, authentic, and include a subtle call-to-action. Keep it under 150 words." data-category="content"><span class="icon">📱</span><span>Write a LinkedIn Post</span></button>
+            <button class="prompt-btn" data-prompt="Help me write a polite but confident response declining a project offer because the budget is too low. Suggest that I'd be happy to discuss if their budget changes." data-category="client"><span class="icon">🙅</span><span>Say No to Low Pay</span></button>
+            <button class="prompt-btn" data-prompt="I'm stuck on how to find my first clients as a new freelancer. Can you help me brainstorm 3 different solutions with pros and cons for each?" data-category="problem"><span class="icon">🧠</span><span>Brainstorm Ideas</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="error-message" id="errorMessage">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span id="errorText"></span>
+      </div>
+
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="model-select-wrapper">
+            <label for="modelSelect">Model:</label>
+            <select class="model-select" id="modelSelect">
+              <option value="llama-3.3-70b-versatile">Llama 3.3 70B (Best)</option>
+              <option value="llama-3.1-8b-instant">Llama 3.1 8B (Fast)</option>
+              <option value="qwen/qwen3-32b">Qwen 3 32B (Strong)</option>
+              <option value="meta-llama/llama-4-maverick-17b-128e-instruct">Llama 4 Maverick (High Quality)</option>
+            </select>
+          </div>
+          <div class="chat-actions">
+            <button class="btn btn-ghost" id="clearChat">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              Clear
+            </button>
+            <button class="copy-btn" id="copyBtn" title="Copy last AI response">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="empty-chat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <h4>Ready to practice!</h4>
+            <p>Type a prompt below or click a quick prompt to get started.</p>
+          </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="input-wrapper">
+              <textarea class="chat-input" id="chatInput" placeholder="Ask AI to help with a freelance task..."></textarea>
+              <button class="btn btn-primary send-btn" id="sendBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+            </div>
+        </div>
+      </div>
+
+      <!-- quick-prompts removed (moved higher) -->
+    </div>
+
+    <div class="tab-content" id="templates-tab">
+      <div class="category-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="content">Write: blog or post</button>
+        <button class="filter-btn" data-filter="client">Message a client</button>
+        <button class="filter-btn" data-filter="proposal">Make a proposal</button>
+        <button class="filter-btn" data-filter="social">Write a social post</button>
+        <button class="filter-btn" data-filter="problem">Fix a problem</button>
+        <button class="filter-btn" data-filter="pricing">Talk about price</button>
+        <button class="filter-btn" data-filter="testimonial">Ask for a review</button>
+      </div>
+      <div class="templates-grid" id="templatesGrid"></div>
+    </div>
+
+    <div class="tab-content" id="learn-tab">
+      <div class="learn-grid">
+        <div class="learn-card">
+          <div class="learn-card-header"><div class="learn-icon">🎯</div><h3>Be Specific</h3></div>
+          <p>Vague prompts get vague answers. Include details like tone, length, audience, and context for much better results.</p>
+          <div class="example-prompt"><strong>❌ Weak:</strong> "Write an email to a client"<br><br><strong>✅ Better:</strong> "Write a friendly but professional email to a client who hasn't responded in a week. I want to check in without being pushy. Keep it under 100 words."</div>
+          <button class="try-prompt-btn" data-prompt="Write a friendly but professional email to a client who hasn't responded in a week. I want to check in without being pushy. Keep it under 100 words.">Try this prompt →</button>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-header"><div class="learn-icon">🎭</div><h3>Give AI a Role</h3></div>
+          <p>Starting with "Act as..." helps AI adopt the right expertise and tone. It's like hiring a specialist for your specific need.</p>
+          <div class="example-prompt"><strong>Example:</strong> "Act as an experienced freelance copywriter. Review my portfolio description and suggest improvements to attract higher-paying clients."</div>
+          <button class="try-prompt-btn" data-prompt="Act as an experienced freelance copywriter. Review this portfolio description and suggest improvements to attract higher-paying clients: 'I write content for businesses.'">Try this prompt →</button>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-header"><div class="learn-icon">🔄</div><h3>Iterate & Refine</h3></div>
+          <p>Your first prompt rarely gives perfect results. Follow up with requests like "make it shorter," "more casual," or "add more detail about X."</p>
+          <div class="example-prompt"><strong>Follow-ups that work:</strong><br>• "Make this more conversational"<br>• "Shorten to 3 sentences"<br>• "Add a specific example"<br>• "Make it sound more confident"</div>
+          <button class="try-prompt-btn" data-prompt="Write a short bio for my freelance profile. I'm a graphic designer who specializes in branding for small businesses.">Try a prompt to refine →</button>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-header"><div class="learn-icon">📚</div><h3>Use Examples</h3></div>
+          <p>Show AI what you want by including an example of the style, format, or tone you're going for.</p>
+          <div class="example-prompt"><strong>Example:</strong> "Write a project update email in this style: 'Hey [Name]! Quick update on where we're at...' Keep it casual and upbeat like talking to a friendly colleague."</div>
+          <button class="try-prompt-btn" data-prompt="Write a project update email in this style: 'Hey [Name]! Quick update on where we're at...' Keep it casual and upbeat like talking to a friendly colleague. The project is a website redesign that's 60% complete.">Try this prompt →</button>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-header"><div class="learn-icon">🚫</div><h3>Tell It What NOT to Do</h3></div>
+          <p>Sometimes it's easier to specify what you don't want. "Don't use jargon" or "avoid being salesy" can really help.</p>
+          <div class="example-prompt"><strong>Example:</strong> "Write a cold outreach message to a potential client. Don't be pushy or use phrases like 'touch base' or 'synergy.' Keep it human and genuine."</div>
+          <button class="try-prompt-btn" data-prompt="Write a cold outreach message to a potential client who might need a virtual assistant. Don't be pushy or use phrases like 'touch base' or 'synergy.' Keep it human and genuine.">Try this prompt →</button>
+        </div>
+        <div class="learn-card">
+          <div class="learn-card-header"><div class="learn-icon">🧩</div><h3>Break Down Big Tasks</h3></div>
+          <p>For complex projects, break them into steps. Ask AI to help with one piece at a time for better quality results.</p>
+          <div class="example-prompt"><strong>Instead of:</strong> "Create my entire business plan"<br><br><strong>Try:</strong> "Help me define my target audience for my freelance [service] business. Who would benefit most and why?"</div>
+          <button class="try-prompt-btn" data-prompt="Help me define my target audience for my freelance writing business. Who would benefit most from hiring a freelance writer, and what problems do they have that I can solve?">Try this prompt →</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer"><p>AI Playground by <a href="https://925adhd.com">925 ADHD</a> • Powered by Llama AI</p></footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <!-- Copy confirmation modal -->
+  <div class="copy-modal" id="copyModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="backdrop" id="copyModalBackdrop"></div>
+    <div class="dialog" role="document">
+      <h4>Copied!</h4>
+      <p><span class="reminder-label"><span class="icon">💡</span> Reminder</span><span class="reminder-text">remove any extra AI response lines or assistant labels before pasting this into your documents.</span></p>
+      <div style="margin-top:8px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+        <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-muted);">
+          <input type="checkbox" id="copyModalDontShow" />
+          Do not show this again
+        </label>
+        <div style="text-align:right"><button class="ok-btn" id="copyModalOk">OK</button></div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/layout.js"></script>
+  <script src="assets/api-config.js"></script>
+  <script>
+    // API configuration is now loaded from api-config.js
+    // All API keys are securely stored on the backend
+
+    const templates = [
+      { id: 1, title: "Blog Post Outline", category: "content", template: "Create a blog post outline about [TOPIC]. Include an attention-grabbing intro, 3-5 main sections with key points, and a conclusion with a call-to-action. Target audience: [AUDIENCE]. Tone: [TONE - casual/professional/educational]." },
+      { id: 2, title: "Social Media Caption", category: "social", template: "Write a [PLATFORM] caption for [TOPIC/PRODUCT]. Include: a hook in the first line, value or insight in the middle, and a clear call-to-action. Keep it under [LENGTH] characters. Tone: [TONE]." },
+      { id: 3, title: "Client Check-In Email", category: "client", template: "Write a friendly check-in email to [CLIENT NAME] about [PROJECT]. I want to: get a status update / share progress / ask about next steps. Keep it professional but warm. Under 100 words." },
+      { id: 4, title: "Project Proposal", category: "proposal", template: "Write a proposal for [PROJECT TYPE] for [CLIENT/COMPANY]. Include: my understanding of their needs, my proposed approach, timeline estimate of [TIMEFRAME], and why I'm the right fit. Budget range: [BUDGET]. Keep it under 300 words." },
+      { id: 5, title: "LinkedIn Post - Win", category: "social", template: "Write a LinkedIn post sharing a recent win: [DESCRIBE WIN]. Make it feel genuine (not braggy), include a lesson others can learn from, and end with a question to encourage engagement. Under 150 words." },
+      { id: 6, title: "Scope Change Response", category: "client", template: "Help me respond to a client who's asking for [NEW REQUEST] that's outside our original agreement. I want to: acknowledge their request / explain the scope impact / offer options (additional cost or revised timeline). Stay professional and solution-oriented." },
+      { id: 7, title: "Problem Brainstorm", category: "problem", template: "I'm struggling with [DESCRIBE PROBLEM] in my freelance business. Give me 5 creative solutions I might not have considered. For each solution, include: how to implement it, potential challenges, and expected outcome." },
+      { id: 8, title: "Pricing Response", category: "pricing", template: "A potential client asked about pricing for [SERVICE]. Help me write a response that: positions my value (not just cost), gives a range of [PRICE RANGE], explains what's included, and invites further discussion. Keep it confident but not salesy." },
+      { id: 9, title: "Testimonial Request", category: "testimonial", template: "Write a message asking [CLIENT NAME] for a testimonial about [PROJECT WE COMPLETED]. Make it easy for them by: reminding them of specific results, suggesting what they might mention, and offering to draft something they can edit. Keep it under 100 words." },
+      { id: 10, title: "Cold Outreach Message", category: "client", template: "Write a cold outreach message to [TARGET - specific company/person]. I offer [SERVICE] and noticed [SPECIFIC THING ABOUT THEM]. Keep it short (under 75 words), personal, and focused on their potential pain point, not my services." },
+      { id: 11, title: "Service Description", category: "content", template: "Write a compelling description for my [SERVICE NAME] service. Target audience: [WHO]. Key benefits: [LIST 2-3]. Differentiator: [WHAT MAKES ME UNIQUE]. Include a clear call-to-action. Keep it under 150 words." },
+      { id: 12, title: "Rate Increase Email", category: "pricing", template: "Help me write an email to [CLIENT] about increasing my rates from [OLD RATE] to [NEW RATE], effective [DATE]. Explain why (added experience, market rates, etc.) while emphasizing my commitment to their success. Keep it respectful and confident." },
+      { id: 13, title: "Project Kickoff Message", category: "client", template: "Write a project kickoff message to [CLIENT] for [PROJECT]. Include: excitement about working together, what I need from them to start, my next steps, and expected first milestone. Professional but warm tone." },
+      { id: 14, title: "Deadline Extension Request", category: "client", template: "Help me ask [CLIENT] for a deadline extension on [PROJECT]. Original deadline: [DATE]. New requested deadline: [NEW DATE]. Reason: [BRIEF REASON]. I want to be honest without oversharing, and offer something to make up for it." },
+      { id: 15, title: "Weekly Content Ideas", category: "content", template: "Generate 5 content ideas for [PLATFORM] about [TOPIC/NICHE]. For each idea include: a catchy title/hook, 2-3 main points to cover, and best format (post, carousel, video, etc.). Target audience: [AUDIENCE]." },
+      { id: 16, title: "Difficult Feedback Response", category: "client", template: "A client gave me this feedback: '[PASTE FEEDBACK]'. Help me write a professional response that: acknowledges their concerns, asks clarifying questions if needed, and proposes next steps. I want to stay calm and solution-focused." }
+    ];
+
+    const tips = [
+      "Tip: The more specific you are with AI, the better results you'll get. Include context!",
+      "Tip: Don't like the first response? Ask AI to 'make it shorter' or 'more casual' to refine it.",
+      "Tip: Starting with 'Act as a...' helps AI adopt the right expertise and tone.",
+      "Tip: Save prompts that work well for you — you'll reuse them more than you think!",
+      "Tip: Break big tasks into smaller prompts for better quality results.",
+      "Tip: Include examples of what you want when possible — AI learns from patterns.",
+      "Tip: Tell AI what NOT to do: 'Don't use jargon' or 'Avoid being salesy' really helps.",
+      "Tip: You can copy any AI response and paste it into your own documents!"
+    ];
+
+    let messages = [];
+    let isLoading = false;
+    let currentTipIndex = 0;
+
+    const $ = id => document.getElementById(id);
+    const elements = { modelSelect: $('modelSelect'), chatMessages: $('chatMessages'), chatInput: $('chatInput'), sendBtn: $('sendBtn'), clearChatBtn: $('clearChat'), copyBtn: $('copyBtn'), copyModal: $('copyModal'), copyModalOk: $('copyModalOk'), copyModalDontShow: $('copyModalDontShow'), errorMessage: $('errorMessage'), errorText: $('errorText'), templatesGrid: $('templatesGrid'), tipText: $('tipText'), toast: $('toast') };
+
+    // Helper: auto-resize a textarea element to fit content, with max height handling
+    function autoResizeInput(el) {
+      try {
+        if (!el) return;
+        el.style.height = 'auto';
+        const viewportLimit = Math.floor(window.innerHeight * 0.45); // 45% of viewport
+        const maxAllowed = Math.max(200, viewportLimit);
+        const newHeight = Math.min(el.scrollHeight, maxAllowed);
+        el.style.height = newHeight + 'px';
+        el.style.overflowY = (el.scrollHeight > maxAllowed) ? 'auto' : 'hidden';
+      } catch (e) { /* ignore */ }
+    }
+
+    function init() {
+      renderTemplates();
+      setupEventListeners();
+      // Auto-resize the textarea; allow it to grow up to a percentage of the viewport
+      elements.chatInput.addEventListener('input', function() { autoResizeInput(this); });
+      elements.chatInput.addEventListener('paste', function() { const self = this; setTimeout(() => autoResizeInput(self), 0); });
+      elements.chatInput.addEventListener('change', function() { autoResizeInput(this); });
+      // Lock tip width to avoid shifts and then start rotating tips
+      setStableTipWidth();
+      rotateTips();
+      // Recalculate tip width on resize (debounced)
+      let _rt;
+      window.addEventListener('resize', () => { clearTimeout(_rt); _rt = setTimeout(() => setStableTipWidth(), 150); });
+      // Also recalc after fonts load (prevents reflow when webfonts arrive)
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => setTimeout(setStableTipWidth, 80)).catch(() => {});
+      } else {
+        // fallback small delay
+        setTimeout(setStableTipWidth, 150);
+      }
+      // Ensure initial sizing on load
+      elements.chatInput.dispatchEvent(new Event('input'));
+    }
+
+    function setupEventListeners() {
+      elements.sendBtn.addEventListener('click', sendMessage);
+      elements.chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+      elements.clearChatBtn.addEventListener('click', clearChat);
+      if (elements.copyBtn) elements.copyBtn.addEventListener('click', copyLastAssistant);
+      if (elements.copyModalOk) elements.copyModalOk.addEventListener('click', () => {
+        try { if (elements.copyModalDontShow && elements.copyModalDontShow.checked) localStorage.setItem('ai_copy_reminder_hide', '1'); } catch (e) {}
+        hideCopyModal();
+      });
+      const backdrop = document.getElementById('copyModalBackdrop'); if (backdrop) backdrop.addEventListener('click', () => {
+        try { if (elements.copyModalDontShow && elements.copyModalDontShow.checked) localStorage.setItem('ai_copy_reminder_hide', '1'); } catch (e) {}
+        hideCopyModal();
+      });
+      document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
+      document.querySelectorAll('.prompt-btn').forEach(btn => btn.addEventListener('click', () => usePrompt(btn.dataset.prompt, btn.dataset.category)));
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => filterTemplates(btn.dataset.filter)));
+      document.querySelectorAll('.try-prompt-btn').forEach(btn => btn.addEventListener('click', () => { usePrompt(btn.dataset.prompt, 'learn'); switchTab('playground'); }));
+    }
+
+    function copyLastAssistant() {
+      try {
+        const assistantMsgs = elements.chatMessages ? elements.chatMessages.querySelectorAll('.message.assistant .message-content') : [];
+        if (!assistantMsgs || assistantMsgs.length === 0) { showToast('No AI response to copy'); return; }
+        const last = assistantMsgs[assistantMsgs.length - 1];
+        const text = last ? last.innerText.trim() : '';
+        if (!text) { showToast('No AI response to copy'); return; }
+        // Attempt clipboard copy, but always show the reminder modal so users see the note
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => {
+            showCopyModal();
+          }).catch(() => {
+            showCopyModal();
+            showToast('Copy failed — try selecting text manually');
+          });
+        } else {
+          // fallback: show modal and suggest manual copy
+          showCopyModal();
+          showToast('Clipboard not available — select text and copy manually');
+        }
+      } catch (e) { showCopyModal(); showToast('Copy failed'); }
+    }
+
+    function showCopyModal() {
+      try {
+        if (localStorage && localStorage.getItem && localStorage.getItem('ai_copy_reminder_hide') === '1') return; // user opted out
+      } catch (e) { /* ignore */ }
+      const m = document.getElementById('copyModal'); if (!m) return;
+      // ensure checkbox reflects current preference
+      try { const cb = document.getElementById('copyModalDontShow'); if (cb) cb.checked = (localStorage && localStorage.getItem && localStorage.getItem('ai_copy_reminder_hide') === '1'); } catch (e) {}
+      m.classList.add('show'); m.setAttribute('aria-hidden','false');
+    }
+
+    function hideCopyModal() { const m = document.getElementById('copyModal'); if (!m) return; m.classList.remove('show'); m.setAttribute('aria-hidden','true'); }
+
+    async function sendMessage() {
+      const content = elements.chatInput.value.trim();
+      if (!content || isLoading) return;
+      elements.chatInput.value = '';
+      elements.chatInput.style.height = 'auto';
+      hideError();
+      messages.push({ role: 'user', content });
+      renderMessages();
+      isLoading = true;
+      showTypingIndicator();
+      try {
+        // Use the secure backend API proxy
+        const data = await apiRequest(API_CONFIG.ENDPOINTS.AI.CHAT, {
+          method: 'POST',
+          body: JSON.stringify({ messages, model: elements.modelSelect.value })
+        });
+        if (!data.success) throw new Error(data.error || 'Something went wrong');
+        messages.push({ role: 'assistant', content: data.message });
+      } catch (error) {
+        showError(error.message || 'Failed to get response. Please try again.');
+        messages.pop();
+      } finally {
+        isLoading = false;
+        renderMessages();
+      }
+    }
+
+    function renderMessages() {
+      if (messages.length === 0) {
+        elements.chatMessages.innerHTML = '<div class="empty-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><h4>Ready to practice!</h4><p>Type a prompt below or click a quick prompt to get started.</p></div>';
+        return;
+      }
+      elements.chatMessages.innerHTML = messages.map(msg => '<div class="message ' + msg.role + '"><div class="message-header"><div class="message-avatar">' + (msg.role === 'user' ? '👤' : '🤖') + '</div><span class="message-sender">' + (msg.role === 'user' ? 'You' : 'AI Assistant') + '</span></div><div class="message-content">' + formatMessage(msg.content) + '</div></div>').join('');
+      elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+    }
+
+    function formatMessage(content) {
+      return content.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>').replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>').replace(/\n/g, '<br>');
+    }
+
+    function showTypingIndicator() {
+      const indicator = document.createElement('div');
+      indicator.className = 'message assistant';
+      indicator.id = 'typing-indicator';
+      indicator.innerHTML = '<div class="message-header"><div class="message-avatar">🤖</div><span class="message-sender">AI Assistant</span></div><div class="typing-indicator"><span></span><span></span><span></span></div>';
+      elements.chatMessages.appendChild(indicator);
+      elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+    }
+
+    function clearChat() { messages = []; renderMessages(); hideError(); }
+
+    function renderTemplates(filter = 'all') {
+      const filtered = filter === 'all' ? templates : templates.filter(t => t.category === filter);
+      elements.templatesGrid.innerHTML = filtered.map(t => '<div class="template-card category-' + t.category + '" data-template-id="' + t.id + '"><div class="template-header"><div class="template-title">' + t.title + '</div><span class="template-category">' + getCategoryLabel(t.category) + '</span></div><div class="template-preview">' + highlightBlanks(t.template) + '</div><div class="template-use-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Click to use this template</div></div>').join('');
+      document.querySelectorAll('.template-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const template = templates.find(t => t.id === parseInt(card.dataset.templateId));
+          if (template) { usePrompt(template.template, template.category); switchTab('playground'); }
+        });
+      });
+    }
+
+    function highlightBlanks(text) { return text.replace(/\[([^\]]+)\]/g, '<span class="blank">[$1]</span>'); }
+    function getCategoryLabel(category) { const labels = { content: 'Write: blog or post', client: 'Message a client', proposal: 'Make a proposal', social: 'Write a social post', problem: 'Fix a problem', pricing: 'Talk about price', testimonial: 'Ask for a review' }; return labels[category] || category; }
+    function filterTemplates(filter) { document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter)); renderTemplates(filter); }
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.tab === tabId));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.toggle('active', content.id === tabId + '-tab'));
+      try {
+        const el = document.getElementById(tabId + '-tab');
+        if (el && typeof el.scrollIntoView === 'function') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Also ensure the top of the page is visible so the tab header and content are clearly shown
+        try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { /* ignore */ }
+      } catch (e) { /* ignore */ }
+    }
+
+    function usePrompt(prompt, category) {
+      elements.chatInput.value = prompt;
+      // On mobile, avoid focusing the input to prevent opening the on-screen keyboard.
+      const isMobile = window.matchMedia('(max-width:480px)').matches;
+      if (!isMobile) {
+        elements.chatInput.focus();
+      }
+      // Resize the textarea to fit the inserted prompt (immediate + a short delayed pass to handle layout changes)
+      autoResizeInput(elements.chatInput);
+      setTimeout(() => autoResizeInput(elements.chatInput), 60);
+      // On mobile, scroll the page all the way to the bottom so the chat area is visible
+      if (isMobile) {
+        setTimeout(() => {
+          try {
+            if (elements.chatMessages) elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+          } catch (e) { /* ignore */ }
+        }, 120);
+      }
+      // no-op: badges/progress removed
+    }
+
+    // Ensure exactly two prompt pills fit fully between the chevrons on small screens
+    function adjustPromptsTwoVisible() {
+      try {
+        const wrapper = document.querySelector('.prompt-scroll-wrapper');
+        const scroller = wrapper ? wrapper.querySelector('.prompts-scroll') : null;
+        if (!wrapper || !scroller) return;
+        const isMobile = window.matchMedia('(max-width:480px)').matches;
+        if (!isMobile) {
+          wrapper.classList.remove('two-visible');
+          scroller.style.removeProperty('--visible-width');
+          scroller.style.removeProperty('--prompts-gap');
+          scroller.style.removeProperty('padding-left');
+          scroller.style.removeProperty('padding-right');
+          return;
+        }
+
+        // Measure a chevron width by creating a hidden element with same font size
+        const meas = document.createElement('span');
+        meas.style.position = 'absolute'; meas.style.visibility = 'hidden'; meas.style.fontSize = '20px'; meas.style.lineHeight = '1'; meas.style.fontFamily = getComputedStyle(wrapper).fontFamily || 'inherit';
+        meas.textContent = '‹';
+        document.body.appendChild(meas);
+        const chevW = Math.ceil(meas.getBoundingClientRect().width) + 8; // add small padding
+        document.body.removeChild(meas);
+
+        const wrapperW = wrapper.clientWidth;
+        const gap = parseFloat(getComputedStyle(scroller).gap) || 8;
+        const visibleWidth = Math.max(80, wrapperW - (chevW * 2));
+
+        scroller.style.setProperty('--visible-width', visibleWidth + 'px');
+        scroller.style.setProperty('--prompts-gap', gap + 'px');
+        scroller.style.paddingLeft = chevW + 'px';
+        scroller.style.paddingRight = chevW + 'px';
+        wrapper.classList.add('two-visible');
+      } catch (e) { /* ignore measurement errors */ }
+    }
+
+    // run on load and when viewport changes
+    window.addEventListener('DOMContentLoaded', () => { adjustPromptsTwoVisible(); adjustPromptLabelsMobile(); });
+    window.addEventListener('load', () => { adjustPromptsTwoVisible(); adjustPromptLabelsMobile(); });
+    window.addEventListener('resize', () => { adjustPromptsTwoVisible(); adjustPromptLabelsMobile(); });
+    window.addEventListener('orientationchange', () => { adjustPromptsTwoVisible(); adjustPromptLabelsMobile(); });
+
+    // Remove specific leading words from prompt labels on mobile to save space
+    function adjustPromptLabelsMobile() {
+      try {
+        const isMobile = window.matchMedia('(max-width:480px)').matches;
+        document.querySelectorAll('.prompt-btn > span').forEach(span => {
+          if (!span.dataset.fullLabel) span.dataset.fullLabel = span.textContent;
+          const original = span.dataset.fullLabel;
+          if (isMobile) {
+            const stripped = original.replace(/^(Handle\s+)/i, '').replace(/^(Write a\s+)/i, '');
+            span.textContent = stripped;
+          } else {
+            span.textContent = original;
+          }
+        });
+      } catch (e) { /* ignore */ }
+    }
+
+    // Progress and badge functions removed — feature deprecated and cleaned up
+
+    function rotateTips() { setInterval(() => { currentTipIndex = (currentTipIndex + 1) % tips.length; elements.tipText.style.opacity = '0'; setTimeout(() => { elements.tipText.textContent = tips[currentTipIndex]; elements.tipText.style.opacity = '1'; }, 300); }, 6000); }
+
+    // Measure the longest tip and lock the tip box width to prevent layout shifts
+    function setStableTipWidth() {
+      try {
+        const el = elements.tipText;
+        if (!el) return;
+        // Create hidden measurer using same font styles
+        const cs = window.getComputedStyle(el);
+        const measurer = document.createElement('div');
+        measurer.style.position = 'absolute';
+        measurer.style.visibility = 'hidden';
+        measurer.style.left = '-9999px';
+        measurer.style.top = '0';
+        measurer.style.whiteSpace = 'nowrap';
+        measurer.style.font = cs.font || (cs.fontSize + ' ' + cs.fontFamily);
+        measurer.style.fontSize = cs.fontSize;
+        measurer.style.fontFamily = cs.fontFamily;
+        measurer.style.fontWeight = cs.fontWeight;
+        measurer.style.lineHeight = cs.lineHeight;
+        document.body.appendChild(measurer);
+
+        // Determine the actual available width inside the banner (account for icon and padding)
+        let containerWidth = el.parentElement ? Math.floor(el.parentElement.getBoundingClientRect().width) : Math.floor(window.innerWidth * 0.8);
+        // subtract width of the icon if present
+        const iconEl = el.parentElement ? el.parentElement.querySelector('.tips-icon') : null;
+        if (iconEl) {
+          const iconW = Math.ceil(iconEl.getBoundingClientRect().width);
+          containerWidth = Math.max(80, containerWidth - iconW - 24); // subtract icon and some padding
+        } else {
+          containerWidth = Math.max(80, containerWidth - 24);
+        }
+
+        // Cap to viewport proportion as a safety
+        const maxAllowed = Math.floor(window.innerWidth * 0.95);
+        const finalW = Math.min(containerWidth, maxAllowed);
+
+        // Measure heights when wrapped to finalW to compute required min-height
+        measurer.style.whiteSpace = 'normal';
+        measurer.style.width = finalW + 'px';
+        let maxH = 0;
+        tips.forEach(t => {
+          measurer.textContent = t;
+          maxH = Math.max(maxH, measurer.offsetHeight);
+        });
+
+        document.body.removeChild(measurer);
+
+        // Apply measured width and height as CSS variables so layout is stable and text wraps inside
+        el.style.setProperty('--tip-width', finalW + 'px');
+        el.style.setProperty('--tip-min-height', maxH + 'px');
+        el.style.display = 'inline-block';
+        el.style.whiteSpace = 'normal';
+        el.style.wordBreak = 'break-word';
+      } catch (e) { /* ignore measurement errors */ }
+    }
+
+    function showError(message) { elements.errorText.textContent = message; elements.errorMessage.classList.add('show'); }
+    function hideError() { elements.errorMessage.classList.remove('show'); }
+    function showToast(message) { elements.toast.textContent = message; elements.toast.classList.add('show', 'success'); setTimeout(() => elements.toast.classList.remove('show', 'success'), 3000); }
+
+    init();
+  </script>
+</body>
+</html>
