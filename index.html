@@ -621,6 +621,96 @@
       *{scroll-behavior:auto !important; transition:none !important}
       #autoScrollGallery{animation:none}
     }
+    /*
+      Easter egg lizard styles
+      - Subtle, fixed in the bottom-right corner
+      - Container clips most of the emoji so only the head peeks by default
+      - Hover or `.open` class slides the full emoji into view and shows tooltip
+      - Pointer-events kept off the container so it doesn't block other UI;
+        the internal button receives clicks only.
+    */
+    #easter-lizard{
+      /* Make the wrapper a normal block at the end of the document so
+         the lizard becomes part of the page flow (it will scroll with
+         the content). Align the button to the right and add bottom
+         padding so it sits visually at the page bottom.
+      */
+      position:static;
+      display:block;
+      width:100%;
+      height:auto;
+      overflow:visible;
+      pointer-events:auto;
+      padding:0 8px 0 0;
+      text-align:right;
+    }
+
+    /* The emoji button is positioned partly off-screen so only the head peeks */
+    #easter-lizard button{
+      /* Default: part of the document flow and hidden until user reaches
+         the page bottom. Keeps transform-based peek for the slide-in effect. */
+      --lizard-peek: 8px;
+      position:relative;
+      display:inline-block;
+      /* smaller, subtler emoji so it lines up with footer text */
+      font-size: clamp(18px, 2.8vw, 26px);
+      line-height:1;
+      background:transparent;
+      border:0;
+      padding:0;
+      margin:0;
+      cursor:pointer;
+      pointer-events:none; /* disabled until visible */
+      /* start translated down so the button sits below the viewport edge
+        leaving only the head visible when fixed; uses translateY for
+        vertical reveal */
+      transform: translateY(var(--lizard-peek));
+      transition: transform .32s cubic-bezier(.2,.9,.3,1), opacity .2s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* When `show` is present (user reached bottom), anchor the button to
+       the viewport bottom-right so its head peeks above the page edge. */
+    #easter-lizard.show button{
+      position:fixed;
+      right: env(safe-area-inset-right, 2px);
+      bottom: env(safe-area-inset-bottom, 2px);
+      z-index: 99999;
+      pointer-events:auto;
+      opacity: 1;
+      visibility: visible;
+      /* keep initial peek translation (down) until hover/open */
+      transform: translateY(var(--lizard-peek));
+    }
+
+    /* Tweak the peek distance and font-size for small and large screens so the
+       lizard is visible and non-intrusive on all devices */
+    @media (max-width: 420px){
+      #easter-lizard button{ --lizard-peek: 6px; font-size: 20px; }
+    }
+    @media (min-width: 1400px){
+      #easter-lizard button{ --lizard-peek: 12px; font-size: 28px; }
+    }
+
+    /* Tooltip removed: no popup message shown */
+
+    /* On hover or when `.open` is present, slide the lizard fully into view and show tooltip */
+    /* Hovering the container or adding `.open` (via JS) reveals the lizard */
+    /* Reveal by resetting the transform so the emoji slides fully into view */
+    /* Reveal vertically when the lizard is active (.show) and user hovers,
+       or when the `.open` class is added via click. */
+    #easter-lizard.show:hover button,
+    #easter-lizard.open button,
+    #easter-lizard.show.open button{
+      transform: translateY(0);
+    }
+    /* Tooltip removed: only slide-in animation remains on hover/open */
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce){
+      #easter-lizard button, #easter-lizard .tip{ transition: none; }
+    }
   </style>
 </head>
 
@@ -949,6 +1039,54 @@
     <button class="lb-close" aria-label="Close" style="position:absolute; top:18px; right:18px; background:transparent; border:none; color:#fff; font-size:28px; cursor:pointer;">✕</button>
     <img src="" alt="" style="max-width:92%; max-height:86%; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.5);">
   </div>
+  <!-- Lightbox (end) -->
+
+  <!--
+    Easter egg lizard HTML
+    - Small container fixed in bottom-right; clipped so only the head peeks
+    - The button is the only interactive element so it doesn't block other UI
+  -->
+  <div id="easter-lizard" aria-hidden="false">
+    <!-- Accessible button: click to reveal then redirect -->
+    <button id="lizard-btn" aria-label="Easter egg: open lizard">🦎</button>
+  </div>
+
+  <script>
+    /* Minimal JS for the easter egg
+       - Adds `.open` class so CSS animation + tooltip show on click
+       - Waits briefly so the animation is visible, then redirects
+       - Kept intentionally tiny to avoid interfering with page behavior
+    */
+    (function(){
+      const container = document.getElementById('easter-lizard');
+      const btn = document.getElementById('lizard-btn');
+      if (!container || !btn) return;
+
+      // The container now lives at the end of the document and the
+      // button is positioned via CSS to be part of the page flow. Keep
+      // the click handler minimal: reveal then redirect after a short delay.
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        container.classList.add('open');
+        setTimeout(function(){ window.location.href = 'https://lizardlizard.ai'; }, 380);
+      });
+
+      // Show the lizard (peek at viewport bottom) only when user reaches
+      // the bottom of the page. Use a small threshold to account for
+      // overscroll on mobile.
+      function checkBottom() {
+        const threshold = 80; // px from bottom
+        const scrolledToBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - threshold);
+        if (scrolledToBottom) container.classList.add('show'); else container.classList.remove('show');
+      }
+
+      // Add listeners (passive for scroll performance) and run once.
+      window.addEventListener('scroll', checkBottom, { passive: true });
+      window.addEventListener('resize', checkBottom);
+      // run on load in case page is short
+      checkBottom();
+    })();
+  </script>
 
   <script>
     // Smooth scrolling for in-page links
