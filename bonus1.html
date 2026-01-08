@@ -599,7 +599,37 @@
             opacity: 1;
         }
 
-        
+        /* ===== PAUSE BUTTON ===== */
+        #pauseButton {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            border: 2px solid #fff;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+            user-select: none;
+            touch-action: manipulation;
+            box-shadow: 0 3px 0 #8b2e4a, 0 0 10px rgba(255, 107, 157, 0.4);
+            transition: all 0.1s;
+            z-index: 150;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #pauseButton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 0 #8b2e4a, 0 0 15px rgba(255, 107, 157, 0.6);
+        }
+
+        #pauseButton:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 0 #8b2e4a, 0 0 10px rgba(255, 107, 157, 0.4);
+        }
 
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
@@ -745,13 +775,16 @@
             
             <!-- Player -->
             <div id="player">🏃‍♂️</div>
-            
+
+            <!-- Pause Button -->
+            <button id="pauseButton" onclick="if(gameState.isRunning) game.togglePause()">⏸️</button>
+
             <!-- Instructions -->
             <div id="instructions">
                 WASD/ARROWS: MOVE<br>
                 SPACE: JUMP | P: PAUSE | H: HELP
             </div>
-            
+
             <!-- Pause Indicator -->
             <div id="pauseIndicator">⏸️</div>
             
@@ -770,41 +803,33 @@
             <!-- Controls Menu -->
             <div id="controlsMenu" class="menu">
                 <h2>🎮 HOW TO PLAY</h2>
-                
-                <div class="control-group">
-                    <div class="control-row">
-                        <span>Move Left:</span>
-                        <span class="control-key">A / ←</span>
+
+                <p style="font-size: 8px; margin: 8px 0;"><strong>OBJECTIVE:</strong> Escape corporate hell!</p>
+
+                <div class="control-group" style="margin: 6px 0; padding: 6px;">
+                    <p style="font-size: 8px; margin-bottom: 4px;"><strong>📱 CONTROLS:</strong></p>
+                    <div class="control-row" style="margin: 2px 0;">
+                        <span>Move:</span>
+                        <span class="control-key">JOYSTICK</span>
                     </div>
-                    <div class="control-row">
-                        <span>Move Right:</span>
-                        <span class="control-key">D / →</span>
-                    </div>
-                    <div class="control-row">
+                    <div class="control-row" style="margin: 2px 0;">
                         <span>Jump:</span>
-                        <span class="control-key">W / ↑ / SPACE</span>
-                    </div>
-                    <div class="control-row">
-                        <span>Duck:</span>
-                        <span class="control-key">S / ↓</span>
-                    </div>
-                    <div class="control-row">
-                        <span>Pause:</span>
-                        <span class="control-key">P / ESC</span>
-                    </div>
-                    <div class="control-row">
-                        <span>Help:</span>
-                        <span class="control-key">H</span>
+                        <span class="control-key">BUTTON</span>
                     </div>
                 </div>
-                
-                <div class="control-group" style="margin-top: 10px;">
-                    <p><strong>🎯 OBJECTIVE:</strong> Escape corporate hell!</p>
-                    <p><strong>❌ AVOID:</strong> 👩‍💼 Boss • 📧 Email • 🏢 Buildings</p>
-                    <p><strong>✅ COLLECT:</strong> ☕ Coffee • 🏖️ Vacation • 💰 Raise</p>
+
+                <div class="control-group" style="margin: 6px 0; padding: 6px;">
+                    <p style="font-size: 8px; margin-bottom: 2px; line-height: 1.5;"><strong>❌ AVOID:</strong><br>
+                    👩‍💼 Boss • 📧 Email<br>
+                    📅 Meeting • 🏢 Buildings</p>
                 </div>
-                
-                <div style="margin-top: 25px;">
+
+                <div class="control-group" style="margin: 6px 0; padding: 6px;">
+                    <p style="font-size: 8px; margin-bottom: 2px; line-height: 1.5;"><strong>✅ COLLECT:</strong><br>
+                    ☕ Coffee • 🏖️ Vacation • 💰 Raise</p>
+                </div>
+
+                <div style="margin-top: 10px;">
                     <button class="menu-button" onclick="game.hideControls()">BACK</button>
                     <button class="menu-button" onclick="game.hideControls(); if(gameState.isRunning) game.togglePause(); else game.startFromMenu();">START GAME</button>
                 </div>
@@ -854,8 +879,11 @@
                 width: 50,
                 height: 50,
                 moveSpeed: 6,
-                jumpPower: 18,
-                gravity: 0.8,
+                jumpPower: 22,
+                minJumpPower: 14,
+                jumpHoldBoost: 0.15,
+                maxJumpHoldTime: 200,
+                gravity: 0.7,
                 maxFallSpeed: 20
             },
             
@@ -979,40 +1007,65 @@
                 this.isDucking = false;
                 this.facingRight = true;
                 this.emoji = '🏃‍♂️';
+                this.jumpStartTime = 0;
+                this.isHoldingJump = false;
                 this.element.style.transform = 'scaleX(-1)'; // Start facing right (flipped)
                 this.updateElement();
             }
             
             update() {
-                // Apply gravity
+                // Apply gravity (but reduce it while holding jump for better control)
                 if (!this.isOnGround) {
-                    this.velocityY -= CONFIG.player.gravity;
+                    const gravityMultiplier = (this.isHoldingJump && this.velocityY > 0) ? 0.5 : 1;
+                    this.velocityY -= CONFIG.player.gravity * gravityMultiplier;
                     this.velocityY = Math.max(this.velocityY, -CONFIG.player.maxFallSpeed);
                     this.y += this.velocityY;
                 }
-                
+
                 // Ground collision
                 if (this.y <= 0) {
                     this.y = 0;
                     this.velocityY = 0;
                     this.isOnGround = true;
                     this.isJumping = false;
+                    this.isHoldingJump = false;
                     if (gameState.isRunning && !gameState.isPaused && !this.isDucking) {
                         this.emoji = '🏃‍♂️';
                     }
                 }
-                
+
                 this.updateElement();
             }
-            
-            jump() {
+
+            startJump() {
                 if (this.isOnGround && !this.isJumping && !this.isDucking) {
-                    this.velocityY = CONFIG.player.jumpPower;
+                    this.velocityY = CONFIG.player.minJumpPower;
                     this.isOnGround = false;
                     this.isJumping = true;
+                    this.isHoldingJump = true;
+                    this.jumpStartTime = Date.now();
                     this.emoji = '🤸‍♂️';
                     this.element.classList.add('player-jumping');
                 }
+            }
+
+            continueJump() {
+                if (this.isHoldingJump && this.isJumping && !this.isOnGround) {
+                    const holdTime = Date.now() - this.jumpStartTime;
+                    if (holdTime < CONFIG.player.maxJumpHoldTime && this.velocityY > 0) {
+                        this.velocityY += CONFIG.player.jumpHoldBoost;
+                        this.velocityY = Math.min(this.velocityY, CONFIG.player.jumpPower);
+                    }
+                }
+            }
+
+            releaseJump() {
+                this.isHoldingJump = false;
+            }
+
+            // Legacy method for compatibility
+            jump() {
+                this.startJump();
             }
             
             moveLeft() {
@@ -1250,20 +1303,21 @@
             
             setupKeyboard() {
                 document.addEventListener('keydown', (e) => {
+                    const wasPressed = this.keys[e.key.toLowerCase()];
                     this.keys[e.key.toLowerCase()] = true;
-                    
+
                     // Prevent default scrolling on arrow keys, space, and WASD
                     if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ', 'w', 'a', 's', 'd'].includes(e.key)) {
                         e.preventDefault();
                     }
-                    
+
                     // Global shortcuts
                     if (e.key.toLowerCase() === 'p' || e.key === 'Escape') {
                         e.preventDefault();
                         if (gameState.isRunning) game.togglePause();
                         return;
                     }
-                    
+
                     if (e.key.toLowerCase() === 'h') {
                         e.preventDefault();
                         if (gameState.isRunning) {
@@ -1272,29 +1326,36 @@
                         }
                         return;
                     }
-                    
-                    // Game controls
+
+                    // Game controls - only trigger jump on first press
                     if (!gameState.isRunning || gameState.isPaused) return;
-                    
-                    switch(e.key.toLowerCase()) {
-                        case 'w':
-                        case 'arrowup':
-                        case ' ':
-                            e.preventDefault();
-                            player.jump();
-                            break;
+
+                    if (!wasPressed) {
+                        switch(e.key.toLowerCase()) {
+                            case 'w':
+                            case 'arrowup':
+                            case ' ':
+                                e.preventDefault();
+                                player.startJump();
+                                break;
+                        }
                     }
                 });
-                
+
                 document.addEventListener('keyup', (e) => {
                     this.keys[e.key.toLowerCase()] = false;
+
+                    // Release jump when key is released
+                    if (e.key.toLowerCase() === 'w' || e.key.toLowerCase() === 'arrowup' || e.key === ' ') {
+                        player.releaseJump();
+                    }
                 });
             }
-            
+
             handleContinuousInput() {
                 if (!gameState.isRunning || gameState.isPaused) return;
-                
-                // Keyboard controls only
+
+                // Keyboard controls
                 if (this.keys['a'] || this.keys['arrowleft']) {
                     player.moveLeft();
                 }
@@ -1305,6 +1366,11 @@
                     player.duck();
                 } else {
                     player.stopDucking();
+                }
+
+                // Continue jump while holding
+                if (this.keys['w'] || this.keys['arrowup'] || this.keys[' ']) {
+                    player.continueJump();
                 }
             }
             
@@ -1385,19 +1451,43 @@
                 document.addEventListener('mousemove',hm);
                 document.addEventListener('mouseup',he);
 
-                // Jump button with debouncing
-                let jumpCooldown = false;
+                // Jump button with variable height support
+                let jumpInterval = null;
                 const bp=e=>{e.preventDefault();e.stopPropagation()};
 
                 jumpBtn.addEventListener('touchstart',(e)=>{
                     bp(e);
                     console.log('Jump button pressed');
                     if(!gameState.isRunning || gameState.isPaused) return;
-                    if(jumpCooldown) return;
 
-                    player.jump();
-                    jumpCooldown = true;
-                    setTimeout(()=>{jumpCooldown = false;}, 300);
+                    player.startJump();
+
+                    // Continue boosting jump while holding
+                    if(jumpInterval) clearInterval(jumpInterval);
+                    jumpInterval = setInterval(()=>{
+                        if(gameState.isRunning && !gameState.isPaused) {
+                            player.continueJump();
+                        }
+                    }, 16); // ~60fps
+                },{passive:false});
+
+                jumpBtn.addEventListener('touchend',(e)=>{
+                    bp(e);
+                    console.log('Jump button released');
+                    player.releaseJump();
+                    if(jumpInterval) {
+                        clearInterval(jumpInterval);
+                        jumpInterval = null;
+                    }
+                },{passive:false});
+
+                jumpBtn.addEventListener('touchcancel',(e)=>{
+                    bp(e);
+                    player.releaseJump();
+                    if(jumpInterval) {
+                        clearInterval(jumpInterval);
+                        jumpInterval = null;
+                    }
                 },{passive:false});
             }
             
@@ -1426,9 +1516,9 @@
                         lastDuckState = false;
                     }
 
-                    // Handle horizontal movement
+                    // Handle horizontal movement with increased speed multiplier
                     if(Math.abs(this.joystickVector.x) > threshold){
-                        const baseSpeed = CONFIG.player.moveSpeed;
+                        const baseSpeed = CONFIG.player.moveSpeed * 2.5; // Increased from 1.8x to 2.5x speed
                         let mx = this.joystickVector.x * baseSpeed;
 
                         if(mx < -1){
@@ -1548,28 +1638,24 @@
             
             showControls() {
                 this.ui.pauseMenu.style.display = 'none';
+                this.ui.gameOver.style.display = 'none';
+                this.ui.startScreen.style.display = 'none';
                 this.ui.controlsMenu.style.display = 'block';
             }
-            
+
             hideControls() {
                 this.ui.controlsMenu.style.display = 'none';
                 if (gameState.isRunning) {
                     this.ui.pauseMenu.style.display = 'block';
+                } else if (gameState.lives <= 0) {
+                    // Game is over, show game over screen
+                    this.ui.gameOver.style.display = 'block';
                 } else {
+                    // Not running and not game over, show start screen
                     this.ui.startScreen.style.display = 'block';
                 }
             }
-            
-            showControlsFromStart() {
-                this.ui.startScreen.style.display = 'none';
-                this.ui.controlsMenu.style.display = 'block';
-            }
-            
-            hideControlsToStart() {
-                this.ui.controlsMenu.style.display = 'none';
-                this.ui.startScreen.style.display = 'block';
-            }
-            
+
             showWaveIndicator() {
                 this.ui.waveIndicator.textContent = `WAVE ${gameState.wave}`;
                 this.ui.waveIndicator.style.display = 'block';
