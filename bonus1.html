@@ -494,27 +494,27 @@
             position: absolute;
             left: 30px;
             bottom: 0;
-            width: 60px;
-            height: 60px;
-            background: rgba(0,50,0,.8);
-            border: 2px solid #00ff41;
+            width: 120px;
+            height: 120px;
+            background: rgba(0,50,0,.6);
+            border: 3px solid #00ff41;
             border-radius: 50%;
             touch-action: none;
             cursor: pointer;
             pointer-events: all;
         }
-        
+
         .js {
             position: absolute;
-            width: 18px;
-            height: 18px;
+            width: 40px;
+            height: 40px;
             background: #00ff41;
             border-radius: 50%;
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
             transition: none;
-            box-shadow: 0 0 8px #00ff41;
+            box-shadow: 0 0 12px #00ff41;
             touch-action: none;
             pointer-events: none;
         }
@@ -541,7 +541,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         #mobileJumpBtn:active {
             transform: translateY(4px);
             box-shadow: 0 2px 0 #8b2e4a, 0 0 20px rgba(255, 107, 157, 0.5);
@@ -598,16 +598,18 @@
         #instructions:hover {
             opacity: 1;
         }
+
         
+
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
             #gameContainer {
                 width: 96vw;
                 height: 55vh;
             }
-            
+
             #mobileControls {
-                display: block;
+                display: block !important;
             }
             
             #instructions {
@@ -867,9 +869,9 @@
             
             // Obstacle settings
             obstacles: {
-                baseSpeed: 3,
-                speedIncrement: 0.3,
-                maxSpeed: 8,
+                baseSpeed: 2.5,
+                speedIncrement: 0.25,
+                maxSpeed: 6.5,
                 buildingMinHeight: 80,
                 buildingMaxHeight: 140,
                 buildingWidth: 70
@@ -877,12 +879,12 @@
             
             // Spawn rates (in frames)
             spawn: {
-                buildingMin: 180,
-                buildingMax: 300,
-                enemyMin: 120,
-                enemyMax: 200,
-                collectibleMin: 200,
-                collectibleMax: 350
+                buildingMin: 220,
+                buildingMax: 360,
+                enemyMin: 150,
+                enemyMax: 250,
+                collectibleMin: 250,
+                collectibleMax: 400
             },
             
             // Collision detection tolerance
@@ -1031,10 +1033,14 @@
             }
             
             duck() {
+                console.log('duck() called - isOnGround:', this.isOnGround, 'isJumping:', this.isJumping, 'isDucking:', this.isDucking);
                 if (this.isOnGround && !this.isJumping) {
                     this.isDucking = true;
                     this.emoji = '🧎‍♂️';
+                    console.log('Player is now ducking, emoji changed to:', this.emoji);
                     this.updateElement();
+                } else {
+                    console.log('Cannot duck - not on ground or already jumping');
                 }
             }
             
@@ -1314,9 +1320,9 @@
                 
                 console.log('Mobile controls initialized successfully');
                 
-                const cx=30; // Center X
-                const cy=30; // Center Y
-                const md=25; // Max distance
+                const cx=60; // Center X
+                const cy=60; // Center Y
+                const md=45; // Max distance
                 let startPos={x:0,y:0};
                 
                 // Ensure joystick starts inactive
@@ -1354,7 +1360,11 @@
                     }
                     js.style.transform=`translate(calc(-50% + ${fx}px), calc(-50% + ${fy}px))`;
                     this.joystickVector={x:fx/md,y:fy/md};
-                    console.log('Joystick vector:', this.joystickVector);
+
+                    // Debug log only when there's significant Y movement
+                    if(Math.abs(fy/md) > 0.15) {
+                        console.log('Joystick Y movement:', fy/md, 'Should duck:', fy/md > 0.15);
+                    }
                 };
 
                 const he=e=>{
@@ -1375,31 +1385,52 @@
                 document.addEventListener('mousemove',hm);
                 document.addEventListener('mouseup',he);
 
-                // Jump button
+                // Jump button with debouncing
+                let jumpCooldown = false;
                 const bp=e=>{e.preventDefault();e.stopPropagation()};
-                ['click','touchend'].forEach(evt=>{
-                    jumpBtn.addEventListener(evt,(e)=>{
-                        bp(e);
-                        console.log('Jump button pressed');
-                        if(!gameState.isRunning || gameState.isPaused) return;
-                        player.jump();
-                    },{passive:false});
-                });
+
+                jumpBtn.addEventListener('touchstart',(e)=>{
+                    bp(e);
+                    console.log('Jump button pressed');
+                    if(!gameState.isRunning || gameState.isPaused) return;
+                    if(jumpCooldown) return;
+
+                    player.jump();
+                    jumpCooldown = true;
+                    setTimeout(()=>{jumpCooldown = false;}, 300);
+                },{passive:false});
             }
             
             startJoystickMovement(){
                 if(this.moveInterval)clearInterval(this.moveInterval);
+                let lastDuckState = false;
+
                 this.moveInterval=setInterval(()=>{
-                    // STRICT CHECK: Only move if joystick is active AND vector exists AND has significant X movement
+                    // STRICT CHECK: Only move if joystick is active AND vector exists
                     if(!this.joystickActive) return;
                     if(!this.joystickVector) return;
                     if(!gameState.isRunning || gameState.isPaused) return;
-                    
+
                     const threshold = 0.15; // Require at least 15% movement
+
+                    // Handle vertical movement (ducking)
+                    const shouldDuck = this.joystickVector.y > threshold;
+
+                    if(shouldDuck && !lastDuckState){
+                        console.log('Starting duck - Y vector:', this.joystickVector.y);
+                        player.duck();
+                        lastDuckState = true;
+                    } else if(!shouldDuck && lastDuckState){
+                        console.log('Stopping duck - Y vector:', this.joystickVector.y);
+                        player.stopDucking();
+                        lastDuckState = false;
+                    }
+
+                    // Handle horizontal movement
                     if(Math.abs(this.joystickVector.x) > threshold){
                         const baseSpeed = CONFIG.player.moveSpeed;
                         let mx = this.joystickVector.x * baseSpeed;
-                        
+
                         if(mx < -1){
                             player.moveLeft();
                         } else if(mx > 1){
@@ -1414,6 +1445,8 @@
                     clearInterval(this.moveInterval);
                     this.moveInterval=null;
                 }
+                // Stop ducking when joystick is released
+                player.stopDucking();
             }
             
             setupTouch() {
@@ -1771,10 +1804,14 @@
                 highScoreEl.innerHTML = '<strong>Ready to escape the 9-to-5?</strong>';
             }
             
-            // Re-initialize mobile controls after page load to ensure elements exist
+            // Verify mobile controls exist
             setTimeout(() => {
-                console.log('Re-initializing mobile controls after load');
-                inputHandler.setupMobile();
+                console.log('Verifying mobile controls after load');
+                const jumpBtn = document.getElementById('mobileJumpBtn');
+                const joystick = document.getElementById('mobileJoystick');
+                console.log('Jump button exists:', !!jumpBtn);
+                console.log('Joystick exists:', !!joystick);
+                console.log('Mobile controls ready - Pull joystick down to duck!');
             }, 500);
         });
     </script>
