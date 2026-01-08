@@ -48,9 +48,9 @@ body{font-family:'Comic Sans MS',cursive;background:linear-gradient(45deg,#0a0a0
 .right-controls{display:flex;flex-direction:column;gap:6px;align-items:flex-end;pointer-events:auto}
 .top-controls{display:flex;justify-content:flex-end;align-items:center;gap:6px;width:100%}
 .center-controls{display:flex;flex-direction:column;gap:6px;justify-content:flex-end;align-items:center}
-.jc{position:relative;width:80px;height:80px;background:rgba(0,50,0,.95);border:2px solid #0f0;border-radius:50%;touch-action:none;cursor:pointer;backdrop-filter:blur(5px)}
-.js{position:absolute;width:18px;height:18px;background:#0f0;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);transition:none;box-shadow:0 0 8px #0f0;touch-action:none;pointer-events:none}
-.btn{width:28px;height:28px;background:rgba(0,50,0,.8);border:1px solid #0f0;border-radius:50%;color:#0f0;font-size:12px;display:flex;align-items:center;justify-content:center;user-select:none;touch-action:manipulation;font-weight:bold;cursor:pointer;transition:all .1s;overflow:hidden;position:relative}
+.jc{position:relative;width:100px;height:100px;background:rgba(0,50,0,.95);border:2px solid #0f0;border-radius:50%;touch-action:none;cursor:pointer;backdrop-filter:blur(5px)}
+.js{position:absolute;width:22px;height:22px;background:#0f0;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);transition:none;box-shadow:0 0 8px #0f0;touch-action:none;pointer-events:none}
+.btn{width:42px;height:42px;background:rgba(0,50,0,.8);border:1px solid #0f0;border-radius:50%;color:#0f0;font-size:18px;display:flex;align-items:center;justify-content:center;user-select:none;touch-action:manipulation;font-weight:bold;cursor:pointer;transition:all .1s;overflow:hidden;position:relative}
 .btn:active{background:rgba(0,255,0,.3);transform:scale(.95)}
 .rb{background:rgba(100,100,100,.8);border-color:#888;color:#888}
 .rb.av{background:rgba(0,100,200,.8);border-color:#08f;color:#08f;animation:rp 2s infinite}
@@ -217,9 +217,11 @@ body{font-family:'Comic Sans MS',cursive;background:linear-gradient(45deg,#0a0a0
 <p>Collect items matching your current mission! Mission items glow gold. Wrong items cause big energy penalties.</p>
 </div>
 <div class="pause-section">
-<h4>🌪️ Chaos System</h4>
-<div>• High chaos = faster energy drain & erratic movement</div>
-<div>• 100 chaos = DOOM SONG mode! Tap rapidly to calm down</div>
+<h4>🌪️ Chaos Meter (Red Bar)</h4>
+<div>• Collecting items increases chaos</div>
+<div>• High chaos (80+) = GIR bounces around & energy drains faster</div>
+<div>• At 100 chaos = CHAOS MODE! Screen flashes - tap rapidly to calm GIR!</div>
+<div>• Use Dog Disguise to reduce chaos</div>
 </div>
 <div class="pause-section">
 <h4>😵‍💫 Distraction System</h4>
@@ -342,14 +344,21 @@ this.score=0;this.time=0;this.tc=0;this.ic=0;this.hs=0;this.state='active';
 this.pos={x:0,y:0};this.size={w:0,h:0};this.bounds={w:0,h:0};
 this.stats={c:30,e:100,d:20};this.moving=false;this.speed=20;this.cost=.6;
 this.rc=0;this.rr=8;this.dists=[];this.max=5;this.ct=0;
-this.level=0;this.maxLevel=2;
+this.level=0;this.maxLevel=4;
 this.levelTasks=[
+// Level 1: Easy - Learn the basics
 [{t:'Find tacos! TACOS!',type:'taco',p:100},{t:'Chase shiny things',type:'shiny',p:80}],
-[{t:'Collect rubber piggies',type:'rubber',p:60},{t:'Eat waffles',type:'waffles',p:90}],
-[{t:'Dance with anything!',type:'any',p:50},{t:'Find tacos again!',type:'taco',p:70}]
+// Level 2: Medium - More variety
+[{t:'Collect rubber piggies',type:'rubber',p:60},{t:'Eat waffles',type:'waffles',p:90},{t:'Find more tacos!',type:'taco',p:70}],
+// Level 3: Hard - Multiple missions
+[{t:'Dance with anything!',type:'any',p:50},{t:'Chase shinies',type:'shiny',p:60},{t:'Piggy time!',type:'rubber',p:80},{t:'Waffle break',type:'waffles',p:70}],
+// Level 4: Very Hard - Long mission list
+[{t:'TACOS FIRST!',type:'taco',p:90},{t:'Shiny!',type:'shiny',p:60},{t:'Piggy!',type:'rubber',p:70},{t:'Waffles!',type:'waffles',p:80},{t:'More tacos!',type:'taco',p:100}],
+// Level 5: Expert - Final challenge
+[{t:'Collect anything!',type:'any',p:40},{t:'TACO TIME!',type:'taco',p:80},{t:'Shiny hunt',type:'shiny',p:60},{t:'Rubber piggy',type:'rubber',p:70},{t:'Waffle feast',type:'waffles',p:90},{t:'Final tacos!',type:'taco',p:120}]
 ];
 this.tasks=this.levelTasks[this.level];
-this.cm=false;this.ctimer=0;this.mct=10;this.cch=[];this.disguised=false;this.lst=0;
+this.cm=false;this.ctimer=0;this.mct=10;this.cch=[];this.disguised=false;this.lst=0;this.chaosWarningShown=false;
 this.quotes={g:["DOOM SONG!",'What button?','WHEEE!'],t:['TACOS!','MORE TACOS!'],p:['PIGGY!','RUBBER!'],c:['CHAOS!','POTATOES!'],tired:['*yawn*','sleepy...'],rest:['*snoring*','tacos...']};
 this.lut=0;this.af=null;this.joystickActive=false;this.moveInterval=null;this.isMobile=('ontouchstart' in window);this.paused=false;
 this.missionItemBoost=0.65;
@@ -821,7 +830,8 @@ if(!int)return;
 const isDisguised=this.disguised;
 if(!isCorrectItem){
 const energyPenalty=isDisguised?8:12;
-this.modStats({e:-energyPenalty,c:10,d:8});
+const distractionPenalty=isDisguised?12:18; // Increase distraction more for wrong items
+this.modStats({e:-energyPenalty,c:10,d:distractionPenalty});
 this.showFeedback(`Wrong! -${energyPenalty}`,'#f44');
 return;
 }
@@ -861,6 +871,12 @@ this.ui.whs.textContent=this.hs;
 document.getElementById('winScreen').style.display='flex';
 return;
 }
+// Show level up notification
+const levelNames=['','Easy','Medium','Hard','Very Hard','Expert'];
+const levelName=levelNames[this.level+1]||'Level '+(this.level+1);
+this.showFeedback(`🎉 LEVEL ${this.level+1}: ${levelName}!`,'#FFD700');
+// Give stat boost for leveling up
+this.modStats({e:30,c:-20,d:-20});
 this.tasks=this.levelTasks[this.level];
 this.ct=0;
 this.updateTasks();
@@ -914,7 +930,7 @@ const hcc=e=>{
 e.preventDefault();
 e.stopPropagation();
 this.ctimer=Math.max(0,this.ctimer-1);
-this.modStats({c:-3});
+this.modStats({c:-3,d:2}); // Increase distraction while tapping during chaos
 this.score+=5;
 const act=document.querySelector('.ca');
 if(act){
@@ -1072,7 +1088,11 @@ return;
 this.lut=ct;
 if(this.state==='active'){
 const chaosRate=this.disguised?-.25:-.15;
-const distractRate=this.disguised?-.2:-.1;
+let distractRate=this.disguised?-.2:-.1;
+// Increase distraction when energy is low
+if(this.stats.e<30)distractRate+=.15; // Gain distraction when very low energy
+else if(this.stats.e<50)distractRate+=.08; // Gain distraction when low energy
+else if(this.stats.e<70)distractRate+=.03; // Gain distraction when moderate energy
 let energyDrain=-.01;
 if(this.stats.c>90)energyDrain=-.25;
 else if(this.stats.c>80)energyDrain=-.15;
@@ -1080,9 +1100,16 @@ else if(this.stats.c>70)energyDrain=-.08;
 // Reduce energy drain when in dog mode
 if(this.disguised)energyDrain*=0.7;
 this.modStats({c:chaosRate,e:energyDrain,d:distractRate});
+// Chaos warning at 80%
+if(this.stats.c>=80&&!this.chaosWarningShown&&!this.cm){
+this.showFeedback('⚠️ High Chaos!','#f80');
+this.chaosWarningShown=true;
+}
+if(this.stats.c<70)this.chaosWarningShown=false; // Reset warning when chaos drops
 if(this.stats.c>=100&&!this.cm){
 this.enterChaos();
 this.stats.c=90;
+this.chaosWarningShown=false; // Reset after entering chaos mode
 }
 if(this.stats.d>70&&Math.random()>.99){
 const rx=(Math.random()-.5)*30,ry=(Math.random()-.5)*30;
@@ -1111,6 +1138,8 @@ this.modStats({e:energyGain,c:chaosReduction,d:distractionReduction}); // Better
 }
 if(this.cm){
 this.ctimer-=.016;
+// Increase distraction over time during chaos mode - creates urgency to tap fast
+this.modStats({d:0.3}); // Passive distraction buildup during chaos
 if(this.ctimer<=0)this.exitChaos();
 }
 if(this.rc>0)this.rc-=.016;
