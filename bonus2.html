@@ -1211,5 +1211,14 @@ window.gg=new G();
 }
 </script>
 
+		<script>
+			(function(){
+				const startYear = 2024;
+				const thisYear = new Date().getFullYear();
+				const el = document.getElementById('year');
+				if (el) el.textContent = thisYear > startYear ? `${startYear}-${thisYear}` : `${startYear}`;
+			})();
+		</script>
+
 </body>
 </html>

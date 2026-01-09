@@ -1901,6 +1901,15 @@
                 console.log('Mobile controls ready - Pull joystick down to duck!');
             }, 500);
         });
-    </script>
+        </script>
+
+        <script>
+            (function(){
+                const startYear = 2024;
+                const thisYear = new Date().getFullYear();
+                const el = document.getElementById('year');
+                if (el) el.textContent = thisYear > startYear ? `${startYear}-${thisYear}` : `${startYear}`;
+            })();
+        </script>
 </body>
 </html>

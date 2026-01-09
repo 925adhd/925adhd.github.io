@@ -686,7 +686,7 @@
             </div>
 
             <div class="foot" style="display:flex; flex-direction:row; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; font-weight:650; font-size:14px; text-align:left;">
-                <div>© <span id="year">2024-2026</span> 925 ADHD LLC - All Rights Reserved.</div>
+                <div>© <span id="year"></span> 925 ADHD LLC - All Rights Reserved.</div>
 
                 <div style="display: flex; gap: 16px; align-items: center; justify-content: center; margin: 16px 0;">
                     <a href="https://www.facebook.com/925adhd" target="_blank" rel="noopener" aria-label="Facebook" style="color: rgba(15,23,42,.6); transition: color 0.3s; font-size: 24px; text-decoration: none;">
@@ -987,8 +987,17 @@ No hype. No moralizing. No shaming.`;
 
             window.addEventListener('scroll', checkBottom, { passive: true });
             window.addEventListener('resize', checkBottom);
-            checkBottom();
-        })();
-    </script>
+                        checkBottom();
+                })();
+        </script>
+
+        <script>
+            (function(){
+                const startYear = 2024;
+                const thisYear = new Date().getFullYear();
+                const el = document.getElementById('year');
+                if (el) el.textContent = thisYear > startYear ? `${startYear}-${thisYear}` : `${startYear}`;
+            })();
+        </script>
 </body>
 </html>

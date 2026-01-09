@@ -334,7 +334,12 @@
 
 
   <script>
-    document.getElementById('year').textContent = '2024-2026';
+    (function(){
+      const startYear = 2024;
+      const thisYear = new Date().getFullYear();
+      const el = document.getElementById('year');
+      if (el) el.textContent = thisYear > startYear ? `${startYear}-${thisYear}` : `${startYear}`;
+    })();
 
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.querySelector('.links');
