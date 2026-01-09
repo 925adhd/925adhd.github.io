@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Is This Worth My Energy? | Free Tool from 925 ADHD</title>
+
+    <!-- Canonical (make /free the official URL) -->
+    <link rel="canonical" href="https://925adhd.com/free">
+
+    <!-- SEO -->
+    <meta name="description" content="Free ADHD-friendly tool: paste any job, side hustle, or platform and get a clear breakdown of effort, red flags, and energy cost before you waste time.">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+
+    <!-- Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Is This Worth My Energy? | Free Tool from 925 ADHD">
+    <meta property="og:description" content="Paste any job, side hustle, or platform. Get a quick breakdown of what to watch out for.">
+    <meta property="og:url" content="https://925adhd.com/free">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Is This Worth My Energy? | Free Tool from 925 ADHD">
+    <meta name="twitter:description" content="Free ADHD-friendly checker for jobs, side hustles, and platforms.">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="assets/925-adhd-logo.png">
+    <link rel="apple-touch-icon" href="assets/925-adhd-logo.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --teal: #7DD3C0;
+            --teal-dark: #5BBAA6;
+            --teal-light: #B8E8DD;
+            --teal-pale: #E8F6F3;
+            --charcoal: #2D2D2D;
+            --charcoal-light: #4A4A4A;
+            --warm-white: #FAFAF8;
+            --cream: #F5F4F0;
+            --coral: #FF8A7A;
+            --coral-soft: #FFB4A9;
+            --gold: #F4D35E;
+            --text: #2D2D2D;
+            --text-muted: #6B6B6B;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--warm-white);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 1.5rem 1.25rem 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 1.75rem;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 0.75rem;
+        }
+
+        .brand-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--teal-dark);
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(1.7rem, 5.5vw, 2.3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--charcoal);
+            margin-bottom: 0.6rem;
+        }
+
+        .highlight {
+            color: var(--teal-dark);
+            position: relative;
+        }
+
+        .tagline {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 480px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        .input-section {
+            background: white;
+            border: 2px solid var(--teal-light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 4px 20px rgba(125, 211, 192, 0.15);
+        }
+
+        .instruction {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .instruction-icon { font-size: 1.1rem; }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            background: var(--cream);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: var(--text);
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            padding: 1rem;
+            resize: vertical;
+            transition: all 0.25s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--teal);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(125, 211, 192, 0.2);
+        }
+
+        textarea::placeholder { color: #999; }
+
+        .btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            color: var(--charcoal);
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(125, 211, 192, 0.4);
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(125, 211, 192, 0.5);
+        }
+
+        .btn:active:not(:disabled) { transform: translateY(0); }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            left: 50%;
+            margin: -12px 0 0 -12px;
+            border: 3px solid var(--charcoal);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .results {
+            background: white;
+            border: 2px solid var(--teal-light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: none;
+            box-shadow: 0 4px 20px rgba(125, 211, 192, 0.15);
+        }
+
+        .results.visible {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--teal-pale);
+        }
+
+        .results-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--teal-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .clear-btn {
+            background: var(--cream);
+            border: 1px solid #ddd;
+            color: var(--text-muted);
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clear-btn:hover { background: #eee; color: var(--text); }
+
+        .results-content {
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+
+        .results-content h2 {
+            font-size: 1.05rem;
+            color: var(--teal-dark);
+            margin: 1.25rem 0 0.6rem 0;
+            font-weight: 700;
+        }
+
+        .results-content h2:first-child { margin-top: 0; }
+
+        .results-content ul {
+            margin-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-content li { margin-bottom: 0.3rem; }
+
+        .results-content strong {
+            color: var(--charcoal);
+            font-weight: 700;
+        }
+
+        .verdict-worth {
+            background: linear-gradient(135deg, var(--teal-light), var(--teal-pale));
+            color: var(--charcoal) !important;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .verdict-caution {
+            background: linear-gradient(135deg, var(--gold), #FBE89A);
+            color: var(--charcoal) !important;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .verdict-avoid {
+            background: linear-gradient(135deg, var(--coral), var(--coral-soft));
+            color: var(--charcoal) !important;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .error {
+            background: #FFF5F4;
+            border: 2px solid var(--coral-soft);
+            color: #C45040;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--teal-pale) 0%, var(--cream) 100%);
+            border: 2px solid var(--teal-light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1.25rem;
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .cta-link {
+            display: inline-block;
+            background: var(--charcoal);
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .cta-link:hover {
+            background: var(--charcoal-light);
+            transform: translateY(-2px);
+        }
+
+        .learn-more-link {
+            display: block;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--teal-dark);
+            text-decoration: none;
+        }
+
+        .learn-more-link:hover { text-decoration: underline; }
+
+        .highlight-human {
+            color: var(--teal-dark);
+            font-weight: 700;
+        }
+
+        .learn-more-link {
+            color: var(--text-muted);
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--teal-light);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--teal-dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover { text-decoration: underline; }
+
+        .footer-tagline {
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            color: #999;
+        }
+
+        .free-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <svg class="logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="925 ADHD logo" focusable="false">
+                <path d="M13 2 L3 14h7l-1 8 10-12h-7l1-8z" fill="#F4D35E" stroke="#F59E0B" stroke-width="0.5"/>
+            </svg>
+            <h1>Is This <span class="highlight">Worth My Energy?</span></h1>
+            <p class="tagline">Paste any job, side hustle, or platform. Get a quick breakdown of what to watch out for.<span class="free-badge">FREE</span></p>
+        </header>
+
+        <section class="input-section">
+            <p class="instruction">
+                <span class="instruction-icon">📋</span>
+                Paste anything you’re considering doing for money online
+            </p>
+            <textarea id="userInput" placeholder="Example: 'Swagbucks surveys' or paste an entire job listing here..."></textarea>
+
+            <button id="analyzeBtn" class="btn">🔍 Analyze This</button>
+
+            <div id="error" class="error" style="display: none;"></div>
+        </section>
+
+        <section id="results" class="results">
+            <div class="results-header">
+                <span class="results-title">📊 Analysis Results</span>
+                <button id="clearBtn" class="clear-btn">Clear</button>
+            </div>
+            <div id="resultsContent" class="results-content"></div>
+        </section>
+
+        <section class="cta-section">
+            <h3>💡 Want specifics, not patterns?</h3>
+            <p>AI can spot patterns, but it can't verify receipts. This tool gives you a starting point, not certainty. Members get 50+ gigs already tested by <span class="highlight-human">real people</span> who actually got paid, so you don't have to gamble your time.</p>
+            <a href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" class="cta-link">See the Vetted List →</a>
+            <a href="https://925adhd.com/" class="learn-more-link">Learn more about 925 ADHD</a>
+        </section>
+
+        <footer class="footer">
+            <a href="https://925adhd.com/">🧠</a> Made for brains that work differently
+            <div class="footer-tagline">Protecting your time and energy since 2024</div>
+        </footer>
+    </div>
+
+    <script>
+        // Supabase Edge Function Config
+        const SUPABASE_URL = 'https://ietkanacfoyoswioapqg.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlldGthbmFjZm95b3N3aW9hcHFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY1ODAxMTgsImV4cCI6MjA4MjE1NjExOH0.hpNcynKl-5Hnm-82Z9KM2XHxzHfWAoQq_5N5quaStlM';
+        const AI_FUNCTION_URL = SUPABASE_URL + '/functions/v1/ai-chat';
+
+        const systemPrompt = `You are an AI assistant acting as a skeptical, ADHD-friendly remote work advisor.
+Your job is to help users think critically about online jobs, apps, websites, or side hustles before investing their time and energy.
+The user will paste the name of a platform, job listing, or short description.
+
+IMPORTANT RULES:
+- If you recognize the specific platform and have knowledge about it, share those specifics confidently (founding year, known issues, reputation, etc.)
+- If you don't recognize it or have limited knowledge, be honest and focus on patterns typical for this TYPE of opportunity
+- Call out red flags plainly — both platform-specific and category-wide
+- Help them know what to research and verify on their own
+- Be neutral, practical, and protective of the user's time
+- Write for someone with ADHD who needs clarity, not fluff
+- Never make up specific facts — if you're not sure, say "typically" or "often" instead
+
+FORMATTING RULES (follow exactly):
+- Use ## for section headers (e.g., ## 1. Quick Summary)
+- Do NOT use bold (**) formatting anywhere — just write plain text
+- Use bullet points with - for lists
+- For the ADHD Energy Score, format each line as: - Setup difficulty: 2 (easy)
+- For the Final Take, put the verdict on its own line with the emoji
+- Keep paragraphs short (2-3 sentences max)
+
+SPECIAL CASE — SELF-REFERENTIAL INPUT:
+
+If the user input mentions "925 ADHD", "925adhd", "925 adhd app", or clearly refers to THIS tool or brand:
+
+- Do NOT analyze it as a job, platform, or side hustle.
+- Clearly state that this is the creator’s own tool and cannot be objectively evaluated by itself.
+- Briefly explain what the tool is meant to do.
+- Emphasize its limitations (pattern spotting, not verification).
+- Encourage users to use it on third-party platforms instead.
+
+Use a friendly, transparent tone.
+Do not assign a verdict emoji in this case.
+
+## Heads up
+
+This tool can’t really analyze itself.
+
+925 ADHD is the platform that built this checker, so there’s no neutral way to evaluate it here.
+
+This tool is meant to help you pause and spot patterns in other jobs, side hustles, apps, or online offers before you spend your time.
+
+Try pasting something you’re considering doing for money online, and use this as a starting point, not a final answer.
+
+
+ANALYSIS STEPS:
+
+## 1. Quick Summary
+- What this platform/opportunity claims to be (use specifics if you know them)
+- Who it seems best suited for
+- The general time-to-payout expectation
+
+## 2. Payout Reality Check
+- Typical or reported earnings (be specific if you know, otherwise give realistic ranges for this type)
+- Whether the payout is decent, low, inconsistent, or unclear
+- Whether income scales with time or skill
+
+## 3. Payment Method
+- How users are paid (PayPal, bank transfer, gift cards, crypto, points, etc.)
+- Minimum payout thresholds (specific if known)
+- Any known payout delays or issues
+
+## 4. Scam & Red Flag Assessment
+- Known issues with this specific platform OR common scam indicators for this category
+- Questions to ask before signing up
+- Overall risk level: Low / Medium / High
+
+## 5. What Online Reviews Say
+- What reviews typically say about this platform or type of opportunity
+- Common complaints to watch for
+- Signs that reviews might be fake or sponsored
+
+## 6. Reddit Reality Check
+- What Reddit users commonly say (specific threads if you know them, otherwise typical discussions)
+- Warning signs to look for
+- What positive confirmation looks like
+
+## 7. ADHD Energy Score
+Rate each from 1 to 5 (1=easy/low, 5=hard/high):
+- Setup difficulty: [1-5] ([label])
+- Mental load: [1-5] ([label])
+- Time pressure: [1-5] ([label])
+- Task monotony: [1-5] ([label])
+- Burnout risk: [1-5] ([label])
+
+## 8. Final Take
+Choose ONE and put it on its own line:
+✅ Generally Worth Exploring
+⚠️ Approach With Caution
+❌ Likely Not Worth Your Energy
+
+Then include:
+- One sentence on your assessment
+- Who this is best for
+- Who should skip it
+- A reminder to verify current details before committing
+
+Tone:
+Clear, honest, protective, and helpful.
+Be specific when you can, honest when you can't.
+No hype. No moralizing. No shaming.`;
+
+        // DOM Elements
+        const userInput = document.getElementById('userInput');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const results = document.getElementById('results');
+        const resultsContent = document.getElementById('resultsContent');
+        const clearBtn = document.getElementById('clearBtn');
+        const errorDiv = document.getElementById('error');
+
+        // Event Listeners
+        analyzeBtn.addEventListener('click', analyzeInput);
+        clearBtn.addEventListener('click', clearResults);
+
+        // Allow Ctrl/Cmd + Enter to submit
+        userInput.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                analyzeInput();
+            }
+        });
+
+        async function analyzeInput() {
+            const input = userInput.value.trim();
+
+            if (!input) {
+                showError('Please paste something to analyze first!');
+                return;
+            }
+
+            // UI: Loading state
+            analyzeBtn.disabled = true;
+            analyzeBtn.classList.add('loading');
+            hideError();
+            results.classList.remove('visible');
+
+            try {
+                const response = await fetch(AI_FUNCTION_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        messages: [{ role: 'user', content: `Please analyze this for me:\n\n${input}` }],
+                        model: 'llama-3.3-70b-versatile',
+                        system: systemPrompt,
+                        temperature: 0.4
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.error || 'Something went wrong');
+                }
+
+                displayResults(data.message);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError(`Oops! Something went wrong: ${error.message}`);
+            } finally {
+                analyzeBtn.disabled = false;
+                analyzeBtn.classList.remove('loading');
+            }
+        }
+
+        function displayResults(text) {
+            let html = text
+                .replace(/\r\n/g, '\n')
+                .replace(/([a-zA-Z,.])\*\*([a-zA-Z])/g, '$1 **$2')
+                .replace(/([a-zA-Z])\*\*([a-zA-Z,.])/g, '$1** $2')
+                .replace(/([a-zA-Z])\*\*/g, '$1 **')
+                .replace(/\*\*([a-zA-Z])/g, '** $1')
+                .replace(/^## (\d+\..+)$/gm, '<h2>$1</h2>')
+                .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+                .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+                .replace(/^\*\*(\d+\..+?)\*\*$/gm, '<h2>$1</h2>')
+                .replace(/^(\d+\.\s+[A-Z][^\n]+)$/gm, '<h2>$1</h2>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/([a-zA-Z])<strong>/g, '$1 <strong>')
+                .replace(/<\/strong>([a-zA-Z])/g, '</strong> $1')
+                .replace(/^[-*]\s+(.+)$/gm, '<li>$1</li>')
+                .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
+                .replace(/<\/li>\n<li>/g, '</li><li>')
+                .replace(/\n\n+/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+
+            html = '<p>' + html + '</p>';
+
+            html = html.replace(/<p><\/p>/g, '');
+            html = html.replace(/<p><h2>/g, '<h2>');
+            html = html.replace(/<\/h2><\/p>/g, '</h2>');
+            html = html.replace(/<p><h3>/g, '<h3>');
+            html = html.replace(/<\/h3><\/p>/g, '</h3>');
+            html = html.replace(/<p><ul>/g, '<ul>');
+            html = html.replace(/<\/ul><\/p>/g, '</ul>');
+            html = html.replace(/<br><ul>/g, '<ul>');
+            html = html.replace(/<\/ul><br>/g, '</ul>');
+            html = html.replace(/<p><br>/g, '<p>');
+            html = html.replace(/<br><\/p>/g, '</p>');
+
+            html = html.replace(/(✅\s*Generally Worth Exploring|Generally Worth Exploring|✅\s*Worth Trying|Worth Trying)([A-Z])/g, '<span class="verdict-worth">$1</span><br><br>$2');
+            html = html.replace(/(✅\s*Generally Worth Exploring|Generally Worth Exploring|✅\s*Worth Trying|Worth Trying)(\s*)/g, '<span class="verdict-worth">$1</span><br><br>');
+            html = html.replace(/(⚠️\s*Approach With Caution|Approach With Caution|⚠️\s*Proceed With Caution|Proceed With Caution)([A-Z])/g, '<span class="verdict-caution">$1</span><br><br>$2');
+            html = html.replace(/(⚠️\s*Approach With Caution|Approach With Caution|⚠️\s*Proceed With Caution|Proceed With Caution)(\s*)/g, '<span class="verdict-caution">$1</span><br><br>');
+            html = html.replace(/(❌\s*Likely Not Worth Your Energy|Likely Not Worth Your Energy|❌\s*Not Worth Your Energy|Not Worth Your Energy)([A-Z])/g, '<span class="verdict-avoid">$1</span><br><br>$2');
+            html = html.replace(/(❌\s*Likely Not Worth Your Energy|Likely Not Worth Your Energy|❌\s*Not Worth Your Energy|Not Worth Your Energy)(\s*)/g, '<span class="verdict-avoid">$1</span><br><br>');
+
+            resultsContent.innerHTML = html;
+            results.classList.add('visible');
+            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function clearResults() {
+            results.classList.remove('visible');
+            resultsContent.innerHTML = '';
+        }
+
+        function showError(message) {
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function hideError() {
+            errorDiv.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
