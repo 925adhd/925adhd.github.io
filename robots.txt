@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://925adhd.com/sitemap.xml
