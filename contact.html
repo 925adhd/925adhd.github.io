@@ -393,6 +393,16 @@
       if (el) el.textContent = thisYear > startYear ? `${startYear}-${thisYear}` : `${startYear}`;
     })();
 
+    // Hamburger menu toggle
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.querySelector('.links');
-    if (menuBtn 
+
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+      });
+    }
+  </script>
+</body>
+</html>
