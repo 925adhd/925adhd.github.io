@@ -390,31 +390,19 @@
     }
 
     // Blog functionality
-    let allPosts = [];
-    let filteredPosts = [];
+    let allPosts = [
+      {
+        title: "Why Most Work-From-Home Advice Doesn't Work for ADHD",
+        description: "Most work-from-home advice assumes a consistent brain. If you have ADHD, that advice often backfires. Here's what actually works instead.",
+        link: "blog/january/why-wfh-advice-fails-adhd.html",
+        pubDate: "2026-01-09",
+        thumbnail: "assets/blog%20images/wfh-advice.png"
+      }
+    ];
+    let filteredPosts = [...allPosts];
 
-    const rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://925adhd.com/blog/f.rss';
-    
-    // Fetch RSS feed
-    fetch(rssUrl)
-      .then(response => response.json())
-      .then(data => {
-        allPosts = data.items || [];
-        filteredPosts = [...allPosts];
-        
-        if (allPosts.length === 0) {
-          document.getElementById('blog-posts').innerHTML = 
-            '<div class="loading"><p>No posts found yet. Check back soon!</p></div>';
-          return;
-        }
-
-        renderPosts();
-      })
-      .catch(error => {
-        console.error('Error loading blog:', error);
-        document.getElementById('blog-posts').innerHTML = 
-          '<div class="loading"><p>⚠️ Couldn\'t load posts. Try refreshing the page.</p></div>';
-      });
+    // Render posts immediately
+    renderPosts();
 
     // Search functionality
     const searchInput = document.getElementById('searchInput');
