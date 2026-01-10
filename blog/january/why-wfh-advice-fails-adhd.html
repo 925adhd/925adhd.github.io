@@ -15,7 +15,7 @@
   <meta property="og:title" content="Why Most Work From Home Advice Doesn't Work for ADHD" />
   <meta property="og:description" content="If remote work advice has ever made things worse with ADHD, you’re not broken. The advice is." />
 
-  <link rel="icon" type="image/png" href="../assets/925-adhd-logo.png" />
+  <link rel="icon" type="image/png" href="/assets/925-adhd-logo.png" />
 
   <style>
     :root{
@@ -172,8 +172,41 @@
       box-shadow:0 4px 12px rgba(0,0,0,.08);
       border-color:rgba(0,0,0,.12);
     }
+
+    /* Horizontal TOC chips (desktop) */
+    .toc-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:12px 0 8px;
+    }
+    .toc-row a{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-weight:650;
+      font-size:14px;
+      color:rgba(15,23,42,.78);
+      transition:transform .12s ease, background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .toc-row a:hover{
+      background:rgba(124,58,237,.08);
+      border-color:rgba(124,58,237,.22);
+      color:var(--brand);
+      transform:translateY(-1px);
+    }
+    .toc-row a.active{
+      background:rgba(124,58,237,.12);
+      border-color:rgba(124,58,237,.28);
+      color:var(--brand);
+    }
+
+    /* Mobile: hide row, use list */
+    .toc-list.toc-mobile{
+      display:none;
+    }
     .toc-list{
-      display:grid;
       gap:2px;
     }
     .toc-list a{
@@ -376,6 +409,8 @@
       .links.active{display:flex}
       .hamburger{display:inline-flex}
       h1{font-size:clamp(28px,7vw,40px)}
+      .toc-row{display:none !important}
+      .toc-list.toc-mobile{display:grid !important}
       .toc-title{cursor:pointer;user-select:none}
       .toc-title::after{content:' ▼';font-size:12px;transition:transform .2s}
       .toc-title.collapsed::after{transform:rotate(-90deg)}
@@ -456,7 +491,17 @@
 
     <div class="toc-wrapper">
       <div class="toc-title">📖 Jump to Section</div>
-      <div class="toc-list">
+
+      <nav class="toc-row" aria-label="Table of contents">
+        <a href="#problem">The real problem</a>
+        <a href="#consistency">Why consistency fails</a>
+        <a href="#discipline">Discipline myths</a>
+        <a href="#works">What actually works</a>
+        <a href="#examples">Real examples</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="toc-list toc-mobile">
         <a href="#problem">The real problem</a>
         <a href="#consistency">Why consistency fails</a>
         <a href="#discipline">Discipline myths</a>
@@ -805,7 +850,7 @@
 
   // Active section highlighting in TOC
   const sections = document.querySelectorAll('section[id]');
-  const tocLinks = document.querySelectorAll('.toc-list a');
+  const tocLinks = document.querySelectorAll('.toc-row a, .toc-list a');
 
   if (sections.length && tocLinks.length) {
     const observerOptions = {
