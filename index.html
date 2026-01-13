@@ -244,7 +244,10 @@
     }
     .links{display:flex; gap:18px; align-items:center}
     .links a{color:rgba(15,23,42,.75); font-weight:600; font-size:14px}
-    .links a:hover{color:var(--text)}
+
+    @media (hover: hover) and (pointer: fine) {
+      .links a:hover{color:var(--text)}
+    }
     .actions{display:flex; gap:10px; align-items:center}
     .btn{
       border:1px solid var(--border);
@@ -259,7 +262,6 @@
       display:inline-flex; align-items:center; gap:8px;
       white-space:nowrap;
     }
-    .btn:hover{background: rgba(0,0,0,.04); border-color:rgba(0,0,0,.14)}
     .btn:active{transform: scale(.98)}
     .btn.primary{
       border-color: transparent;
@@ -267,9 +269,14 @@
       color: white;
       box-shadow: 0 16px 44px rgba(34,197,94,.25);
     }
-    .btn.primary:hover{filter:brightness(1.15); transform: translateY(-1px);}
     .btn.ghost{background:transparent; color:var(--brand); border-color: rgba(124,58,237,.3);}
-    .btn.ghost:hover{background: rgba(124,58,237,.1); border-color: var(--brand);}
+
+    /* Hover states only for devices with true hover capability */
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover{background: rgba(0,0,0,.04); border-color:rgba(0,0,0,.14)}
+      .btn.primary:hover{transform: translateY(-1px); box-shadow: 0 18px 48px rgba(34,197,94,.35); background: var(--brand2); color: #fff;}
+      .btn.ghost:hover{background: rgba(124,58,237,.1); border-color: var(--brand);}
+    }
     .hamburger{display:none}
 
     /* Hero CTA layout */
@@ -283,7 +290,6 @@
       box-shadow: 0 16px 44px rgba(34,197,94,.18);
       font-weight:800;
     }
-    .btn.primary-compact:hover{transform: translateY(-1px); filter:brightness(1.04)}
     .btn.secondary-outline{
       background: transparent;
       color: var(--brand);
@@ -291,7 +297,12 @@
       box-shadow: none;
       font-weight:700;
     }
-    .btn.secondary-outline:hover{background: rgba(124,58,237,.06)}
+
+    /* Hero button hover states - only for true hover devices */
+    @media (hover: hover) and (pointer: fine) {
+      .btn.primary-compact:hover{transform: translateY(-1px); filter:brightness(1.04)}
+      .btn.secondary-outline:hover{background: rgba(124,58,237,.06)}
+    }
     /* Keep CTAs side-by-side on all sizes per request */
     .hero-ctas{flex-wrap:nowrap}
 
@@ -649,26 +660,161 @@
     }
     .footer-links{display:flex; gap:16px; flex-wrap:wrap; justify-content:center;}
 
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    #autoScrollGallery {
-      animation: scroll 28s linear infinite;
-      will-change: transform;
+    /* Blurred collage preview (replaces hero scroll gallery) */
+    .preview-wrap{
+      width:100%;
+      max-width: 980px;
+      margin: 28px auto 20px;
     }
 
-    /* Pause control for desktop (hover) and paused class for JS-controlled pause */
+    .preview-collage{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.85);
+      box-shadow: var(--shadow);
+      padding: 10px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform .10s ease, filter .18s ease, border-color .18s ease;
+    }
+
     @media (hover: hover) and (pointer: fine) {
-      #autoScrollGallery:hover {
-        animation-play-state: paused;
+      .preview-collage:hover{
+        border-color: rgba(0,0,0,.14);
+        transform: translateY(-1px);
       }
-      #autoScrollGallery img{transition: transform .18s ease, box-shadow .18s ease; cursor: pointer;}
-      #autoScrollGallery img:hover{transform: scale(1.06); box-shadow: 0 12px 30px rgba(0,0,0,.18); z-index:2}
     }
 
-    /* Class-based pause (used by JS when lightbox is open) */
-    #autoScrollGallery.paused { animation-play-state: paused !important; }
+    .preview-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .preview-grid img{
+      width:100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 14px;
+      filter: blur(10px) saturate(1.05) contrast(1.05);
+      transform: scale(1.02);
+      opacity: .95;
+    }
+
+    .preview-overlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 18px;
+      background: radial-gradient(700px 260px at 50% 30%, rgba(255,255,255,.72), rgba(255,255,255,.30));
+    }
+
+    .preview-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.92);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .preview-title{
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -.4px;
+    }
+
+    .preview-sub{
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(15,23,42,.65);
+    }
+
+    .preview-mini-note{
+      text-align: center;
+      font-size: 13px;
+      color: rgba(15,23,42,.55);
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    /* Modal for preview */
+    #previewModal{
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #previewModal.active{
+      display: flex;
+    }
+
+    .preview-modal-content{
+      max-width: 1200px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .preview-modal-close{
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 28px;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+    }
+
+    .preview-modal-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .preview-modal-grid img{
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px){
+      .preview-grid{
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .preview-title{
+        font-size: 20px;
+      }
+      .preview-modal-grid{
+        grid-template-columns: 1fr;
+      }
+    }
 
     /* Responsive */
     /* Tablet size: testimonials horizontal */
@@ -837,21 +983,24 @@
           </div>
         </div>
 
-        <!-- Gallery -->
-        <div style="overflow: hidden; width: 100%; margin: 28px 0 20px;">
-            <div id="autoScrollGallery" style="display: flex; gap: 15px; width: max-content;">
-              <img src="assets/1.png" alt="Hero image 1" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-              <img src="assets/2.png" alt="Hero image 2" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-              <img src="assets/3.png" alt="Hero image 3" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-              <img src="assets/4.png" alt="Hero image 4" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-              <img src="assets/5.png" alt="Hero image 5" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-              <!-- Duplicate for seamless loop -->
-              <img src="assets/1.png" alt="Hero image 1" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-              <img src="assets/2.png" alt="Hero image 2" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-              <img src="assets/3.png" alt="Hero image 3" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-              <img src="assets/4.png" alt="Hero image 4" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
-              <img src="assets/5.png" alt="Hero image 5" style="height: 330px; width: auto; border-radius: 12px; flex-shrink: 0;">
+        <!-- Preview (blurred collage + modal) -->
+        <div class="preview-wrap" aria-label="Preview what's inside">
+          <button class="preview-collage" type="button" id="openPreview" aria-haspopup="dialog" aria-controls="previewModal">
+            <div class="preview-grid" aria-hidden="true">
+              <img src="assets/1.png" alt="" loading="lazy" decoding="async">
+              <img src="assets/2.png" alt="" loading="lazy" decoding="async">
+              <img src="assets/3.png" alt="" loading="lazy" decoding="async">
+              <img src="assets/4.png" alt="" loading="lazy" decoding="async">
+              <img src="assets/5.png" alt="" loading="lazy" decoding="async">
+              <img src="assets/3.png" alt="" loading="lazy" decoding="async">
             </div>
+
+            <div class="preview-overlay">
+              <div class="preview-badge">See what's inside</div>
+              <div class="preview-title">Preview the dashboard</div>
+              <div class="preview-sub">Tap to view real screenshots</div>
+            </div>
+          </button>
         </div>
       </div>
     </section>
@@ -1124,10 +1273,19 @@
     </footer>
   </main>
 
-  <!-- Lightbox for mobile/touch enlarge -->
-  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); align-items:center; justify-content:center; z-index:9999;">
-    <button class="lb-close" aria-label="Close" style="position:absolute; top:18px; right:18px; background:transparent; border:none; color:#fff; font-size:28px; cursor:pointer;">✕</button>
-    <img src="" alt="" style="max-width:92%; max-height:86%; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.5);">
+  <!-- Preview Modal -->
+  <div id="previewModal" role="dialog" aria-modal="true" aria-labelledby="previewModalTitle">
+    <div class="preview-modal-content">
+      <button class="preview-modal-close" aria-label="Close preview" id="closePreview">✕</button>
+      <h2 id="previewModalTitle" style="text-align:center; margin:0;">Inside the Dashboard</h2>
+      <div class="preview-modal-grid">
+        <img src="assets/1.png" alt="Dashboard screenshot 1">
+        <img src="assets/2.png" alt="Dashboard screenshot 2">
+        <img src="assets/3.png" alt="Dashboard screenshot 3">
+        <img src="assets/4.png" alt="Dashboard screenshot 4">
+        <img src="assets/5.png" alt="Dashboard screenshot 5">
+      </div>
+    </div>
   </div>
 
   <div id="easter-lizard" aria-hidden="false">
@@ -1217,41 +1375,32 @@
       io.observe(first);
     })();
 
-    // Lightbox / tap-to-enlarge for touch devices
+    // Preview modal functionality
     (function(){
-      const gallery = document.getElementById('autoScrollGallery');
-      const lightbox = document.getElementById('lightbox');
-      if (!gallery || !lightbox) return;
+      const openBtn = document.getElementById('openPreview');
+      const closeBtn = document.getElementById('closePreview');
+      const modal = document.getElementById('previewModal');
+      if (!openBtn || !closeBtn || !modal) return;
 
-      const lightboxImg = lightbox.querySelector('img');
-      const closeBtn = lightbox.querySelector('.lb-close');
-
-      function openLightbox(src, alt){
-        lightboxImg.src = src;
-        lightboxImg.alt = alt || '';
-        lightbox.style.display = 'flex';
-        gallery.classList.add('paused');
+      function openModal(){
+        modal.classList.add('active');
         document.documentElement.style.overflow = 'hidden';
       }
-      function closeLightbox(){
-        lightbox.style.display = 'none';
-        lightboxImg.src = '';
-        gallery.classList.remove('paused');
+
+      function closeModal(){
+        modal.classList.remove('active');
         document.documentElement.style.overflow = '';
       }
 
-      Array.from(gallery.querySelectorAll('img')).forEach(img => {
-        img.addEventListener('click', (e) => {
-          e.preventDefault();
-          openLightbox(img.src, img.alt);
-        });
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
       });
 
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox || e.target === closeBtn) closeLightbox();
-      });
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox();
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
       });
     })();
   </script>
