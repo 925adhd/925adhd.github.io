@@ -145,6 +145,10 @@
       box-shadow:var(--shadow);
       transition:all 0.3s;
     }
+    .post-card > a{
+      display:block;
+      overflow:hidden;
+    }
     .post-card:hover{
       transform:translateY(-4px);
       box-shadow:0 8px 32px rgba(0,0,0,.12);
@@ -411,6 +415,13 @@
         link: "/blog/january/best-adhd-apps-for-adults.html",
         pubDate: "2026-01-15T12:00:00",
         thumbnail: "assets/blog%20images/best-adhd-apps-for-adults.png"
+      },
+      {
+        title: "How to Work From Home With ADHD (Without Burning Out)",
+        description: "Work from home with ADHD without burning out. Energy-based planning, ADHD-friendly systems, and flexible work options that actually fit how your brain works.",
+        link: "/blog/january/work-from-home-with-adhd.html",
+        pubDate: "2026-01-20T12:00:00",
+        thumbnail: "assets/blog%20images/work-from-home-with-adhd.png"
       }
     ];
     let filteredPosts = [...allPosts];
@@ -458,10 +469,12 @@
         
         return `
           <div class="post-card">
-            ${imageUrl 
-              ? `<img src="${imageUrl}" alt="${post.title}" class="post-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                 <div class="post-image-placeholder" style="display:none;">${adhdIcon}</div>`
-              : `<div class="post-image-placeholder">${adhdIcon}</div>`
+            ${imageUrl
+              ? `<a href="${post.link}">
+                   <img src="${imageUrl}" alt="${post.title}" class="post-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                   <div class="post-image-placeholder" style="display:none;">${adhdIcon}</div>
+                 </a>`
+              : `<a href="${post.link}"><div class="post-image-placeholder">${adhdIcon}</div></a>`
             }
             <div class="post-content">
               <span class="post-date">${formatDate(post.pubDate)}</span>
