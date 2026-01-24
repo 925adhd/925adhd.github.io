@@ -1,0 +1,1127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Why Most Work-From-Home Advice Doesn't Work for ADHD</title>
+  <meta name="description" content="Most work-from-home advice assumes a consistent brain. If you have ADHD, that advice often backfires. Here's what actually works instead." />
+  <meta name="author" content="Kara Gibson" />
+  <link rel="canonical" href="https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <!-- Open Graph -->
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="925 ADHD" />
+  <meta property="og:url" content="https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html" />
+  <meta property="og:title" content="Why Most Work-From-Home Advice Doesn't Work for ADHD" />
+  <meta property="og:description" content="If remote work advice has ever made things worse with ADHD, you're not broken. The advice is." />
+  <meta property="og:image" content="https://925adhd.com/assets/blog%20images/wfh-advice.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Woman working from home with sticky notes and a laptop, ADHD-friendly workspace vibe." />
+
+  <!-- Article metadata -->
+  <meta property="article:published_time" content="2026-01-01" />
+  <meta property="article:modified_time" content="2026-01-01" />
+  <meta property="article:author" content="Kara Gibson" />
+  <meta property="article:section" content="ADHD & remote work" />
+  <meta property="article:tag" content="ADHD" />
+  <meta property="article:tag" content="remote work" />
+  <meta property="article:tag" content="work from home" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@925adhd" />
+  <meta name="twitter:title" content="Why Most Work-From-Home Advice Doesn't Work for ADHD" />
+  <meta name="twitter:description" content="If remote work advice has ever made things worse with ADHD, you're not broken. The advice is. Here's what works instead." />
+  <meta name="twitter:image" content="https://925adhd.com/assets/blog%20images/wfh-advice.png" />
+  <meta name="twitter:image:alt" content="Woman working from home with sticky notes and a laptop, ADHD-friendly workspace vibe." />
+
+  <link rel="icon" type="image/png" href="/assets/925-adhd-logo.png" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --panel:#f8fafc;
+      --muted:#64748b;
+      --text:#0f172a;
+      --brand:#7c3aed;
+      --brand2:#22c55e;
+      --accent:#f59e0b;
+      --border:rgba(0,0,0,.08);
+      --shadow:0 4px 20px rgba(0,0,0,.08);
+      --radius:18px;
+      --max:980px;
+      --maxwide:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:system-ui,-apple-system,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+      font-size:17px;
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:var(--maxwide);margin:0 auto;padding:0 20px}
+
+    /* Navigation - matching index.html */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(10px);
+      background:rgba(255,255,255,.9);
+      border-bottom:1px solid var(--border);
+    }
+    .navinner{
+      display:flex;align-items:center;justify-content:space-between;
+      height:68px;gap:16px;
+    }
+    .brand{
+      display:flex;gap:10px;align-items:center;font-weight:800;
+      letter-spacing:.2px;white-space:nowrap;
+      text-decoration:none;color:var(--text);
+    }
+    .brand img{width:34px;height:34px;border-radius:12px;object-fit:cover}
+    .links{display:flex;gap:18px;align-items:center}
+    .links a{font-weight:600;font-size:14px;color:rgba(15,23,42,.75);transition:color .2s}
+    .links a:hover{color:var(--text)}
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.95);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:700;
+      font-size:14px;
+      cursor:pointer;
+      transition:transform .08s ease,background .15s ease,border-color .15s ease;
+      display:inline-flex;align-items:center;gap:8px;
+      white-space:nowrap;
+    }
+    .btn:hover{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.14)}
+    .btn:active{transform:scale(.98)}
+    .btn.ghost{background:transparent;color:var(--brand);border-color:rgba(124,58,237,.3)}
+    .btn.ghost:hover{background:rgba(124,58,237,.1);border-color:var(--brand)}
+    .btn.primary{
+      border-color:transparent;
+      background:var(--brand2);
+      color:white;
+      box-shadow:0 16px 44px rgba(34,197,94,.25);
+    }
+    .btn.primary:hover{filter:brightness(1.15);transform:translateY(-1px)}
+    .hamburger{display:none}
+
+    /* Hero section - more spacious */
+    .hero{
+      background:rgba(248,250,252,.6);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      padding:28px 0 22px;
+    }
+    .hero .inner{max-width:var(--max);margin:0 auto;padding:0 18px}
+    .kicker{
+      display:inline-block;
+      font-size:14px;
+      font-weight:800;
+      color:var(--brand2);
+      background:rgba(34,197,94,.12);
+      border:1px solid rgba(34,197,94,.22);
+      padding:10px 16px;
+      border-radius:999px;
+      margin-bottom:4px;
+    }
+    h1{
+      font-size:clamp(32px,5vw,52px);
+      line-height:1.15;
+      margin:10px 0 12px;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      font-size:clamp(17px,2.5vw,20px);
+      color:rgba(15,23,42,.7);
+      line-height:1.6;
+      margin-bottom:14px;
+    }
+    .meta-line{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      color:rgba(15,23,42,.65);
+      font-weight:650;
+      font-size:14px;
+      margin-top:8px;
+    }
+    .meta-line .dot{opacity:.5}
+
+    /* Main content area */
+    main{padding:0 0 60px}
+    .content{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+    /* Progress bar */
+    .progress-bar{
+      position:fixed;
+      top:68px;
+      left:0;
+      width:0%;
+      height:4px;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      z-index:49;
+      transition:width .1s ease-out;
+    }
+
+    /* Table of contents - sticky on desktop */
+    .toc-wrapper{
+      position:relative;
+      margin-bottom:24px;
+    }
+    .toc-title{
+      font-weight:700;
+      font-size:15px;
+      margin:0 0 14px;
+      color:var(--text);
+      display:inline-block;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 18px;
+      box-shadow:0 2px 8px rgba(0,0,0,.04);
+      transition:all .2s;
+    }
+    .toc-title:hover{
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+      border-color:rgba(0,0,0,.12);
+    }
+
+    /* Horizontal TOC chips (desktop) */
+    .toc-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:12px 0 8px;
+    }
+    .toc-row a{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-weight:650;
+      font-size:14px;
+      color:rgba(15,23,42,.78);
+      transition:transform .12s ease, background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .toc-row a:hover{
+      background:rgba(124,58,237,.08);
+      border-color:rgba(124,58,237,.22);
+      color:var(--brand);
+      transform:translateY(-1px);
+    }
+    .toc-row a.active{
+      background:rgba(124,58,237,.12);
+      border-color:rgba(124,58,237,.28);
+      color:var(--brand);
+    }
+
+    /* Mobile: hide row, use list */
+    .toc-list.toc-mobile{
+      display:none;
+    }
+    .toc-list{
+      gap:2px;
+    }
+    .toc-list a{
+      display:block;
+      padding:10px 14px;
+      font-weight:600;
+      font-size:15px;
+      border-radius:10px;
+      transition:all .2s;
+      color:rgba(15,23,42,.75);
+    }
+    .toc-list a:hover{
+      background:rgba(124,58,237,.08);
+      color:var(--brand);
+      transform:translateX(4px);
+    }
+    .toc-list a.active{
+      background:rgba(124,58,237,.12);
+      color:var(--brand);
+    }
+
+    /* Section styling */
+    section{
+      margin-bottom:48px;
+      scroll-margin-top:90px;
+    }
+    h2{
+      font-size:clamp(26px,3.5vw,36px);
+      margin:0 0 20px;
+      line-height:1.25;
+      letter-spacing:-.4px;
+      color:var(--text);
+    }
+    h3{
+      font-size:clamp(21px,2.8vw,26px);
+      margin:32px 0 16px;
+      line-height:1.3;
+      color:var(--text);
+    }
+    p{
+      margin:0 0 18px;
+      line-height:1.75;
+    }
+    p:last-child{margin-bottom:0}
+
+    /* Lists - more breathing room */
+    ul,ol{
+      margin:0 0 20px;
+      padding-left:28px;
+      line-height:1.8;
+    }
+    li{
+      margin-bottom:10px;
+      padding-left:6px;
+    }
+    li:last-child{margin-bottom:0}
+
+    /* Strong emphasis */
+    strong{
+      font-weight:750;
+      color:var(--brand);
+    }
+
+    /* Callouts - multiple types */
+    .callout{
+      background:rgba(124,58,237,.07);
+      border:1px solid rgba(124,58,237,.14);
+      border-radius:var(--radius);
+      padding:16px 20px;
+      margin:28px 0;
+      font-weight:650;
+      font-size:17px;
+      line-height:1.6;
+      box-shadow:0 2px 6px rgba(0,0,0,.03);
+    }
+    .callout.success{
+      background:rgba(34,197,94,.07);
+      border-color:rgba(34,197,94,.14);
+    }
+    .callout.warning{
+      background:rgba(245,158,11,.07);
+      border-color:rgba(245,158,11,.14);
+    }
+    .callout.info{
+      background:rgba(59,130,246,.07);
+      border-color:rgba(59,130,246,.14);
+    }
+    .callout-icon{
+      font-size:20px;
+      margin-right:6px;
+      vertical-align:baseline;
+      display:inline-block;
+      line-height:1;
+    }
+
+    /* Visual dividers */
+    .section-divider{
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--border),transparent);
+      margin:40px 0;
+    }
+
+    /* FAQ specific styling */
+    .faq-item{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px 24px;
+      margin-bottom:16px;
+      box-shadow:var(--shadow);
+      transition:all .2s;
+    }
+    .faq-item:hover{
+      border-color:rgba(124,58,237,.2);
+      transform:translateY(-2px);
+    }
+    .faq-q{
+      font-weight:800;
+      font-size:18px;
+      margin:0 0 10px;
+      color:var(--brand);
+    }
+    .faq-a{
+      margin:0;
+      line-height:1.7;
+      color:rgba(15,23,42,.75);
+    }
+
+    /* CTA box at bottom */
+    .cta-box{
+      background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(34,197,94,.06));
+      border:2px solid rgba(124,58,237,.2);
+      border-radius:var(--radius);
+      padding:32px;
+      text-align:center;
+      margin-top:48px;
+    }
+    .cta-box h3{
+      margin:0 0 12px;
+      font-size:clamp(22px,3vw,28px);
+    }
+    .cta-box p{
+      margin:0 0 24px;
+      font-size:16px;
+      color:rgba(15,23,42,.7);
+    }
+    .cta-box .btn{
+      font-size:16px;
+      padding:14px 28px;
+    }
+
+    /* Footer - matching index.html */
+    footer{
+      padding:36px 0 48px;
+      border-top:1px solid var(--border);
+      color:rgba(15,23,42,.6);
+    }
+    footer .foot{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+      font-weight:650;
+      font-size:14px;
+      text-align:center;
+    }
+    .footer-social{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:center;
+    }
+    .footer-social a{
+      color:rgba(15,23,42,.35);
+      transition:color .2s;
+    }
+    .footer-social a:hover{
+      color:var(--brand);
+    }
+    .footer-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    /* Responsive */
+    @media (max-width:920px){
+      .links{
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:var(--bg);
+        border-top:1px solid var(--border);
+        padding:20px;
+        flex-direction:column;
+        gap:16px;
+        box-shadow:0 4px 12px rgba(0,0,0,.1);
+      }
+      .links.active{display:flex}
+      .hamburger{display:inline-flex}
+      h1{font-size:clamp(28px,7vw,40px)}
+      .toc-row{display:none !important}
+      .toc-list.toc-mobile{display:grid !important}
+      .toc-title{cursor:pointer;user-select:none}
+      .toc-title::after{content:' ▼';font-size:12px;transition:transform .2s}
+      .toc-title.collapsed::after{transform:rotate(-90deg)}
+      .toc-list{max-height:500px;overflow:hidden;transition:max-height .3s ease}
+      .toc-list.collapsed{max-height:0}
+    }
+    @media (max-width:640px){
+      body{font-size:16px}
+      main{padding:0 0 40px}
+      section{margin-bottom:36px}
+      h2{margin-bottom:16px}
+      .callout{padding:14px 16px;font-size:16px}
+      .cta-box{padding:24px 20px}
+      ul,ol{padding-left:22px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto !important;transition:none !important}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://925adhd.com/#organization",
+        "name": "925 ADHD",
+        "url": "https://925adhd.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://925adhd.com/assets/925-adhd-logo.png"
+        },
+        "sameAs": [
+          "https://www.facebook.com/925adhd",
+          "https://www.instagram.com/925.adhd",
+          "https://www.youtube.com/@ADHDBible",
+          "https://www.tiktok.com/@925adhd",
+          "https://www.linkedin.com/in/kara-gibson-3818a3348"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://925adhd.com/#kara-gibson",
+        "name": "Kara Gibson",
+        "url": "https://925adhd.com/about.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://925adhd.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://925adhd.com/blog.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Why Most Work-From-Home Advice Doesn't Work for ADHD"
+          }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html",
+        "url": "https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html",
+        "name": "Why Most Work-From-Home Advice Doesn't Work for ADHD",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://925adhd.com/blog.html",
+          "name": "925 ADHD Blog"
+        },
+        "primaryImageOfPage": {
+          "@id": "https://925adhd.com/assets/blog%20images/wfh-advice.png#image"
+        },
+        "breadcrumb": {
+          "@id": "https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html#breadcrumb"
+        }
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://925adhd.com/assets/blog%20images/wfh-advice.png#image",
+        "url": "https://925adhd.com/assets/blog%20images/wfh-advice.png",
+        "width": 1200,
+        "height": 630
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html#post",
+        "url": "https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html",
+        "headline": "Why Most Work-From-Home Advice Doesn't Work for ADHD",
+        "description": "Most work-from-home advice assumes a consistent brain. This post explains why that fails for ADHD and what actually works instead.",
+        "inLanguage": "en",
+        "datePublished": "2026-01-01",
+        "dateModified": "2026-01-01",
+        "author": {
+          "@id": "https://925adhd.com/#kara-gibson"
+        },
+        "publisher": {
+          "@id": "https://925adhd.com/#organization"
+        },
+        "image": [
+          "https://925adhd.com/assets/blog%20images/wfh-advice.png"
+        ],
+        "keywords": [
+          "ADHD",
+          "remote work",
+          "work from home",
+          "executive dysfunction",
+          "productivity",
+          "energy-based planning"
+        ],
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Attention deficit hyperactivity disorder"
+          },
+          {
+            "@type": "Thing",
+            "name": "Remote work"
+          },
+          {
+            "@type": "Thing",
+            "name": "Executive dysfunction"
+          }
+        ],
+        "mainEntityOfPage": {
+          "@id": "https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://925adhd.com/blog/january/why-wfh-advice-fails-adhd.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is remote work actually good for ADHD?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, when it is set up right. Remote work removes office distractions and gives you control over your environment and schedule. The key is building ADHD-friendly systems instead of copying neurotypical productivity advice. Flexibility and autonomy are huge advantages-but only if you use them intentionally."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do traditional productivity systems keep failing me?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Because they assume consistency and stable access to motivation. ADHD brains need systems that adapt to fluctuating energy, attention, and executive function. When a system requires perfect consistency to work, it is built for a different brain."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to \"fix\" my ADHD to work from home successfully?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. You need work structures that fit your brain, not the other way around. Medication, therapy, and coping strategies can help-but the foundation should be systems designed for how your brain actually works, not how you wish it worked."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if my job requires strict hours and I cannot be flexible?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Even with fixed hours, you can apply these principles. Use energy-based task choice within your schedule. Take movement breaks when focus drops. Build low-friction systems for starting tasks. Match your most challenging work to your best energy windows. Flexibility within structure still helps."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I explain this to employers or clients?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Focus on outcomes, not process. You do not need to disclose ADHD. Instead, frame it as: \"I am most productive when I can match tasks to my energy. I will deliver everything on time, and the flexible approach actually improves my output quality.\" Most people care about results, not how you got there."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="nav">
+  <div class="wrap navinner">
+    <a class="brand" href="/index.html" aria-label="925 ADHD Home">
+      <img src="/assets/925-adhd-logo.png" alt="925 ADHD Logo">
+      <span>925 ADHD</span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="/about.html">About</a>
+      <a href="/index.html#pricing">Pricing</a>
+      <a href="/index.html#faq">FAQ</a>
+      <a href="/blog.html">Blog</a>
+    </nav>
+    <div class="actions">
+      <a class="btn ghost" href="https://app.925adhd.com/" aria-label="Login">Login</a>
+      <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">Get Access</a>
+      <button class="btn hamburger" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="inner">
+    <div class="kicker">🧠 ADHD & remote work</div>
+    <h1>Why Most Work-From-Home Advice Doesn’t Work for ADHD</h1>
+    <p class="sub">
+      If you have ever followed remote work advice perfectly and ended up more overwhelmed, this is not your fault.
+    </p>
+    <div class="meta-line">
+      <span>January 2026</span>
+      <span class="dot">•</span>
+      <span>6-8 min read</span>
+      <span class="dot">•</span>
+      <span>Kara Gibson</span>
+    </div>
+    <div style="margin-top:18px; text-align:center;">
+      <img src="/assets/blog%20images/wfh-advice.png" alt="Person at home workspace with sticky notes and laptop showing ADHD-friendly setup." style="width:100%;max-width:600px;border-radius:12px;display:block;margin:18px auto;">
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="content">
+
+    <div class="toc-wrapper">
+      <div class="toc-title">📖 Jump to Section</div>
+
+      <nav class="toc-row" aria-label="Table of contents">
+        <a href="#problem">The real problem</a>
+        <a href="#consistency">Why consistency fails</a>
+        <a href="#discipline">Discipline myths</a>
+        <a href="#works">What actually works</a>
+        <a href="#examples">Real examples</a>
+        <a href="#related">Related posts</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="toc-list toc-mobile">
+        <a href="#problem">The real problem</a>
+        <a href="#consistency">Why consistency fails</a>
+        <a href="#discipline">Discipline myths</a>
+        <a href="#works">What actually works</a>
+        <a href="#examples">Real examples</a>
+        <a href="#related">Related posts</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+
+    <div class="callout info" style="margin-bottom:32px">
+      <span class="callout-icon">⚡</span>
+      <strong>TL;DR:</strong> Standard work-from-home advice assumes your brain is consistent. <strong>ADHD brains fluctuate.</strong> Forcing consistency creates burnout, shame, and avoidance. Instead: match tasks to your current energy, build flexible systems, remove friction, and design for sustainability over perfection.
+    </div>
+
+    <section id="problem">
+      <h2>The Real Problem with Standard WFH Advice</h2>
+      <p>
+        Work-from-home advice sounds logical. <strong>Set a schedule. Remove distractions. Focus for eight hours.</strong> Create a dedicated workspace. Wake up at the same time every day. Block your calendar. Use the Pomodoro technique.
+      </p>
+      <p>
+        For many ADHD brains, that advice does not just fail. <strong>It backfires.</strong>
+      </p>
+      <p>
+        Why? Because most productivity advice was designed for neurotypical brains-brains that can consistently access motivation, regulate attention, and maintain routines without active struggle.
+      </p>
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        When you follow advice built for a different brain and it does not work, you might blame yourself. That is the problem. The advice is wrong, not you.
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="consistency">
+      <h2>The Advice Assumes a Consistent Brain</h2>
+      <p>
+        Traditional work-from-home advice is built on a foundation of consistency. It assumes:
+      </p>
+      <ul>
+        <li><strong>Your energy is predictable</strong> from day to day</li>
+        <li><strong>Motivation can be summoned</strong> through willpower alone</li>
+        <li><strong>Focus is a choice</strong> you can simply make</li>
+        <li><strong>Routines become automatic</strong> after enough repetition</li>
+      </ul>
+      <p>
+        But ADHD does not work that way. <strong>Your brain chemistry fluctuates.</strong> Some days you have hyperfocus superpowers. Some days opening your laptop feels impossible. Systems built for consistency collapse under that reality.
+      </p>
+
+      <h3>What Fluctuation Actually Looks Like</h3>
+      <p>
+        Monday: You crush 8 hours of work in 3 hours. Feel unstoppable.<br>
+        Tuesday: Every task feels like wading through mud. Nothing clicks.<br>
+        Wednesday: You hyperfocus on the wrong thing for 6 hours.<br>
+        Thursday: Finally productive again, but exhausted from fighting Tuesday.
+      </p>
+
+      <div class="callout">
+        <span class="callout-icon">🧠</span>
+        <strong>ADHD is not a motivation problem. It is a regulation problem.</strong> Your brain struggles to regulate attention, emotion, and energy-not because you are lazy, but because of how your neurotransmitters work.
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="discipline">
+      <h2>Why "Just Be More Disciplined" Makes It Worse</h2>
+      <p>
+        When productivity systems fail, the advice often doubles down: <em>"You just need more discipline. Try harder. Be more consistent."</em>
+      </p>
+      <p>
+        For ADHD brains, this advice is not just unhelpful-it is <strong>actively harmful</strong>. Here is what actually happens:
+      </p>
+
+      <h3>The Discipline Trap Creates:</h3>
+      <ul>
+        <li><strong>Burnout:</strong> You force yourself through low-energy days, depleting your reserves until nothing works anymore</li>
+        <li><strong>Avoidance:</strong> Tasks become associated with shame and struggle, making them even harder to start</li>
+        <li><strong>Shame spirals:</strong> Each "failure" reinforces the belief that something is wrong with you</li>
+        <li><strong>Quitting good work:</strong> You abandon jobs or projects that could have succeeded with the right approach</li>
+      </ul>
+
+      <div class="callout warning">
+        <span class="callout-icon">💔</span>
+        The problem is not your discipline. The problem is advice that treats executive dysfunction like a character flaw.
+      </div>
+
+      <h3>Why Forced Consistency Backfires</h3>
+      <p>
+        Neurotypical brains can push through resistance using willpower. ADHD brains hit a wall. When you force consistency:
+      </p>
+      <ul>
+        <li>You waste energy fighting your brain instead of working with it</li>
+        <li>You miss windows of natural focus by sticking to a rigid schedule</li>
+        <li>You create negative associations that make future work harder</li>
+        <li>You build systems that only work on your best days</li>
+      </ul>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <div class="callout success" style="text-align:center;font-size:18px;padding:24px">
+      <span class="callout-icon">💚</span>
+      <strong>Take a breath.</strong> You are not broken. Your brain works differently-and that is okay. The next section shows what actually helps.
+    </div>
+
+    <section id="works">
+      <h2>What Actually Works Instead</h2>
+      <p>
+        The solution is not more discipline. It is <strong>systems designed for fluctuation</strong>. Systems that work with your brain, not against it.
+      </p>
+
+      <h3>1. Energy-Based Task Choice</h3>
+      <p>
+        Instead of forcing yourself to do the "most important" task, <strong>match tasks to your current energy state</strong>.
+      </p>
+      <ul>
+        <li><strong>High energy + focus:</strong> Tackle complex, creative, or challenging work</li>
+        <li><strong>Medium energy:</strong> Handle routine tasks, emails, organization</li>
+        <li><strong>Low energy:</strong> Do mindless work, planning, or take guilt-free rest</li>
+      </ul>
+      <div class="callout success">
+        <span class="callout-icon">✅</span>
+        <strong>Pro tip:</strong> Keep a "menu" of tasks organized by energy level. When you sit down to work, choose based on what your brain can actually handle right now.
+      </div>
+
+      <h3>2. Flexibility Over Rigidity</h3>
+      <p>
+        Rigid schedules break. <strong>Flexible frameworks adapt.</strong>
+      </p>
+      <ul>
+        <li>Set outcome goals, not time-based goals ("finish the draft" vs "work 9-5")</li>
+        <li>Build in buffer time for the inevitable chaos</li>
+        <li>Allow yourself to ride hyperfocus waves when they come</li>
+        <li>Accept that some days produce less output-and that is okay</li>
+      </ul>
+
+      <h3>3. Low-Friction Systems</h3>
+      <p>
+        Every extra step between you and starting work is a place your ADHD brain can get stuck. <strong>Remove friction ruthlessly.</strong>
+      </p>
+      <ul>
+        <li>Leave projects open and visible (out of sight = out of mind)</li>
+        <li>Reduce choices (decision fatigue kills momentum)</li>
+        <li>Use "starting rituals" that are easier than the work itself</li>
+        <li>Automate or eliminate anything that is not core to your work</li>
+      </ul>
+
+      <h3>4. Sustainability Over Streaks</h3>
+      <p>
+        Productivity advice loves streaks and consistency. ADHD brains need <strong>sustainable rhythms</strong>.
+      </p>
+      <ul>
+        <li>Rest is productive (preventing burnout keeps you working longer)</li>
+        <li>Missing a day does not ruin everything (momentum is not that fragile)</li>
+        <li>Your worst days are data, not moral failures</li>
+        <li>Long-term output matters more than daily perfection</li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-icon">💡</span>
+        <strong>You do not need better discipline. You need systems that assume fluctuation.</strong> Build for your average day, not your best day.
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="examples">
+      <h2>Real Examples of What This Looks Like</h2>
+
+      <h3>Example 1: The Flexible Work Block</h3>
+      <p>
+        <strong>Standard advice:</strong> "Work 9-5 every day with scheduled breaks."<br>
+        <strong>ADHD-friendly version:</strong> "I need to complete 5 hours of work today. I will work when my brain cooperates, whether that is 8am-1pm or 2pm-7pm or split across the day."
+      </p>
+
+      <h3>Example 2: The Task Menu</h3>
+      <p>
+        <strong>Standard advice:</strong> "Prioritize tasks and do the most important one first."<br>
+        <strong>ADHD-friendly version:</strong> Keep three lists: High focus tasks, medium focus tasks, low focus tasks. Start wherever your brain is.
+      </p>
+
+      <h3>Example 3: The Environment Shift</h3>
+      <p>
+        <strong>Standard advice:</strong> "Create one dedicated workspace and use it consistently."<br>
+        <strong>ADHD-friendly version:</strong> Have multiple work spots. When you get stuck, change your environment. Coffee shop, couch, desk, park bench-variety helps reset attention.
+      </p>
+
+      <div class="callout info">
+        <span class="callout-icon">🎯</span>
+        <strong>Notice the pattern?</strong> Every adaptation trades rigid consistency for flexible structure. You still have systems-they just bend instead of break.
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="related">
+      <h2>Related Posts</h2>
+      <p>
+        Ready to apply these principles? Check out these practical guides:
+      </p>
+      <ul>
+        <li>
+          <a href="/blog/january/work-from-home-with-adhd.html" style="color:var(--brand);text-decoration:underline;font-weight:800;">
+            How to Work From Home With ADHD (Without Burning Out)
+          </a>
+        </li>
+        <li>
+          <a href="/blog/january/what-is-the-10-3-rule-for-adhd.html" style="color:var(--brand);text-decoration:underline;font-weight:800;">
+            What Is the 10-3 Rule for ADHD? A Simple Focus Strategy That Actually Works
+          </a>
+        </li>
+        <li>
+          <a href="/blog/january/best-adhd-apps-for-adults.html" style="color:var(--brand);text-decoration:underline;font-weight:800;">
+            The Best ADHD Apps for Adults Who Want to Actually Thrive
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <div class="callout" style="text-align:center;padding:20px">
+      <span class="callout-icon">🤔</span>
+      <strong>Still have questions?</strong> Here are the most common ones we hear.
+    </div>
+
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Is remote work actually good for ADHD?</div>
+        <div class="faq-a">
+          Yes, when it is set up right. Remote work removes office distractions and gives you control over your environment and schedule. The key is building ADHD-friendly systems instead of copying neurotypical productivity advice. Flexibility and autonomy are huge advantages-but only if you use them intentionally.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Why do traditional productivity systems keep failing me?</div>
+        <div class="faq-a">
+          Because they assume consistency and stable access to motivation. ADHD brains need systems that adapt to fluctuating energy, attention, and executive function. When a system requires perfect consistency to work, it is built for a different brain.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Do I need to "fix" my ADHD to work from home successfully?</div>
+        <div class="faq-a">
+          No. You need work structures that fit your brain, not the other way around. Medication, therapy, and coping strategies can help-but the foundation should be systems designed for how your brain actually works, not how you wish it worked.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What if my job requires strict hours and I cannot be flexible?</div>
+        <div class="faq-a">
+          Even with fixed hours, you can apply these principles. Use energy-based task choice within your schedule. Take movement breaks when focus drops. Build low-friction systems for starting tasks. Match your most challenging work to your best energy windows. Flexibility within structure still helps.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I explain this to employers or clients?</div>
+        <div class="faq-a">
+          Focus on outcomes, not process. You do not need to disclose ADHD. Instead, frame it as: "I am most productive when I can match tasks to my energy. I will deliver everything on time, and the flexible approach actually improves my output quality." Most people care about results, not how you got there.
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-box">
+      <p style="font-size:18px;font-weight:700;margin-bottom:8px;">If this post felt uncomfortably accurate…</p>
+      <p style="font-size:17px;margin-bottom:24px;">That's exactly why 925 ADHD exists.</p>
+
+      <p style="margin-bottom:12px;">
+        It's not a job.<br>
+        It's not a promise to replace your income.<br>
+        It's a calmer way to stop searching and start choosing work that actually fits your brain.
+      </p>
+
+      <p style="margin-bottom:20px;font-weight:650;">So instead of forcing consistency, I built a system that assumes fluctuation.</p>
+
+      <p style="margin-bottom:20px;">925 ADHD is a living hub of ADHD-friendly ways to earn online, built to reduce overwhelm and flex with your energy.</p>
+
+      <p style="font-weight:700;margin-bottom:12px;">Inside:</p>
+      <ul style="text-align:left;max-width:480px;margin:0 auto 24px;line-height:1.8;">
+        <li>50+ vetted, scam-free ways to earn online</li>
+        <li>Tagged by effort, setup time, and energy required</li>
+        <li>Simple guides with clear next steps</li>
+        <li>Lifetime updates as options change</li>
+      </ul>
+
+      <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02">
+        Get lifetime access for $9.25 →
+      </a>
+
+      <p style="font-size:15px;margin-top:16px;font-weight:600;">Pay once. Use it when you need it. Come back when your energy says yes.</p>
+
+      <p style="font-size:13px;margin-top:12px;opacity:0.8;font-weight:600;">
+        Not a job placement service. No income guarantees.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div style="text-align:center; margin-bottom:24px; padding:18px; border-radius:var(--radius); background:rgba(124,58,237,.08); border:1px solid rgba(124,58,237,.2);">
+      <div style="font-weight:800; font-size:16px; margin-bottom:4px;">
+        Built by an ADHD brain, for ADHD brains.
+      </div>
+    </div>
+
+    <div class="foot">
+      <div>© <span id="year"></span> 925 ADHD LLC - All Rights Reserved.</div>
+
+      <div style="display: flex; gap: 16px; align-items: center; justify-content: center; margin: 16px 0;">
+        <a href="https://www.facebook.com/925adhd" target="_blank" rel="noopener" aria-label="Facebook" style="color: rgba(15,23,42,.6); transition: color 0.3s; font-size: 24px; text-decoration: none;">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/925.adhd" target="_blank" rel="noopener" aria-label="Instagram" style="color: rgba(15,23,42,.6); transition: color 0.3s; font-size: 24px; text-decoration: none;">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@ADHDBible" target="_blank" rel="noopener" aria-label="YouTube" style="color: rgba(15,23,42,.6); transition: color 0.3s; font-size: 24px; text-decoration: none;">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@925adhd" target="_blank" rel="noopener" aria-label="TikTok" style="color: rgba(15,23,42,.6); transition: color 0.3s; font-size: 24px; text-decoration: none;">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/kara-gibson-3818a3348" target="_blank" rel="noopener" aria-label="LinkedIn" style="color: rgba(15,23,42,.6); transition: color 0.3s; font-size: 24px; text-decoration: none;">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/index.html#faq">FAQ</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/terms-of-service.html">Terms</a>
+        <a href="/privacy-policy.html">Privacy</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Year display
+  (function(){
+    const startYear = 2024;
+    const thisYear = new Date().getFullYear();
+    const el = document.getElementById('year');
+    if (el) el.textContent = thisYear > startYear ? `${startYear}-${thisYear}` : `${startYear}`;
+  })();
+
+  // Hamburger menu
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.querySelector('.links');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+  }
+
+  // Reading progress bar
+  const progressBar = document.getElementById('progressBar');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      progressBar.style.width = scrolled + '%';
+    }, { passive: true });
+  }
+
+  // Active section highlighting in TOC
+  const sections = document.querySelectorAll('section[id]');
+  const tocLinks = document.querySelectorAll('.toc-row a, .toc-list a');
+
+  if (sections.length && tocLinks.length) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-100px 0px -66%',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${entry.target.id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+  }
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Mobile TOC collapse toggle
+  if (window.innerWidth <= 920) {
+    const tocTitle = document.querySelector('.toc-title');
+    const tocList = document.querySelector('.toc-list');
+
+    if (tocTitle && tocList) {
+      // Start collapsed on mobile
+      tocTitle.classList.add('collapsed');
+      tocList.classList.add('collapsed');
+
+      tocTitle.addEventListener('click', () => {
+        tocTitle.classList.toggle('collapsed');
+        tocList.classList.toggle('collapsed');
+      });
+    }
+  }
+</script>
+
+</body>
+</html>
