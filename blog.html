@@ -223,6 +223,72 @@
       transform:translateY(-2px);
     }
 
+    /* Tag filter chips */
+    .tag-chip{
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:white;
+      font-weight:650;
+      font-size:13px;
+      color:rgba(15,23,42,.75);
+      cursor:pointer;
+      transition:all .2s;
+      white-space:nowrap;
+    }
+    .tag-chip:hover{
+      background:rgba(124,58,237,.08);
+      border-color:rgba(124,58,237,.3);
+      color:var(--brand);
+      transform:translateY(-1px);
+    }
+    .tag-chip.active{
+      background:var(--brand);
+      border-color:var(--brand);
+      color:white;
+    }
+    .tag-chip.active:hover{
+      background:var(--brand2);
+      border-color:var(--brand2);
+    }
+
+    /* Active filter chips */
+    .filter-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(124,58,237,.1);
+      border:1px solid rgba(124,58,237,.2);
+      font-size:12px;
+      font-weight:650;
+      color:var(--brand);
+    }
+    .filter-chip button{
+      background:none;
+      border:none;
+      cursor:pointer;
+      padding:0;
+      color:var(--brand);
+      font-size:14px;
+      line-height:1;
+      transition:transform .1s;
+    }
+    .filter-chip button:hover{
+      transform:scale(1.2);
+    }
+
+    /* Dropdown hover states */
+    select:hover{
+      border-color:rgba(0,0,0,.2);
+    }
+    select:focus{
+      outline:none;
+      border-color:var(--brand);
+      box-shadow:0 0 0 3px rgba(124,58,237,.1);
+    }
+
     /* Footer */
     footer{
       padding:36px 0 48px;
@@ -265,6 +331,16 @@
       .links{display:none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--border); padding: 20px; flex-direction: column; gap: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.1);}
       .links.active{display:flex}
       .hamburger{display:inline-flex}
+    }
+    @media (max-width: 640px){
+      .tag-chip{
+        font-size:12px;
+        padding:6px 10px;
+      }
+      select{
+        font-size:13px;
+        padding:8px 32px 8px 12px;
+      }
     }
     @media (max-width: 768px) {
       footer .foot {
@@ -312,13 +388,61 @@
       <h1>925 ADHD Blog</h1>
       <p>Tips, strategies, and real talk about ADHD-friendly remote work, freelancing, and building a life that works for your brain.</p>
       
-      <div style="max-width:600px; margin:24px auto 0;">
-        <input 
-          type="text" 
-          id="searchInput" 
-          placeholder="🔍 Search posts..." 
-          style="width:100%; padding:12px 20px; border-radius:14px; border:1px solid var(--border); font-size:15px; font-family:inherit;"
+      <!-- Search & Filters -->
+      <div style="max-width:800px; margin:24px auto 0;">
+        <!-- Search bar -->
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="🔍 Search posts..."
+          style="width:100%; padding:12px 20px; border-radius:14px; border:1px solid var(--border); font-size:15px; font-family:inherit; margin-bottom:16px;"
         >
+
+        <!-- Filter controls -->
+        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center;">
+          <!-- Category dropdown -->
+          <div style="position:relative;">
+            <select
+              id="categoryFilter"
+              style="padding:10px 36px 10px 16px; border-radius:14px; border:1px solid var(--border); font-size:14px; font-weight:650; font-family:inherit; background:white; cursor:pointer; appearance:none; background-image:url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27/%3e%3c/svg%3e'); background-repeat:no-repeat; background-position:right 12px center; transition:border-color .2s, box-shadow .2s;"
+            >
+              <option value="">All Categories</option>
+            </select>
+          </div>
+
+          <!-- Sort dropdown -->
+          <div style="position:relative;">
+            <select
+              id="sortFilter"
+              style="padding:10px 36px 10px 16px; border-radius:14px; border:1px solid var(--border); font-size:14px; font-weight:650; font-family:inherit; background:white; cursor:pointer; appearance:none; background-image:url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27/%3e%3c/svg%3e'); background-repeat:no-repeat; background-position:right 12px center; transition:border-color .2s, box-shadow .2s;"
+            >
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="title">By Title</option>
+            </select>
+          </div>
+
+          <!-- Clear filters button -->
+          <button
+            id="clearFilters"
+            style="padding:10px 16px; border-radius:14px; border:1px solid var(--border); font-size:14px; font-weight:650; font-family:inherit; background:white; cursor:pointer; transition:all .2s; display:none;"
+          >
+            ✕ Clear Filters
+          </button>
+        </div>
+
+        <!-- Tag filter chips -->
+        <div id="tagFilters" style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:16px;">
+          <!-- Tags will be populated dynamically -->
+        </div>
+
+        <!-- Active filters display -->
+        <div id="activeFilters" style="margin-top:12px; display:none;">
+          <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; align-items:center;">
+            <span style="font-size:13px; font-weight:650; color:rgba(15,23,42,.6);">Active filters:</span>
+            <div id="activeFilterChips" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -400,73 +524,259 @@
         description: "Most work-from-home advice assumes a consistent brain. If you have ADHD, that advice often backfires. Here's what actually works instead.",
         link: "/blog/january/why-wfh-advice-fails-adhd.html",
         pubDate: "2026-01-01T12:00:00",
-        thumbnail: "assets/blog%20images/wfh-advice.png"
+        thumbnail: "assets/blog%20images/wfh-advice.png",
+        category: "Work strategies",
+        tags: ["remote work", "ADHD", "productivity", "work-from-home"]
       },
       {
         title: "What Is the 10-3 Rule for ADHD? A Simple Focus Strategy That Actually Works",
         description: "The 10-3 rule is a simple way to start tasks without overwhelm: 10 minutes focused, 3-minute breaks. How to use it.",
         link: "/blog/january/what-is-the-10-3-rule-for-adhd.html",
         pubDate: "2026-01-08T12:00:00",
-        thumbnail: "assets/blog%20images/what-is-the-10-3-rule-adhd.png"
+        thumbnail: "assets/blog%20images/what-is-the-10-3-rule-adhd.png",
+        category: "Focus strategies",
+        tags: ["ADHD", "focus", "productivity", "time management"]
       },
       {
         title: "The Best ADHD Apps for Adults Who Want to Actually Thrive",
         description: "Looking for the best ADHD apps for adults? Here are the top picks for focus, organization, emotional regulation, habits, and executive function support — without overwhelm.",
         link: "/blog/january/best-adhd-apps-for-adults.html",
         pubDate: "2026-01-15T12:00:00",
-        thumbnail: "assets/blog%20images/best-adhd-apps-for-adults.png"
+        thumbnail: "assets/blog%20images/best-adhd-apps-for-adults.png",
+        category: "Tools & apps",
+        tags: ["ADHD", "apps", "tools", "organization", "productivity"]
       },
       {
         title: "How to Work From Home With ADHD (Without Burning Out)",
         description: "Work from home with ADHD without burning out. Energy-based planning, ADHD-friendly systems, and flexible work options that actually fit how your brain works.",
         link: "/blog/january/work-from-home-with-adhd.html",
         pubDate: "2026-01-20T12:00:00",
-        thumbnail: "assets/blog%20images/work-from-home-with-adhd.png"
+        thumbnail: "assets/blog%20images/work-from-home-with-adhd.png",
+        category: "Work strategies",
+        tags: ["remote work", "ADHD", "burnout", "work-from-home", "energy management"]
+      },
+      {
+        title: "What Is Ring of Fire ADHD? Symptoms, Traits, and What Helps",
+        description: "Ring of Fire ADHD is a term used to describe an intense ADHD pattern with sensory overload, emotional intensity, and a brain that feels stuck on high volume. Here's what it means, common symptoms, and what helps.",
+        link: "/blog/january/what-is-ring-of-fire-adhd.html",
+        pubDate: "2026-01-25T12:00:00",
+        thumbnail: "assets/blog%20images/what-is-ring-of-fire-adhd.png",
+        category: "ADHD explained",
+        tags: ["ADHD", "sensory overload", "emotional dysregulation", "overstimulation"]
+      },
+      {
+        title: "Can't Work a 9 to 5 With ADHD? You're Not Broken (Here's Why)",
+        description: "If you can't work a 9 to 5 with ADHD, you're not lazy or broken. Learn why rigid schedules hit ADHD brains so hard, what's actually going on, and what works better.",
+        link: "/blog/febuary/cant-work-9-to-5-with-adhd.html",
+        pubDate: "2026-02-01T00:00:00",
+        thumbnail: "assets/blog%20images/cant-work-9-to-5-with-adhd.png",
+        category: "ADHD & Work",
+        tags: ["ADHD", "work", "burnout", "executive dysfunction", "9 to 5"]
       }
     ];
     let filteredPosts = [...allPosts];
+    let activeFilters = {
+      search: '',
+      category: '',
+      tags: [],
+      sort: 'newest'
+    };
 
-    // Render posts immediately
-    renderPosts();
+    // Initialize filters and render
+    initializeFilters();
+    applyFilters(); // Apply default sort on initial load
+
+    // Populate category dropdown and tag chips
+    function initializeFilters() {
+      // Get unique categories
+      const categories = [...new Set(allPosts.map(post => post.category).filter(Boolean))];
+      const categoryFilter = document.getElementById('categoryFilter');
+      categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat;
+        categoryFilter.appendChild(option);
+      });
+
+      // Get all unique tags and their counts
+      const tagCounts = {};
+      allPosts.forEach(post => {
+        if (post.tags) {
+          post.tags.forEach(tag => {
+            tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+          });
+        }
+      });
+
+      // Sort tags by frequency
+      const sortedTags = Object.entries(tagCounts)
+        .sort((a, b) => b[1] - a[1])
+        .map(([tag]) => tag);
+
+      // Create tag chips
+      const tagFilters = document.getElementById('tagFilters');
+      sortedTags.forEach(tag => {
+        const chip = document.createElement('button');
+        chip.className = 'tag-chip';
+        chip.textContent = tag;
+        chip.dataset.tag = tag;
+        chip.addEventListener('click', () => toggleTag(tag));
+        tagFilters.appendChild(chip);
+      });
+    }
 
     // Search functionality
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      
-      if (searchTerm === '') {
-        filteredPosts = [...allPosts];
-      } else {
-        filteredPosts = allPosts.filter(post => {
-          const title = post.title.toLowerCase();
-          const description = (post.description || post.content || '').toLowerCase();
-          return title.includes(searchTerm) || description.includes(searchTerm);
-        });
-      }
-      
-      renderPosts();
+      activeFilters.search = e.target.value.toLowerCase();
+      applyFilters();
     });
+
+    // Category filter
+    const categoryFilter = document.getElementById('categoryFilter');
+    categoryFilter.addEventListener('change', (e) => {
+      activeFilters.category = e.target.value;
+      applyFilters();
+    });
+
+    // Sort filter
+    const sortFilter = document.getElementById('sortFilter');
+    sortFilter.addEventListener('change', (e) => {
+      activeFilters.sort = e.target.value;
+      applyFilters();
+    });
+
+    // Clear filters button
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    clearFiltersBtn.addEventListener('click', () => {
+      activeFilters = { search: '', category: '', tags: [], sort: 'newest' };
+      searchInput.value = '';
+      categoryFilter.value = '';
+      sortFilter.value = 'newest';
+      document.querySelectorAll('.tag-chip').forEach(chip => chip.classList.remove('active'));
+      applyFilters();
+    });
+
+    // Toggle tag filter
+    function toggleTag(tag) {
+      const index = activeFilters.tags.indexOf(tag);
+      if (index > -1) {
+        activeFilters.tags.splice(index, 1);
+      } else {
+        activeFilters.tags.push(tag);
+      }
+
+      // Update chip appearance
+      const chip = document.querySelector(`[data-tag="${tag}"]`);
+      if (chip) {
+        chip.classList.toggle('active');
+      }
+
+      applyFilters();
+    }
+
+    // Apply all filters
+    function applyFilters() {
+      filteredPosts = allPosts.filter(post => {
+        // Date filter - hide posts scheduled for future dates
+        const postDate = new Date(post.pubDate);
+        const now = new Date();
+        if (postDate > now) {
+          return false;
+        }
+
+        // Search filter
+        if (activeFilters.search) {
+          const title = post.title.toLowerCase();
+          const description = (post.description || '').toLowerCase();
+          const searchMatch = title.includes(activeFilters.search) || description.includes(activeFilters.search);
+          if (!searchMatch) return false;
+        }
+
+        // Category filter
+        if (activeFilters.category && post.category !== activeFilters.category) {
+          return false;
+        }
+
+        // Tag filter (post must have ALL selected tags)
+        if (activeFilters.tags.length > 0) {
+          const postTags = post.tags || [];
+          const hasAllTags = activeFilters.tags.every(tag => postTags.includes(tag));
+          if (!hasAllTags) return false;
+        }
+
+        return true;
+      });
+
+      // Apply sorting
+      filteredPosts.sort((a, b) => {
+        switch(activeFilters.sort) {
+          case 'newest':
+            return new Date(b.pubDate) - new Date(a.pubDate);
+          case 'oldest':
+            return new Date(a.pubDate) - new Date(b.pubDate);
+          case 'title':
+            return a.title.localeCompare(b.title);
+          default:
+            return 0;
+        }
+      });
+
+      updateActiveFiltersDisplay();
+      renderPosts();
+    }
+
+    // Update active filters display
+    function updateActiveFiltersDisplay() {
+      const hasActiveFilters = activeFilters.search || activeFilters.category || activeFilters.tags.length > 0;
+      const activeFiltersDiv = document.getElementById('activeFilters');
+      const clearFiltersBtn = document.getElementById('clearFilters');
+      const activeFilterChips = document.getElementById('activeFilterChips');
+
+      if (hasActiveFilters) {
+        activeFiltersDiv.style.display = 'block';
+        clearFiltersBtn.style.display = 'block';
+
+        // Build filter chips
+        let chips = [];
+
+        if (activeFilters.search) {
+          chips.push(`<span class="filter-chip">Search: "${activeFilters.search}" <button onclick="document.getElementById('searchInput').value=''; activeFilters.search=''; applyFilters();">×</button></span>`);
+        }
+
+        if (activeFilters.category) {
+          chips.push(`<span class="filter-chip">${activeFilters.category} <button onclick="document.getElementById('categoryFilter').value=''; activeFilters.category=''; applyFilters();">×</button></span>`);
+        }
+
+        activeFilters.tags.forEach(tag => {
+          chips.push(`<span class="filter-chip">${tag} <button onclick="toggleTag('${tag}')">×</button></span>`);
+        });
+
+        activeFilterChips.innerHTML = chips.join('');
+      } else {
+        activeFiltersDiv.style.display = 'none';
+        clearFiltersBtn.style.display = 'none';
+      }
+    }
 
     // Render posts
     function renderPosts() {
       const container = document.getElementById('blog-posts');
 
       if (filteredPosts.length === 0) {
-        container.innerHTML = '<div class="loading"><p>No posts match your search. Try different keywords!</p></div>';
+        container.innerHTML = '<div class="loading"><p>No posts match your filters. Try adjusting your selection!</p></div>';
         return;
       }
 
-      // show only the latest 9 posts by default; when a search is active, show all matching results
-      const searchTerm = (document.getElementById('searchInput') && document.getElementById('searchInput').value || '').trim();
-      // ensure posts are sorted newest-first
-      const sorted = filteredPosts.slice().sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
-      const displayPosts = searchTerm === '' ? sorted.slice(0,9) : sorted;
+      // Show all filtered/sorted posts (no limit when filters are active)
+      const hasActiveFilters = activeFilters.search || activeFilters.category || activeFilters.tags.length > 0;
+      const displayPosts = hasActiveFilters ? filteredPosts : filteredPosts.slice(0, 9);
 
       const postsHtml = displayPosts.map(post => {
         const description = extractDescription(post.description || post.content || '');
         const imageUrl = extractImageUrl(post);
         const adhdIcon = getAdhdIcon();
-        
+
         return `
           <div class="post-card">
             ${imageUrl
@@ -478,6 +788,7 @@
             }
             <div class="post-content">
               <span class="post-date">${formatDate(post.pubDate)}</span>
+              ${post.category ? `<span class="post-date" style="background:rgba(124,58,237,.1); color:var(--brand); margin-left:6px;">${post.category}</span>` : ''}
               <h2 class="post-title">
                 <a href="${post.link}">${post.title}</a>
               </h2>
