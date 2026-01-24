@@ -316,6 +316,39 @@
     }
     .footer-links{display:flex; gap:16px; flex-wrap:wrap; justify-content:center;}
 
+    /* Tag filter mobile optimization */
+    #tagFilters{
+      position:relative;
+    }
+    #tagFilters.collapsed .tag-chip:nth-child(n+7){
+      display:none;
+    }
+    .tag-expand-btn{
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(124,58,237,.3);
+      background:rgba(124,58,237,.08);
+      font-weight:650;
+      font-size:13px;
+      color:var(--brand);
+      cursor:pointer;
+      transition:all .2s;
+      white-space:nowrap;
+    }
+    .tag-expand-btn:hover{
+      background:rgba(124,58,237,.15);
+      border-color:var(--brand);
+      transform:translateY(-1px);
+    }
+    @media (min-width: 768px){
+      #tagFilters.collapsed .tag-chip:nth-child(n+7){
+        display:inline-flex;
+      }
+      .tag-expand-btn{
+        display:none !important;
+      }
+    }
+
     /* Responsive */
     @media (min-width: 768px){
       .blog-grid{
@@ -623,6 +656,21 @@
         chip.addEventListener('click', () => toggleTag(tag));
         tagFilters.appendChild(chip);
       });
+
+      // Add "More" button for mobile
+      const moreBtn = document.createElement('button');
+      moreBtn.className = 'tag-expand-btn';
+      moreBtn.textContent = 'More tags';
+      moreBtn.addEventListener('click', () => {
+        tagFilters.classList.toggle('collapsed');
+        moreBtn.textContent = tagFilters.classList.contains('collapsed') ? 'More tags' : 'Show less';
+      });
+      tagFilters.appendChild(moreBtn);
+
+      // Start collapsed on mobile
+      if (window.innerWidth < 768) {
+        tagFilters.classList.add('collapsed');
+      }
     }
 
     // Search functionality
