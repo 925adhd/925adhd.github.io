@@ -229,6 +229,10 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       --text:#0f172a;
       --brand:#7c3aed;
       --brand2:#22c55e;
+      --brand2-text:#15803d;
+      --brand2-pill:#dcfce7;
+      --brand2-pill-border:rgba(34,197,94,.35);
+      --price-green:#16a34a;
       --accent:#f59e0b;
       --border:rgba(0,0,0,.08);
       --shadow: 0 4px 20px rgba(0,0,0,.08);
@@ -396,7 +400,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
     /* Section */
     .section{padding:48px 0}
     .section h2{margin:0 0 10px; font-size:30px; letter-spacing:-.4px}
-    .section p{margin:0; color:rgba(15,23,42,.65); font-size:17px}
+    .section p{margin:0; color:rgba(15,23,42,.75); font-size:17px}
 
     /* What-is card */
     .whatis .whatis-card{
@@ -532,8 +536,31 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
     .price{
       margin:12px 0;
     }
-    .price b{font-size:48px; letter-spacing:-.8px; color:var(--brand2)}
-    .price-detail{color:rgba(15,23,42,.6); font-weight:800; font-size:15px}
+    .price b{font-size:48px; letter-spacing:-.8px; color:var(--price-green)}
+    .kicker-green{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--brand2-pill);
+      border:1px solid var(--brand2-pill-border);
+      color:var(--brand2-text);
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.5px;
+    }
+    .price-helper{
+      margin-top:6px;
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+    .price-helper.purple{
+      color:var(--brand);
+    }
+    .price-detail{color:rgba(15,23,42,.75); font-weight:800; font-size:15px}
     .list{margin:16px 0 0; padding:0; list-style:none; display:grid; gap:10px}
     .list li{
       display:flex; gap:10px; align-items:flex-start;
@@ -573,7 +600,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       line-height:1.5;
     }
     .guarantee-badge .text strong{
-      color:var(--accent);
+      color:#92400e;
     }
 
     /* Discord CTA */
@@ -623,7 +650,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       padding: 16px 18px;
     }
     .faq-q{font-weight:850; font-size:15px; margin:0 0 6px; color:var(--text)}
-    .faq-a{margin:0; color: rgba(15,23,42,.65); font-weight:600; font-size:14px; line-height:1.6}
+    .faq-a{margin:0; color: rgba(15,23,42,.75); font-weight:600; font-size:14px; line-height:1.6}
 
     /* Testimonials */
     .testimonials-grid{
@@ -673,7 +700,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       justify-content: center;
     }
     .footer-social a {
-      color: rgba(15,23,42,.35);
+      color: rgba(15,23,42,.6);
       transition: color 0.2s;
     }
     .footer-social a:hover {
@@ -768,7 +795,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
     .preview-mini-note{
       text-align: center;
       font-size: 13px;
-      color: rgba(15,23,42,.55);
+      color: rgba(15,23,42,.75);
       margin-top: 12px;
       font-weight: 600;
     }
@@ -977,7 +1004,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
               View Features
             </a>
           </div>
-          <p style="font-size: 13px; color: rgba(15,23,42,.55); margin: 0; text-align: center;">
+          <p style="font-size: 13px; color: rgba(15,23,42,.75); margin: 0; text-align: center;">
             One-time payment. Lifetime access. New options added, dead ones removed.
           </p>
         </div>
@@ -1166,14 +1193,12 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
         <div class="pricing-card">
           <div class="card pad">
             <div style="text-align:center;">
-              <div style="font-weight:900; color:var(--brand2); font-size:13px; letter-spacing:.5px; margin-bottom:4px;">💎 LIFETIME ACCESS</div>
+              <div class="kicker-green">💎 LIFETIME ACCESS</div>
               <div style="font-weight:950; font-size:22px;">925 ADHD</div>
               <div class="price">
                 <b>$9.25</b>
                 <div class="price-detail">one-time payment • yours forever</div>
-                <div style="margin-top:8px;">
-                  <span style="display:inline-block; background:rgba(124,58,237,.1); color:var(--brand); font-size:13px; font-weight:700; padding:6px 12px; border-radius:20px;">Ad-free • No distractions</span>
-                </div>
+                <div class="price-helper purple">Ad-free • No distractions</div>
               </div>
             </div>
 
@@ -1213,7 +1238,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
               <a class="btn primary" href="https://buy.stripe.com/28E3cw1B33logABev67Zu02" style="width:100%; justify-content:center; text-align:center; font-size:17px; padding:16px 24px;">
                 Get Instant Access →
               </a>
-              <p style="text-align: center; font-size: 13px; color: rgba(15,23,42,.55); margin-top: 12px;">
+              <p style="text-align: center; font-size: 13px; color: rgba(15,23,42,.75); margin-top: 12px;">
                 Instant access via email • Works in any browser • No downloads
               </p>
             </div>
