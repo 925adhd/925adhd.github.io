@@ -360,6 +360,11 @@
       h1{font-size:clamp(28px,7vw,40px)}
       .toc-row{display:none !important}
       .toc-list.toc-mobile{display:grid !important}
+      .toc-title{cursor:pointer;user-select:none}
+      .toc-title::after{content:' ▼';font-size:12px;transition:transform .2s}
+      .toc-title.collapsed::after{transform:rotate(-90deg)}
+      .toc-list{max-height:500px;overflow:hidden;transition:max-height .3s ease}
+      .toc-list.collapsed{max-height:0}
     }
     @media (max-width:640px){
       body{font-size:16px}
@@ -810,6 +815,66 @@
       const scrolled = (winScroll / height) * 100;
       progressBar.style.width = scrolled + '%';
     }, { passive: true });
+  }
+
+  // Active section highlighting in TOC
+  const sections = document.querySelectorAll('section[id]');
+  const tocLinks = document.querySelectorAll('.toc-row a, .toc-list a');
+
+  if (sections.length && tocLinks.length) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-100px 0px -66%',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${entry.target.id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+  }
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Mobile TOC collapse toggle
+  if (window.innerWidth <= 920) {
+    const tocTitle = document.querySelector('.toc-title');
+    const tocList = document.querySelector('.toc-list');
+
+    if (tocTitle && tocList) {
+      tocTitle.classList.add('collapsed');
+      tocList.classList.add('collapsed');
+
+      tocTitle.addEventListener('click', () => {
+        tocTitle.classList.toggle('collapsed');
+        tocList.classList.toggle('collapsed');
+      });
+    }
   }
 </script>
 
