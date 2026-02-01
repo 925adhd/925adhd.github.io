@@ -566,22 +566,24 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       font-size:13px;
       letter-spacing:.5px;
     }
-    .price-helper{
-      margin-top:6px;
-      font-size:13px;
-      font-weight:600;
-      letter-spacing:.2px;
+    .price-detail{color:rgba(15,23,42,.75); font-weight:800; font-size:14px; line-height:1.3}
+    .pricing-sub{
+      font-size:12px;
+      font-weight:500;
+      color:rgba(15,23,42,.55);
+      margin-top:2px;
     }
+    .price-helper{font-size:inherit; font-weight:inherit; letter-spacing:.2px}
     .price-helper.purple{
       color:var(--brand);
     }
-    .price-detail{color:rgba(15,23,42,.75); font-weight:800; font-size:15px}
-    .list{margin:16px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .list{margin:14px 0 0; padding:0; list-style:none; display:grid; gap:8px}
+    .list .sub{font-size:13px; color:rgba(15,23,42,.55); margin-top:2px}
     .list li{
       display:flex; gap:10px; align-items:flex-start;
       color: rgba(15,23,42,.75);
       font-weight:650;
-      font-size:15px;
+      font-size:14px;
     }
     .check{
       width:22px; height:22px; border-radius: 8px;
@@ -597,22 +599,22 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
     .guarantee-badge{
       display:flex;
       align-items:center;
-      gap:12px;
-      padding:14px 18px;
+      gap:10px;
+      padding:12px 14px;
       background: rgba(245,158,11,.12);
       border:1px solid rgba(245,158,11,.3);
       border-radius:12px;
-      margin-top:20px;
+      margin-top:14px;
     }
     .guarantee-badge .shield{
-      font-size:28px;
+      font-size:24px;
       flex-shrink:0;
     }
     .guarantee-badge .text{
-      font-size:14px;
+      font-size:13px;
       font-weight:600;
       color:rgba(15,23,42,.75);
-      line-height:1.5;
+      line-height:1.35;
     }
     .guarantee-badge .text strong{
       color:#92400e;
@@ -909,6 +911,12 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       .footer-links {
         gap: 12px;
       }
+    }
+    @media (max-width: 520px){
+      #pricing{padding:32px 0 !important}
+      .pricing-card{margin-top:16px}
+      .price b{font-size:44px}
+      .guarantee-badge{margin-top:12px}
     }
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto !important; transition:none !important}
@@ -1212,32 +1220,29 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
               <div style="font-weight:950; font-size:22px;">925 ADHD</div>
               <div class="price">
                 <b>$9.25</b>
-                <div class="price-detail">one-time payment • yours forever</div>
-                <div class="price-helper purple">Ad-free • No distractions</div>
+                <div class="price-detail">
+                  one-time payment • yours forever • <span class="price-helper purple" style="font-weight:800;">ad-free</span>
+                </div>
               </div>
             </div>
 
             <div style="text-align:center; margin-top:8px; margin-bottom:8px;">
               <h3 style="margin:0; font-size:20px; font-weight:800; color:var(--text);">50+ Vetted Options to Earn Online</h3>
-              <div style="font-size:13px; color:rgba(15,23,42,.68); margin-top:6px;">Curated and tagged by setup time, effort & payout speed</div>
+              <div class="pricing-sub">Curated by setup time, effort & payout speed</div>
             </div>
             <ul class="list">
               <li>
                 <span class="check">✔</span>
-                <span class="item">Easy-to-follow guides for getting started (no fluff, just action)</span>
-              </li>
-              <li>
-                <span class="check">✔</span>
-                <span class="item">Lifetime updates: New options added, dead ones removed</span>
+                <span class="item">Step-by-step guides. Always kept up to date.<div class="sub">New options added, dead ones removed</div></span>
               </li>
             </ul>
 
-            <div class="card" style="margin-top:16px; padding:14px; background:rgba(124,58,237,.04); border:1px solid rgba(124,58,237,.14); box-shadow:none;">
-              <div style="display:flex; align-items:center; gap:12px;">
-                <img src="assets/passionfinder.png" alt="Passion Finder" style="width:72px; height:72px; object-fit:contain; border-radius:8px; flex-shrink:0;">
+            <div class="card" style="margin-top:12px; padding:12px; background:rgba(124,58,237,.04); border:1px solid rgba(124,58,237,.14); box-shadow:none;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <img src="assets/passionfinder.png" alt="Passion Finder" style="width:56px; height:56px; object-fit:contain; border-radius:8px; flex-shrink:0;">
                 <div>
                   <div style="font-weight:900; font-size:14px;">✨ Included: Passion Finder Quiz</div>
-                  <div style="font-size:13px; color:rgba(15,23,42,.62); margin-top:2px;">Get matched to work that fits your unique brain.</div>
+                  <div style="font-size:13px; color:rgba(15,23,42,.62); margin-top:2px;">Find work that fits your brain.</div>
                 </div>
               </div>
             </div>
@@ -1245,7 +1250,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
             <div class="guarantee-badge">
               <div class="shield">🛡️</div>
               <div class="text">
-                <strong>30-Day Money-Back Guarantee.</strong> Try it risk-free. If it's not right for your brain, get a full refund—no questions asked.
+                <strong>30-Day Money-Back Guarantee.</strong> Full refund if it's not right for you.
               </div>
             </div>
 
