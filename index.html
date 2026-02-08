@@ -407,9 +407,9 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
     }
     .card.pad{padding:20px}
 
-    /* --- Hero: How it works card (matches the mock) --- */
+    /* --- Hero: How it works card (stable like reference image) --- */
     .howitworks{
-      max-width: 940px;
+      max-width: 1080px;
       margin: 20px auto 16px;
       padding: 32px 48px 32px 36px;
       border: 1px solid var(--border);
@@ -420,19 +420,21 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       overflow: hidden;
     }
 
+    /* Grid layout for stability */
     .howitworks-inner{
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
       align-items: center;
       gap: 48px;
     }
 
     .how-steps-wrap{
-      flex: 1 1 50%;
       min-width: 0;
     }
 
+    /* Let the phone column be controlled by the grid */
     .phone-wrap{
-      flex: 0 0 300px;
+      min-width: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -481,7 +483,8 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
 
     /* Phone mock (CSS-only, no image needed) */
     .phone{
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       border-radius: 28px;
       background: #fff;
       border: 1px solid rgba(0,0,0,.08);
@@ -817,6 +820,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
 
     .hero-actions .hero-ctas .btn{
       flex: 1 1 0;
+      min-width: 0;
       max-width: 360px;
       justify-content: center;
       padding: 16px 20px;
@@ -828,8 +832,9 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
     /* Mobile: smaller hero buttons */
     @media (max-width: 480px){
       .hero-actions .hero-ctas .btn{
-        padding: 14px 12px;
-        font-size: 14px;
+        padding: 14px 14px;
+        font-size: 15px;
+        border-radius: 999px;
       }
     }
 
@@ -842,41 +847,130 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       line-height: 1.5;
     }
 
-    /* Tablet: side-by-side but tighter */
-    @media (max-width: 900px){
+    /* Better desktop spacing - compact to fit above fold */
+    @media (min-width: 1024px){
+      .hero{
+        padding: 24px 0 20px;
+      }
+      h1{
+        margin: 6px 0 6px;
+      }
+      .sub{
+        margin-bottom: 0;
+      }
       .howitworks{
-        padding: 24px;
+        margin: 10px auto 8px;
+        padding: 20px 40px 20px 32px;
       }
       .howitworks-inner{
-        gap: 24px;
-      }
-      .phone-wrap{
-        flex: 0 0 240px;
+        grid-template-columns: minmax(380px, 1fr) auto;
+        gap: 40px;
+        align-items: center;
       }
       .phone{
-        width: 240px;
+        width: 300px;
+        max-width: 300px;
+        zoom: 0.85;
+      }
+      .hero-actions{
+        margin: 10px auto 0;
+        gap: 6px;
+      }
+      .hero-actions .hero-ctas .btn{
+        padding: 12px 16px;
+        font-size: 16px;
+      }
+      .stats-bar{
+        margin: 12px 0;
+      }
+      .stat-item .num{
+        font-size: 24px;
+      }
+      .stat-item .label{
+        font-size: 12px;
       }
     }
 
-    /* Mobile: stack phone under steps */
-    @media (max-width: 600px){
+    /* Extra-wide monitors */
+    @media (min-width: 1280px){
       .howitworks{
-        padding: 20px;
+        max-width: 1180px;
       }
       .howitworks-inner{
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .how-steps-wrap{
-        flex: none;
-      }
-      .phone-wrap{
-        flex: none;
-        margin: 20px auto 0;
+        grid-template-columns: minmax(520px, 1fr) 380px;
+        gap: 76px;
       }
       .phone{
-        width: 280px;
+        max-width: 360px;
+        width: 360px;
       }
+    }
+
+    /* Tablet: side-by-side but tighter */
+    @media (max-width: 900px){
+      .howitworks{ padding: 24px; }
+      .howitworks-inner{
+        gap: 24px;
+        grid-template-columns: minmax(0, 1fr) minmax(190px, 260px);
+      }
+      .phone{ max-width: 240px; }
+    }
+
+    /* MOBILE: scale the entire phone using zoom (shrinks layout too) */
+    @media (max-width: 600px){
+      .hero{ padding: 20px 0 16px; }
+      .pill{ padding: 6px 12px; font-size: 12px; }
+      h1{ margin: 8px 0 6px; }
+      .sub{ font-size: 16px; }
+      .kicker{ font-size: 14px !important; }
+      .howitworks{ padding: 14px; margin: 10px auto 8px; }
+      .howitworks-inner{
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+      }
+      .phone-wrap{
+        justify-content: flex-end;
+      }
+      .phone{
+        width: 260px;
+        max-width: none;
+        zoom: 0.58;
+        transform-origin: top right;
+      }
+      .how-title{ font-size: 15px; margin-bottom: 8px; }
+      .how-step .num{ width: 22px; height: 22px; font-size: 11px; }
+      .how-step .text{ font-size: 12px; line-height: 1.25; }
+      .how-steps{ gap: 8px; }
+      .micro-copy{ margin: 8px 0 0 !important; font-size: 13px !important; }
+      .hero-actions{ margin: 8px auto 0; gap: 6px; }
+      .hero-actions .hero-ctas .btn{ padding: 12px 14px; font-size: 14px; }
+      .stats-bar{ margin: 10px 0; gap: 16px; }
+      .stat-item .num{ font-size: 22px; }
+      .stat-item .label{ font-size: 11px; }
+    }
+
+    /* Extra small mobile (360px) */
+    @media (max-width: 400px){
+      .hero{ padding: 16px 0 12px; }
+      .pill{ padding: 5px 10px; font-size: 11px; }
+      h1{ font-size: 26px; margin: 6px 0 4px; }
+      .sub{ font-size: 14px; line-height: 1.5; }
+      .kicker{ font-size: 13px !important; margin-top: 2px !important; }
+      .howitworks{ padding: 12px; margin: 8px auto 6px; }
+      .howitworks-inner{ gap: 10px; }
+      .phone{ zoom: 0.52; }
+      .how-title{ font-size: 14px; margin-bottom: 6px; }
+      .how-step .num{ width: 20px; height: 20px; font-size: 10px; }
+      .how-step .text{ font-size: 11px; }
+      .how-steps{ gap: 6px; }
+      .micro-copy{ font-size: 12px !important; }
+      .micro-copy span{ font-size: 11px !important; margin-top: 2px !important; }
+      .hero-actions .hero-ctas .btn{ padding: 10px 12px; font-size: 13px; }
+      .stats-bar{ margin: 8px 0; gap: 12px; }
+      .stat-item .num{ font-size: 20px; }
+      .stat-item .label{ font-size: 10px; }
     }
 
     /* Stats Bar */
@@ -1398,6 +1492,15 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       .stat-item .num{font-size:24px}
       .discord-cta{flex-direction:column; text-align:center}
     }
+    /* Small mobile: hide header buttons, show only hamburger */
+    /* Small mobile: compact header */
+    @media (max-width: 640px){
+      .navinner{height:52px; gap:8px}
+      .brand img{width:28px; height:28px}
+      .brand span{font-size:14px}
+      .actions{gap:6px}
+      .actions .btn{padding:8px 10px; font-size:12px; border-radius:10px}
+    }
     @media (max-width: 600px){
       .testimonials-grid{grid-template-columns:1fr}
     }
@@ -1626,9 +1729,9 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
     </div>
 
     <!-- Micro-copy reinforcement -->
-    <p style="margin: 24px 0 0; font-size: 14px; font-weight: 600; color: rgba(15,23,42,.6); text-align: center;">
+    <p class="micro-copy" style="margin: 12px 0 0; font-size: 14px; font-weight: 600; color: rgba(15,23,42,.6); text-align: center;">
       Most people find at least one option they can try the same week.<br>
-      <span style="font-size: 13px; display: inline-block; margin-top: 6px;">No resumes. No interviews. No MLM nonsense.</span>
+      <span style="font-size: 13px; display: inline-block; margin-top: 4px;">No resumes. No interviews. No MLM nonsense.</span>
     </p>
 
     <!-- CTAs under the card (matches mock) -->
