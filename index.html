@@ -888,6 +888,63 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
       width: 100%;
       border-radius: 12px;
       border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .preview-modal-grid img:active{
+      transform: scale(0.98);
+    }
+
+    /* Image Lightbox */
+    #imageLightbox{
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.95);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    #imageLightbox.active{
+      display: flex;
+    }
+
+    #imageLightbox img{
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5);
+    }
+
+    #imageLightbox .lightbox-close{
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,.9);
+      border: none;
+      color: #0f172a;
+      font-size: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+
+    #imageLightbox .lightbox-hint{
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.6);
+      font-size: 13px;
+      font-weight: 500;
     }
 
     @media (max-width: 768px){
@@ -1368,6 +1425,7 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
     <div class="preview-modal-content">
       <button class="preview-modal-close" aria-label="Close preview" id="closePreview">✕</button>
       <h2 id="previewModalTitle" style="text-align:center; margin:0;">Inside the Dashboard</h2>
+      <p style="text-align:center; font-size:13px; color:rgba(15,23,42,.6); margin:4px 0 0;">Tap any image to enlarge</p>
       <div class="preview-modal-grid">
         <img src="assets/1.png" alt="Dashboard screenshot 1">
         <img src="assets/2.png" alt="Dashboard screenshot 2">
@@ -1376,6 +1434,13 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
         <img src="assets/5.png" alt="Dashboard screenshot 5">
       </div>
     </div>
+  </div>
+
+  <!-- Image Lightbox -->
+  <div id="imageLightbox" role="dialog" aria-modal="true" aria-label="Enlarged image">
+    <button class="lightbox-close" aria-label="Close enlarged image">✕</button>
+    <img src="" alt="Enlarged screenshot">
+    <div class="lightbox-hint">Tap anywhere to close</div>
   </div>
 
   <div id="easter-lizard" aria-hidden="false">
@@ -1491,6 +1556,48 @@ src="https://www.facebook.com/tr?id=830474870030077&ev=PageView&noscript=1"/>
 
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+      });
+    })();
+
+    // Image lightbox functionality
+    (function(){
+      const lightbox = document.getElementById('imageLightbox');
+      const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
+      const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
+      const modalGrid = document.querySelector('.preview-modal-grid');
+      if (!lightbox || !lightboxImg || !modalGrid) return;
+
+      // Click on modal images to enlarge
+      modalGrid.addEventListener('click', (e) => {
+        if (e.target.tagName === 'IMG') {
+          lightboxImg.src = e.target.src;
+          lightboxImg.alt = e.target.alt;
+          lightbox.classList.add('active');
+        }
+      });
+
+      function closeLightbox(){
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+      }
+
+      // Close on button click
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+      }
+
+      // Close on background click
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === lightboxImg) {
+          closeLightbox();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
       });
     })();
   </script>
